@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="C:/xampp/htdocs/Abarrotes/app/images/icono.png">
+    <link rel="stylesheet" href="C:/xampp/htdocs/Abarrotes/app/css\style-enterproducts.css">
+    <script src="../../js/products-enter.js"></script>
+    <title>Productos</title>
+</head>
+<body onload="init();">
+    <nav>
+        <div id="headerimg">
+            <a href="../../sell.html">
+                <img src="C:\xampp\htdocs\Abarrotes\app\images\logo.png" alt="">
+            </a>
+        </div>
+        <ul>
+            <li id="sell" onclick="window.location='../../sell.html'">Venta</li>
+            <li id="buy" onclick="window.location='../Products/products.html'">Productos</li>
+            <li id="client" onclick="window.location='../Clients/clients.html'">Clientes</li>
+            <li id="suppliers" onclick="window.location='../Suppliers/suppliers.html'">Proveedores</li>
+            <li id="departments" onclick="window.location='../Departments/department.html'">Departamento</li>
+        </ul>
+    </nav>
+    <div id="content">
+        <div id="insertProductDiv">
+            <div id="shortcutProductsDiv">
+                <label for="">Ingreso de Productos</label>
+                <!-- <div id="selectSupplierDiv">
+                    <label> Seleccione un Proveedor :</label>
+                    <select name="" id="selectSuppliers"></select>
+                </div> -->
+            </div>
+            <div id="productInputDiv">
+                <label for="codigo">Código o Nombre del producto:</label>
+                <input list="dataListProducts" id="inputCodeProduct"/>
+                <datalist id="dataListProducts">
+                </datalist>
+            </div>
+        </div>
+        <div id="tableDataDiv">
+            <table id="productsTable">
+                <thead id="tableHead">
+                    <tr>
+                        <th>Código Barras</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+        <div id="buttonsDiv">
+            <div class="buttonsContainer">
+                <button id="goBackButton" onclick="window.location='products.html'"><img src="../../images/goback.png" ></button>
+            </div>
+            <div class="buttonsContainer">
+                <button id="deleteArticle" onclick="deleteArticle();"><img src="../../images/delete.png" ></button>
+            </div>
+            <div class="buttonsContainer">
+                <button id="chargeBuy" onclick="save();"><img src="../../images/save.png" ></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

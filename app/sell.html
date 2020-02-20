@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="images/icono.png">
+    <link rel="stylesheet" href="css/sell.css">
+    <script src="js/sell.js"></script>
+    <title>Venta</title>
+</head>
+<body onload="init();">
+    <nav>
+        <div id="headerimg">
+            <a href="sell.html">
+                <img src="images/logo.png" alt="">
+            </a>
+        </div>
+        <ul>
+            <li id="sell" onclick="window.location='sell.html'">Venta</li>
+            <li id="buy" onclick="window.location='html/Products/products.html'">Productos</li>
+            <li id="client" onclick="window.location='html/Clients/clients.html'">Clientes</li>
+            <li id="suppliers" onclick="window.location='html/Suppliers/suppliers.html'">Proveedores</li>
+            <li id="departments" onclick="window.location='html/Departments/department.html'">Departamento</li>
+        </ul>
+    </nav>
+    <div id="content">
+        <div id="insertProductDiv">
+            <div id="shortcutProductsDiv">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div id="productInputDiv">
+                <label for="codigo">Código o Nombre del producto:</label>
+                <input list="dataListProducts" id="inputCodeProduct"/>
+                <datalist id="dataListProducts">
+                </datalist>
+            </div>
+        </div>
+        <div id="tableDataDiv">
+            <table id="productsTable">
+                <thead id="tableHead">
+                    <tr>
+                        <th>Código Barras</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total Producto</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+        <div id="buttonsDiv">
+            <div class="buttonsContainer"> <a  href="https://planetaemx.com/" target="_blank"><button id="buttonPhoneData">Recarga</button></a></div>
+            <label id="totalLabel" for="total"><a id="totalLabel1">Total : </a> <h6>&#x24</h6><a id="totalCurrently"></a></label>
+            <div class="buttonsContainer">
+                <button id="deleteArticle" onclick="deleteArticle();">Eliminar</button>
+            </div>
+            <!-- <div class="buttonsContainer">
+                <button id="chageToDlls" onclick="toDlls();">+</button>
+            </div> -->
+            <div class="buttonsContainer">
+                <button id="chargeBuy" onclick="chargeSell();">Cobrar</button>
+            </div>
+        </div>
+        <div id="sellWindow" class="sellWindow">
+            <div id="buttonExitContainer"><button id="buttonExitBuy" onclick="exitBuyWindow();"><img src="images/exit.png" alt=""></button></div>
+            <div id="buttonsSellDivision">
+                <button id="buttonCashPay">
+                    <img src="images/cash.png" alt="">
+                </button>
+                <button id="buttonCreditPay"><img src="images/card.png" alt=""></button>
+            </div>
+            <div id="totalWindowSell">Total : <h3 id="totalLabelWindow"></h3></div>
+            <div id="amountPaidDiv">Pago con : <input id="inputAmountPaid"  type="number"></div>
+            <div id="changeClient">Su Cambio es: <label for="change" id="changeClientLabel"></label></div>
+        </div>
+    </div>
+</body>
+</html>

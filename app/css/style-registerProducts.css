@@ -1,0 +1,175 @@
+/*          BODY*/
+body{
+    width: 100%;
+    height: 400px;
+    margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+/*      CONTENT*/
+#content{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    float: left;
+    flex-wrap: wrap;
+}
+
+/*          HEADER*/
+header{
+    position: relative;
+    float: left;
+    width: 100%;
+    background: #222;
+    height: 70px;
+    color: #fff;
+    font-size: 40pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*          NAV*/
+nav{
+    position: relative;
+    background: #BDBDBD;
+    width: 15%;
+    height: 450px;
+    display: block;
+    top: 2px;
+}
+li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    color: #fff;
+    font-size: 20pt;
+}
+
+li:hover{
+    background: #1E88E5;
+    font-size: 22pt;
+    cursor: pointer;
+}
+li:active{
+    background: #fff;
+}
+ul{
+    padding: 0px;
+    width: 100%;
+}
+#headerimg {
+    width: 100%;
+    height: 150px;
+
+}
+#headerimg a img{
+    width: 100%;
+    height: 140px;
+}
+
+/*           C O M P R A           */
+
+#buy{
+    background: #1E88E5 ;
+    font-size: 22pt;
+}   
+#content label , #buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#buttons button{
+    width: calc(25% - 20px);
+    margin: 10px;
+}
+#buttons button:hover{
+    background-color: #ccc  ;
+}
+#buttons{
+    height: 40%;
+}
+#content label{
+    font-size: 30pt;
+    font-family: fantasy;
+    color: rgb(209, 17, 17);
+    fill: 1px solid black;
+
+}
+
+/*          DATA AND BUTTONS*/
+
+#inputDataDiv{
+    display: flex;
+    width: 100%;
+    height: 80%;
+    flex-wrap: wrap;
+    margin-top: 2.3%;
+}
+#inputDataDiv div{
+    display: flex;
+    width: 100%;
+    height: calc(80% / 5);
+    background-color: #fff;
+    align-items: center;
+}
+#inputDataDiv div h2 ,#inputDataDiv div input ,#inputDataDiv div select {
+    height: 90%;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+#inputDataDiv div h2 {
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 17pt;
+}
+#inputDataDiv div input{
+    font-size: 20pt;    
+}
+#inputDataDiv div input:focus{
+    font-size: 30pt;    
+}
+#buttonsDiv{
+    display: flex;
+    height: 10%;
+    width: 100%;
+    justify-content: space-around;
+}
+#buttonsDiv button{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10pt;
+    
+}
+
+#buttonsDiv button img{
+    width: 18%;
+    margin-right: 3%;
+}
+
+#goBackButton:hover{
+    background-color: #aaa;
+    color: white;
+
+    
+}
+#clearValuesButton:hover{
+    background-color: #D32F2F;
+    color: white;
+
+}
+#saveValuesButton:hover{
+    background-color: #388E3C;
+    color: white;
+
+}

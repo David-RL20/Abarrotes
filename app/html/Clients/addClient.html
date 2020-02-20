@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/style-addClient.css">
+    <link rel="icon" href="C:\xampp\htdocs\Abarrotes\app\images\icono.png">
+    <title>Departamentos</title>
+</head>
+<body >
+    <nav>
+        <div id="headerimg">
+            <a href="../../sell.html">
+                <img src="C:\xampp\htdocs\Abarrotes\app\images\logo.png" alt="">
+            </a>
+        </div>
+        <ul>
+            <li id="sell" onclick="window.location='../../sell.html'">Venta</li>
+            <li id="buy" onclick="window.location='../Products/products.html'">Productos</li>
+            <li id="client" onclick="window.location='../Clients/clients.html'">Clientes</li>
+            <li id="suppliers" onclick="window.location='../Suppliers/suppliers.html'">Proveedores</li>
+            <li id="departments" onclick="window.location='../Departments/department.html'">Departamento</li>
+        </ul>
+    </nav>
+    <div id="content">
+        <div><Label id="label">Agregar Cliente</Label></div>
+        <div id="divInputs">
+            <label for="">Nombre del Cliente :</label>
+            <input type="text">
+            <label for="">Limite :</label>
+            <select name="" id="">
+                <option value="">...</option>
+                <option value="100">100.00</option>
+                <option value="150">150.00</option>
+                <option value="200">200.00</option>
+                <option value="250">250.00</option>
+                <option value="300">300.00</option>
+                <option value="400">400.00</option>
+                <option value="500">500.00</option>
+                <option value="600">600.00</option>
+                <option value="800">800.00</option>
+                <option value="900">900.00</option>
+                <option value="1000">1000.00</option>
+                <option value="1100">1100.00</option>
+                <option value="1200">1200.00</option>
+                <option value="1300">1300.00</option>
+                <option value="1400">1400.00</option>
+                <option value="1500">1500.00</option>
+                <option value="1600">1600.00</option>
+                <option value="1700">1700.00</option>
+                <option value="1800">1800.00</option>
+                <option value="1900">1900.00</option>
+                <option value="2000">2000.00</option>
+            </select>
+        </div>
+        <div id="buttonsDiv">
+            <button id="clearValuesButton" onclick=""><img src="../../images/delete.png" alt=""> Limpiar</button>
+            <button id="goBackButton" onclick="window.location='clients.html'"><img src="../../images/goback.png" alt=""> Ir atras</button>
+            <button id="saveValuesButton" onclick=""><img src="../../images/save.png" alt=""> Guardar </button>
+        </div>
+            
+    </div>
+</body>
+</html>

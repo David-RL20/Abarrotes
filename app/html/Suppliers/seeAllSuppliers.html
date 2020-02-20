@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="C:/xampp/htdocs/Abarrotes/app/css/style-seeSuppliers.css">
+    <link rel="icon" href="C:/xampp/htdocs/Abarrotes/app/images/icono.png">
+    <script src="../../js/suppliers-inventary.js"></script>
+    <title>Proveedores</title>
+</head>
+<body onload="init()">
+    <nav>
+        <div id="headerimg">
+            <a href="../../sell.html">
+                <img src="C:\xampp\htdocs\Abarrotes\app\images\logo.png" alt="">
+            </a>
+        </div>
+        <ul>
+            <li id="sell" onclick="window.location='../../sell.html'">Venta</li>
+            <li id="buy" onclick="window.location='../Products/products.html'">Productos</li>
+            <li id="client" onclick="window.location='../Clients/clients.html'">Clientes</li>
+            <li id="suppliers" onclick="window.location='../Suppliers/suppliers.html'">Proveedores</li>
+            <li id="departments" onclick="window.location='../Departments/department.html'">Departamento</li>
+        </ul>
+    </nav>
+    <div id="content">
+        <div><Label id="label">Proveedores</Label></div>
+        <div id="tableDataDiv">
+            <table id="productsTable">
+                <thead id="tableHead">
+                    <tr>
+                        <th>N &deg</th>
+                        <th>Nombre</th>
+                        <th>Dia de entrega</th>
+                        <th>Dia de reparto</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+        <div id="buttonsDiv">
+            <button id="goBackButton" onclick="window.location='suppliers.html'"><img src="../../images/goback.png" alt=""> Ir atras</button>
+        </div>
+    </div>
+</body>
+</html>
