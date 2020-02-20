@@ -35,15 +35,15 @@ nav{
     position: relative;
     background: #BDBDBD;
     width: 15%;
-    height: 450px;
+    height: 700px;
     display: block;
     top: 2px;
 }
 li{
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 100px;
     color: #fff;
     font-size: 20pt;
 }
@@ -304,4 +304,12 @@ ul{
 }
 #buttonPhoneData{
     width: 100%;
+}
+
+.class{
+    font-size: 11pt;
+    background-color: pink;
+    color: #1E88E5;
+    border: 1px black solid;
+    text-align: end;
 }

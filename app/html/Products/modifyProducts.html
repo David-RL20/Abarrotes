@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="C:/xampp/htdocs/Abarrotes/app/images/icono.png">
-    <link rel="stylesheet" href="C:/xampp/htdocs/Abarrotes/app/css/products.css">
+    <link rel="stylesheet" href="C:/xampp/htdocs/Abarrotes/app/css/style-modifyProducts.css">
+    <script src="../../js/products-inventary.js"> </script>
     <title>Productos</title>
 </head>
-<body>
+<body onload="init();">
     <nav>
         <div id="headerimg">
             <a href="../../sell.html">
@@ -24,12 +25,27 @@
         </ul>
     </nav>
     <div id="content">
-        <label for="selection">Seleccione una opcion :</label>
-        <div id="buttons">   
-            <button onclick="window.location='registerProduct.html'">  Registrar un Producto </button>
-            <button onclick="window.location='enterProducts.html'">  Ingresar productos </button>
-            <button onclick="window.location='inventaryProducts.html'">  Ver inventario </button>
-            <button onclick="window.location='modifyInventary.html'">  Modificar Productos </button>
+        <label for="selection">Inventario  <img src="../../images/inventary.png" alt=""></label>
+        <div id="orderByDiv">order by</div>
+        <div id="tableDataDiv">
+            <table id="productsTable">
+                <thead id="tableHead">
+                    <tr>
+                        <th>Código Barras</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Departamento</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+        <div id="buttonsDiv">
+            <div class="buttonsContainer">
+                <button id="goBackButton" onclick="window.location='products.html'"><img src="../../images/goback.png" alt="" width="40%"></button>
+            </div>
         </div>
     </div>
 </body>
