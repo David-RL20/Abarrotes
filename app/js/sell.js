@@ -1,5 +1,3 @@
-
-const productsURL = 'http://localhost/Abarrotes/api/AllProducts.php';
 //Executes every time the page is refresh
 function init(){
     getProducts();
@@ -32,7 +30,7 @@ function init(){
 function getProducts(){
     // Ask for all the products
     x= new XMLHttpRequest();
-    x.open('GET',productsURL)
+    x.open('GET','http://localhost/Abarrotes/api/AllProducts.php')
     x.send()
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){
@@ -74,32 +72,32 @@ function chargeSell(){
 }
 
 //Deletes an article from the table and remove its from the array
-// function deleteArticle(){
-//     if( sessionStorage.articleSelected != 'undefined'){
-//         tr =document.getElementById('row'+sessionStorage.articleSelected)
-//         tableBody = document.getElementById('tableBody')
-//         totalProduct =document.getElementById('total'+sessionStorage.articleSelected)
-//         totalAmount = document.getElementById('totalCurrently')
+function deleteArticle(){
+    if( sessionStorage.articleSelected != 'undefined'){
+        tr =document.getElementById('row'+sessionStorage.articleSelected)
+        tableBody = document.getElementById('tableBody')
+        totalProduct =document.getElementById('total'+sessionStorage.articleSelected)
+        totalAmount = document.getElementById('totalCurrently')
         
 
-//         totalAmount.innerHTML = parseFloat(totalAmount.textContent) - parseFloat(totalProduct.textContent);
+        totalAmount.innerHTML = parseFloat(totalAmount.textContent) - parseFloat(totalProduct.textContent);
 
-//         tableBody.removeChild(tr);
-//     }
-//     else
-//     alert('Selecciona un producto para continuar');
+        tableBody.removeChild(tr);
+    }
+    else
+    alert('Selecciona un producto para continuar');
 
     
-// }
+}
 
 //When you click on a Table Row(tr)
 //This method assign the value or id of this TR
 //Then you can delete it 
-// function selectArticle(id){
-//     var tr = document.getElementById(id);
-//     var tHead = document.getElementById('tableBody');
-//     tHead.removeChild(tr);
-// }
+function selectArticle(id){
+    var tr = document.getElementById(id);
+    var tHead = document.getElementById('tableBody');
+    tHead.removeChild(tr);
+}
 
 //Search in database for the code of the product 
 //and add all its data 
@@ -133,41 +131,41 @@ function addToTable(code , quantity){
                 tdCode.innerHTML = product.code;
                 tdName.innerHTML = product.name;
                 tdPrice.innerHTML= product.price;
-                // if(typeof quantity !== 'undefined'){
-                //     tdQuantity.innerHTML=quantity;
-                // }else
-                // {
-                //     tdQuantity.innerHTML=1;
-                // }
-                // tdTotal.innerHTML = (product.price * parseFloat(tdQuantity.textContent));
+                if(typeof quantity !== 'undefined'){
+                    tdQuantity.innerHTML=quantity;
+                }else
+                {
+                    tdQuantity.innerHTML=1;
+                }
+                tdTotal.innerHTML = (product.price * parseFloat(tdQuantity.textContent));
 
-                // if(totalAmount.textContent != '')
-                //  totalAmount.innerHTML = parseFloat(totalAmount.textContent) + parseFloat(tdTotal.textContent);
-                //  else
-                //  totalAmount.innerHTML = parseFloat(tdTotal.textContent);
+                if(totalAmount.textContent != '')
+                 totalAmount.innerHTML = parseFloat(totalAmount.textContent) + parseFloat(tdTotal.textContent);
+                 else
+                 totalAmount.innerHTML = parseFloat(tdTotal.textContent);
 
                  //onclick event
 
-                //  tr.onclick = function(){
-                //      if( sessionStorage.articleSelected != 'undefined'){
-                //          try {
-                //              tableBefore = document.getElementById('row'+sessionStorage.articleSelected)
-                //              tableBefore.style.background = '#FFF';
+                 tr.onclick = function(){
+                     if( sessionStorage.articleSelected != 'undefined'){
+                         try {
+                             tableBefore = document.getElementById('row'+sessionStorage.articleSelected)
+                             tableBefore.style.background = '#FFF';
                              
-                //          } catch (error) {
-                //              console.log('Articulo fue eliminado');
-                //          }
-                //          sessionStorage.articleSelected = product.code;
-                //          tableRow = document.getElementById('row'+product.code)
-                //          tableRow.style.background = '#ccc'
-                //      }else{
-                //         sessionStorage.articleSelected = product.code;
-                //         tableRow = document.getElementById('row'+product.code)
-                //         tableRow.style.background = '#ccc'
-                //      }
+                         } catch (error) {
+                             console.log('Articulo fue eliminado');
+                         }
+                         sessionStorage.articleSelected = product.code;
+                         tableRow = document.getElementById('row'+product.code)
+                         tableRow.style.background = '#ccc'
+                     }else{
+                        sessionStorage.articleSelected = product.code;
+                        tableRow = document.getElementById('row'+product.code)
+                        tableRow.style.background = '#ccc'
+                     }
                          
                      
-                //  }
+                 }
 
                 //Append everthing
                 tr.appendChild(tdCode);
@@ -259,19 +257,19 @@ function verifyIsInTable(code , quantity){
     return found;
 }
 
-// function inputPaid(){
-//     var input = document.getElementById('inputAmountPaid');
+function inputPaid(){
+    var input = document.getElementById('inputAmountPaid');
 
-//     //event listener
-//     input.addEventListener('keyup', function(){
-//         if(event.keyCode == '13'){
-//             console.log('u paining');
-//         }
-//         if(event.keyCode == '27'){
-//             windowSell = document.getElementById('sellWindow');
-//             inputProduct = document.getElementById('inputCodeProduct');
-//             windowSell.style.display = 'none';
-//             inputProduct.focus();
-//         }
-//     });
-// }
+    //event listener
+    input.addEventListener('keyup', function(){
+        if(event.keyCode == '13'){
+            console.log('u paining');
+        }
+        if(event.keyCode == '27'){
+            windowSell = document.getElementById('sellWindow');
+            inputProduct = document.getElementById('inputCodeProduct');
+            windowSell.style.display = 'none';
+            inputProduct.focus();
+        }
+    });
+}
