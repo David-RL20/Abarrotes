@@ -1,7 +1,8 @@
 const urlProducts = 'http://localhost/Abarrotes/api/AllProducts.php'
 const urlShoppingCart='';
-const tableBody='tableBody';
+// const tableBodyID='tableBody';
 const inputProduct='inputCodeProduct';
+const totalLabel='';
 
 //Executes every time the page is refresh
 function init(){
@@ -68,7 +69,7 @@ function addToTable(code , quantity){
             var existing = verifyIsInTable(code, quantity);
             if(!existing){
                 //Elements
-                tableBody = document.getElementById(tableBody)
+                tableBody = document.getElementById('tableBody')
                 tr = document.createElement('tr')
                 tdCode = document.createElement('td')
                 tdName = document.createElement('td')
@@ -88,15 +89,27 @@ function addToTable(code , quantity){
                 tdName.innerHTML = product.name;
                 tdPrice.innerHTML= product.price;
 
-                //set quantity 
-                if(typeof quantity !== undefined){
-                      tdQuantity.innerHTML = quantity;  
-                }else{
+                // //set quantity 
+                // if(typeof quantity !== undefined){
+                //       tdQuantity.innerHTML = quantity;  
+                // }else{
+                //     tdQuantity.innerHTML=1;
+                // }
+                    
+                // //set subtotal
+                // tdSubTotal="0";
+                if(typeof quantity !== 'undefined'){
+                    tdQuantity.innerHTML=quantity;
+                }else
+                {
                     tdQuantity.innerHTML=1;
                 }
-                    
-                //set subtotal
-                tdSubTotal="0";
+                tdTotal.innerHTML = (product.price * parseFloat(tdQuantity.textContent));
+
+                if(totalAmount.textContent != '')
+                 totalAmount.innerHTML = parseFloat(totalAmount.textContent) + parseFloat(tdTotal.textContent);
+                 else
+                 totalAmount.innerHTML = parseFloat(tdTotal.textContent);
 
                 //send to server session 
 
@@ -114,8 +127,7 @@ function addToTable(code , quantity){
 
     if(!found){
         alert('Producto invalido');
-        infoInput.value='';
-        infoInput.focus();
+        resetInput();
         
     }
     console.log(found + ' ' + code);
@@ -197,67 +209,67 @@ function exitBuyWindow (){
 }
 //execute the sell, open a division for the total and type of pay 
 //also save everything in the database 
-// function chargeSell(){
-//     //get elements 
-//     windowSell = document.getElementById('sellWindow');
-//     totalLabel = document.getElementById('totalLabelWindow');
-//     total = document.getElementById('totalCurrently').textContent;
-//     changeLabel = document.getElementById('changeClientLabel');
-//     inputAmount = document.getElementById('inputAmountPaid')
-//     //inner data
-//     totalLabel.innerHTML = '  '+' &#36'+' '+ parseFloat(total);
+function chargeSell(){
+    //get elements 
+    windowSell = document.getElementById('sellWindow');
+    totalLabel = document.getElementById('totalLabelWindow');
+    total = document.getElementById('totalCurrently').textContent;
+    changeLabel = document.getElementById('changeClientLabel');
+    inputAmount = document.getElementById('inputAmountPaid')
+    //inner data
+    totalLabel.innerHTML = '  '+' &#36'+' '+ parseFloat(total);
 
-//     windowSell.style.display = 'block';
-//     inputAmount.focus();
-// }
+    windowSell.style.display = 'block';
+    inputAmount.focus();
+}
 
-//Deletes an article from the table and remove its from the array
-// function deleteArticle(){
-//     if( sessionStorage.articleSelected != 'undefined'){
-//         tr =document.getElementById('row'+sessionStorage.articleSelected)
-//         tableBody = document.getElementById('tableBody')
-//         totalProduct =document.getElementById('total'+sessionStorage.articleSelected)
-//         totalAmount = document.getElementById('totalCurrently')
+// Deletes an article from the table and remove its from the array
+function deleteArticle(){
+    if( sessionStorage.articleSelected != 'undefined'){
+        tr =document.getElementById('row'+sessionStorage.articleSelected)
+        tableBodyID = document.getElementById('tableBody')
+        totalProduct =document.getElementById('total'+sessionStorage.articleSelected)
+        totalAmount = document.getElementById('totalCurrently')
         
 
-//         totalAmount.innerHTML = parseFloat(totalAmount.textContent) - parseFloat(totalProduct.textContent);
+        totalAmount.innerHTML = parseFloat(totalAmount.textContent) - parseFloat(totalProduct.textContent);
 
-//         tableBody.removeChild(tr);
-//     }
-//     else
-//     alert('Selecciona un producto para continuar');
+        tableBodyID.removeChild(tr);
+    }
+    else
+    alert('Selecciona un producto para continuar');
 
     
-// }
+}
 
-//When you click on a Table Row(tr)
-//This method assign the value or id of this TR
-//Then you can delete it 
-// function selectArticle(id){
-//     var tr = document.getElementById(id);
-//     var tHead = document.getElementById('tableBody');
-//     tHead.removeChild(tr);
-// }
-
-
+// When you click on a Table Row(tr)
+// This method assign the value or id of this TR
+// Then you can delete it 
+function selectArticle(id){
+    var tr = document.getElementById(id);
+    var tHead = document.getElementById('tableBody');
+    tHead.removeChild(tr);
+}
 
 
 
 
 
-// function inputPaid(){
-//     var input = document.getElementById('inputAmountPaid');
 
-//     //event listener
-//     input.addEventListener('keyup', function(){
-//         if(event.keyCode == '13'){
-//             console.log('u paining');
-//         }
-//         if(event.keyCode == '27'){
-//             windowSell = document.getElementById('sellWindow');
-//             inputProduct = document.getElementById(inputProduct);
-//             windowSell.style.display = 'none';
-//             inputProduct.focus();
-//         }
-//     });
-// }
+
+function inputPaid(){
+    var input = document.getElementById('inputAmountPaid');
+
+    //event listener
+    input.addEventListener('keyup', function(){
+        if(event.keyCode == '13'){
+            console.log('u paining');
+        }
+        if(event.keyCode == '27'){
+            windowSell = document.getElementById('sellWindow');
+            inputProduct = document.getElementById(inputProduct);
+            windowSell.style.display = 'none';
+            inputProduct.focus();
+        }
+    });
+}
