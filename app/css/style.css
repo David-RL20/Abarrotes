@@ -1,0 +1,374 @@
+body {
+    width: auto;
+    height: auto;
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  }
+/* Principal container */
+.container-store{
+    display: grid;
+    grid-template-columns: 200px repeat(8, 100px);
+    grid-template-rows: 67px 100px 400px;
+    grid-gap: 30px;
+    margin-right: 50px;
+}
+/* Nav bar section (Logo - ventas - clientes - proveedores - departamentos) */
+.item:nth-of-type(1){
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 6;
+    height: auto;
+    background-color: #595f71;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+/* Nav bar container */
+.nav-bar-container{
+    display: grid;
+    grid-template-columns: 180px;
+    grid-template-rows: 80px repeat(4, 40px);
+    grid-gap: 40px;
+    margin-top: 40px;
+    justify-content: center;
+}
+.logo-nav-bar{
+    width: 110px;
+    height: 80px;
+}
+.square-color-item{
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+.text-navbar{
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: left;
+    color: #ffffff;
+}
+/* Productos principales title */
+.item:nth-of-type(2){
+    grid-column-start: 2;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 2;   
+    width: 506px;
+    height: 67px;
+    font-family: 'Segoe UI';
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 50px;
+    letter-spacing: normal;
+    text-align: left;
+    color: #707070;
+}
+/* Principal items (frutas - verduras - lacteos - etc) */
+.item-container{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 20px 40px 80px 0 #00000029;
+    background-color: #f5f8fb;
+}
+.item-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-principal-products{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-principal-products{
+    width: auto;
+    height: 24px;
+    margin-top: 6px;
+    color: #707070;
+}
+/* Table section (grid) */
+.item:nth-of-type(11){
+    grid-column-start: 2;
+    grid-column-end: 10;
+    grid-row-start: 3;
+    grid-row-end: 6;
+    border-radius: 20px;
+    background-color: #d8e1ee40;
+    margin-bottom: 40px;
+}
+thead{
+    background-color: #5084fd;
+    color: #ffffff;
+}
+/* Grid table section */
+.table-bg{
+    display: grid;
+    grid-template-columns: 750px 160px;
+    grid-template-rows: 50px  220px 50px 50px;
+    grid-template-areas: "input-search recargas-button"
+                         "table-form   payment"
+                         "table-form   cobrar-button"
+                         "table-form    .";
+    grid-gap: 30px;
+    margin: 50px 50px 50px 50px;
+    width: auto;
+}
+/* Search input grid */
+.input-search{
+    grid-area: input-search;
+    margin-top: 0px;
+    padding-top: 0px;
+    border-radius: 10px;
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #ffffff;
+}
+.input-search-text{
+    width: 750px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #ffffff;
+    text-decoration: none;
+    border: 0;
+    padding-left: 30px;
+}
+.table-form{
+    grid-area: table-form;
+    border-radius: 10px;
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #ffffff;
+    overflow: scroll;
+}
+
+/* HACER FIJO EL HEADER DE LA TABLA Y AGREGAR SCROLL */
+table{
+    table-layout: fixed;
+    width: auto;
+}
+
+th, td {
+    width: 100px;
+    word-wrap: break-word;
+}
+
+.recargas-button{
+    grid-area: recargas-button;
+    width: 160px;
+    height: 50px;
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #e6c647;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
+}
+.recargas-button-text{
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 27px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;   
+}
+.recargas-button:hover{
+    background: rgba(230, 198, 71, .4);  
+    text-decoration: none;
+    color: #ffffff; 
+}
+.recargas-button:focus{
+    outline: none;
+}
+.payment{
+    grid-area: payment;
+    border-radius: 10px;
+    box-shadow: 20px 40px 80px 0 #00000029;
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr 45px;
+}
+.payment-btn-close{
+    width: 55px;
+    height: 45px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #fd5052;
+    border-top-left-radius: 35px;
+    border-bottom-right-radius: 10px;
+    font-family: 'Segoe UI';
+    border: none;
+    text-decoration: none;
+    color: f8f8f8;
+    transition: ease;
+}
+.btn-close-icon{
+    color: #f8f8f8;
+}
+.payment-btn-close:hover{
+    background: rgba(253, 80, 82, .6);
+}
+.payment-btn-close:focus{
+    outline: none;
+}
+.payment-text-money-total{
+    width: 130px;
+    height: 47px;
+    font-family: 'Segoe UI';
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 47px;
+    color: #707070;
+}
+.payment-text-total{
+    width: 63px;
+    height: 40px;
+    font-family: 'Segoe UI';
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #707070;
+}
+.cobrar-button{
+    grid-area: cobrar-button;
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #47E69C;
+    border: 0;
+}
+.cobrar-button:focus{
+    outline: none;
+}
+.cobrar-button:hover{
+    background: rgba(71, 230, 156, .4);
+}
+.cobrar-button-btn{
+    width: 160px;
+    height: 50px;
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 40px 80px 0 #00000029;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 27px;
+    text-align: center;
+    color: #ffffff;
+}
+/* --------------------------- */
+/*   Payment window pop-up     */
+/* --------------------------- */
+.overlay{
+    background: rgb(0,0,0,.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+.overlay.active{
+    visibility: visible;
+}
+.popup {
+    width: 392px;
+    height: 337px;
+    border-radius: 10px;
+    box-shadow: 0 40px 80px 0 #0000004d;
+    background-color: #F8F8F8;
+    text-align: center;
+    transition: .3s ease all;
+	transform: scale(0.7);
+	opacity: 0;
+}  
+.btn-cerrar-popup{
+    color: #707070;
+    margin-top: 25px;
+    margin-right: 25px;
+    display: block;
+    text-align: right;
+    transition: .3s ease all;
+}
+.btn-cerrar-popup:hover{
+    color: #FD5052;
+}
+.total-payment-label{
+    width: 70px;
+    height: 40px;
+    font-family: 'Segoe UI';
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+    color: #707070;  
+    margin-left: 161px;
+}
+.total-price-label{
+    width: 112px;
+    height: 40px;
+    font-family: 'Segoe UI';
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    color: #595f71;
+    margin-left: 140px;
+}
+.inputs-window-payment{
+    width: 191px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 40px 80px 0 #0000004d;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    margin-left: 100px;
+}
+.btn-credit{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #5084fd;
+    /* Text button section */
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 18px;
+    text-decoration: none;
+    border: 0;
+}
+.btn-credit:hover{
+    background-color: rgba(80, 132, 253, .7);
+}
+.btn-credit:focus{
+    outline: none;
+}
+/* ------------------------------ */
+/*   Payment window animation     */
+/* ------------------------------ */
+.popup.active{
+    opacity: 1;
+    transform: scale(1);
+}

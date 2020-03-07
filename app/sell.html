@@ -3,108 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="images/icono.png">
-    <link rel="stylesheet" href="css/sell.css">
-    <script src="js/sell.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <script src="js/jquerry.min.js"  ></script>
+    <script src="js/popper.min.js"  ></script>
+    <script src="js/bootstrap.min.js" ></script>
+    <!-- Font awesome -->
+    <script src="js/fontAwesome.js" ></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
     <title>Venta</title>
 </head>
-<body onload="init();">
-    <nav>
-        <div id="headerimg">
-            <a href="sell.html">
-                <img src="images/logo.png"title="ASDDSFFGDGHFHGJH">
-            </a>
-        </div>
-        <ul>
-            <li id="sell" onclick="window.location='sell.html'">Venta
-            <div class="clase">ultimas ventas</div>
-            <div class="clase">ventas del dia</div>
-            </li>
-
-            <li id="buy" onclick="window.location='html/Products/products.html'">Productos
-            <div class="clase" >agregar un producto</div>
-            <div class="clase">ver inventario</div>
-            </li>
-
-            <li id="client" onclick="window.location='html/Clients/clients.html'">Clientes
-            <div class="clase">agregar cliente</div>
-            <div class="clase" >ver clientes</div>
-            </li>
-
-            <li id="suppliers" onclick="window.location='html/Suppliers/suppliers.html'">Proveedores
-            <div class="clase">agregar proveedores</div>
-            <div class="clase">ver los proveedores</div>
-            </li>
-            <li id="departments" onclick="window.location='html/Departments/department.html'">Departamento
-            <div class="clase">agregar Departamento</div>
-            <div class="clase">ver los Departamento</div>
-            </li>
-        </ul>
-    </nav>
-    <div id="content">
-        <div id="insertProductDiv">
-            <div id="shortcutProductsDiv">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div id="productInputDiv">
-                <label for="codigo">Código o Nombre del producto:</label>
-                <input list="dataListProducts" id="inputCodeProduct"/>
-                <datalist id="dataListProducts">
-                </datalist>
-            </div>
-        </div>
-        <div id="tableDataDiv">
-            <table id="productsTable">
-                <thead id="tableHead">
-                    <tr>
-                        <th>Código Barras</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Total Producto</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
-        </div>
-        <div id="buttonsDiv">
-            <div class="buttonsContainer"> <a  href="https://planetaemx.com/" target="_blank"><button id="buttonPhoneData">Recarga</button></a></div>
-            <label id="totalLabel" for="total"><a id="totalLabel1">Total : </a> <h6>&#x24</h6><a id="totalCurrently"></a></label>
-            <div class="buttonsContainer">
-                <button id="deleteArticle" onclick="">Eliminar</button>
-            </div>
-            <!-- <div class="buttonsContainer">
-                <button id="chageToDlls" onclick="toDlls();">+</button>
-            </div> -->
-            <div class="buttonsContainer">
-                <button id="chargeBuy" onclick="chargeSell();">Cobrar</button>
+<body>
+    <!-- Principal container -->
+    <div class="container-store">
+        <!-- Navbar section -->
+        <div class="item item-navbar">
+            <!-- Navbar grid container -->
+            <div class="nav-bar-container">
+                <!-- Logo section -->
+                <div class="item-nav-bar logo-nav-bar"><img src="svg/logo.svg" class="" alt=""></div>
+                <!-- Ventas -->
+                <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                    <div class="square-color-item" style="background-color: #fd5052;"></div>
+                    <div class="dropdown">
+                        <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Ventas
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
+                <!-- Productos -->
+                <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                    <div class="square-color-item" style="background-color: #47E69C;"></div>
+                    <div class="dropdown">
+                        <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Prodcutos
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
+                <!-- Clientes -->
+                <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                    <div class="square-color-item" style="background-color: #5084FD;"></div>
+                    <div class="dropdown">
+                        <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Clientes
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
+                <!-- Departamentos -->
+                <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                    <div class="square-color-item" style="background-color: #E66B47;"></div>
+                    <div class="dropdown">
+                        <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Deptos
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
             </div>
         </div>
-        <div id="sellWindow" class="sellWindow">
-            <div id="buttonExitContainer"><button id="buttonExitBuy" onclick="exitBuyWindow();"><img src="images/exit.png" alt=""></button></div>
-            <div id="buttonsSellDivision">
-                <button id="buttonCashPay">
-                    <img src="images/cash.png" alt="">
-                </button>
-                <button id="buttonCreditPay"><img src="images/card.png" alt=""></button>
+        <!-- Title section -->
+        <div class="item">Productos principales</div>
+        <!-- Principal items (frutas - verduras - lacteos - etc) -->
+        <!-- Frutas -->
+        <div class="item item-container d-flex flex-column">
+          <div class="icon-principal-products"><img src="svg/frutas.svg" alt=""></div>
+          <div class="text-principal-products">Frutas</div>
+        </div>
+        <!-- Verduras -->
+        <div class="item item-container d-flex flex-column">
+          <div class="icon-principal-products"><img src="svg/verduras.svg" alt=""></div>
+          <div class="text-principal-products">Verduras</div>
+        </div>
+        <!-- Lacteos -->
+        <div class="item item-container d-flex flex-column">
+          <div class="icon-principal-products"><img src="svg/lacteos.svg" alt=""></div>
+          <div class="text-principal-products">Lácteos</div>
+        </div>
+        <!-- Sodas -->
+        <div class="item item-container d-flex flex-column">
+          <div class="icon-principal-products"><img src="svg/sodas.svg" alt=""></div>
+          <div class="text-principal-products">Sodas</div>
+        </div>
+        <!-- Pan -->
+        <div class="item item-container d-flex flex-column">
+          <div class="icon-principal-products"><img src="svg/panderia.svg" alt=""></div>
+          <div class="text-principal-products">Pan</div>
+        </div>
+        <!-- Carnes -->
+        <div class="item item-container d-flex flex-column">
+          <div class="icon-principal-products"><img src="svg/carnes.svg" alt=""></div>
+          <div class="text-principal-products">Carnes</div>
+        </div>
+        <!-- Sabritas -->
+        <div class="item item-container d-flex flex-column">
+          <div class="icon-principal-products"><img src="svg/sabritas.svg" alt=""></div>
+          <div class="text-principal-products">Sabritas</div>
+        </div>
+        <!-- Enlatados -->
+        <div class="item item-container d-flex flex-column">
+          <div class="icon-principal-products"><img src="svg/enlatados.svg" alt=""></div>
+          <div class="text-principal-products">Enlatados</div>
+        </div>
+        <!-- Table section -->
+        <div class="item item-table">
+            <!-- Table background and grid table section -->
+            <div class="table-bg">
+                <!-- Search product input -->
+                <div class="item-bg input-search">
+                    <input class="input-search-text" type="text" name="" id="" placeholder="Código de barras o nombre del producto">
+                </div>
+                <!-- Recargas button link -->
+                <div class="item-bg recargas-button">
+                    <!-- <button class="recargas-button recargas-button-text"></button> -->
+                    <a class="recargas-button recargas-button-text" href="https://planetaemx.com/">Recargas</a>
+                </div>
+                <!-- List table section -->
+                <div class="item-bg table-form">
+                  <table class="table">
+                    <thead class="">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Payment section -->
+                <div class="item-bg payment">
+                    <div class="payment-text-total ml-3" style="margin-top: 60px;">Total:</div>
+                    <div class="payment-text-money-total ml-3">$125.00</div>
+                    <div class="d-flex justify-content-end text-center">
+                        <button class="payment-btn-close"><i class="fas fa-times btn-close-icon"></i></button>
+                    </div>
+                </div>
+                <!-- Payment button -->
+                <div class="item-bg cobrar-button">
+                    <button id="abrir-popup"  class="cobrar-button cobrar-button-btn">Cobrar</button>
+                </div>
             </div>
-            <div id="totalWindowSell">Total : <h3 id="totalLabelWindow"></h3></div>
-            <div id="amountPaidDiv">Pago con : <input id="inputAmountPaid"  type="number"></div>
-            <div id="changeClient">Su Cambio es: <label for="change" id="changeClientLabel"></label></div>
+        </div>
+        <!-- Animated window pop-up -->
+        <div class="overlay" id="overlay">
+          <div class="popup" id="popup">
+              <div class="btn-cerrar-popup" id="btn-cerrar-popup"><i class="fas fa-times"></i></div>
+              <div class="total-payment-label">Total</div>
+              <div class="total-price-label">$125.00</div>
+              <div class="inputs-window-payment"></div>
+              <div class="inputs-window-payment"></div>
+              <button class="btn-credit">Crédito</button>
+          </div>
         </div>
     </div>
+    <!-- JavaScript -->
+    <script src="js/animation.js"></script>
 </body>
 </html>

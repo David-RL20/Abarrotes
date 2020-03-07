@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/dfd642ef8f.js" crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style-addProduct.css">
+    <title>Agregar producto</title>
+</head>
+<body>
+    <!-- Principal container -->
+    <div class="container-store">
+        <!-- Navbar section -->
+        <div class="item item-navbar">
+            <!-- Navbar grid container -->
+            <div class="nav-bar-container">
+                <!-- Logo section -->
+                <div class="item-nav-bar logo-nav-bar"><img src="svg/logo.svg" class="" alt=""></div>
+                <!-- Ventas -->
+                <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                    <div class="square-color-item" style="background-color: #fd5052;"></div>
+                    <div class="dropdown">
+                        <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Ventas
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
+                <!-- Productos -->
+                <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                    <div class="square-color-item" style="background-color: #47E69C;"></div>
+                    <div class="dropdown">
+                        <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Prodcutos
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
+                <!-- Clientes -->
+                <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                    <div class="square-color-item" style="background-color: #5084FD;"></div>
+                    <div class="dropdown">
+                        <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Clientes
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
+                <!-- Departamentos -->
+                <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                    <div class="square-color-item" style="background-color: #E66B47;"></div>
+                    <div class="dropdown">
+                        <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Deptos
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>  
+        <div class="item txt-title">Agregar producto</div>
+        <div class="item bg-form">
+            <form>
+                <div class="form-group">
+                  <label for="formGroupExampleInput" class="label-form">Nombre del producto</label>
+                  <input type="text" class="form-control" id="formGroupExampleInput" >
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput" class="label-form">Código de barras</label>
+                  <input type="text" class="form-control" id="formGroupExampleInput2" >
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="formGroupExampleInput" class="label-form">Precio</label>
+                      <input type="text" class="form-control" >
+                    </div>
+                    <div class="col">
+                      <label for="formGroupExampleInput" class="label-form">Cantidad</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput" class="label-form">Departamento</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput">
+                  </div>
+                  <button type="button" class="btn btn-primary btn-lg btn-block">Agregar</button>
+              </form>
+        </div>
+    </div>
+</body>
+</html>

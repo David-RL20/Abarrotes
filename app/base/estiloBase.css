@@ -7,8 +7,8 @@ body {
 /* Principal container */
 .container-store{
     display: grid;
-    grid-template-columns: 200px 421px;
-    grid-template-rows:     70px 620px;
+    grid-template-columns: 200px 1010px;
+    grid-template-rows:     70px 140px 580px;
     grid-gap: 10px;
     margin-right: 0px;
 }
@@ -17,7 +17,7 @@ body {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 4;
     height: auto;
     background-color: #595f71;
     border-top-right-radius: 20px;
@@ -50,37 +50,44 @@ body {
     color: #ffffff;
 }
 .item:nth-of-type(2){
+    background: #787878;
+    padding-top: 30px;
     margin-left: 35px;
-    font-family: 'Segoe UI';
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 67px;
-    text-align: left;
-    color: #707070;
+}
+.grid-search{
+    display: grid;
+    grid-template-columns: 573px 110px 110px;
+    grid-template-rows: 50px;
+    grid-gap: 35px;
+    padding-top: 30px;
+    padding-left: 45px;
+}
+.item-search-section{
+    background: skyblue;
+    border: 1px solid;
 }
 .item:nth-of-type(3){
-    margin-top: 20px;
+    background: #787878;
+    margin-top: 30px;
     margin-left: 35px;
-    margin-bottom: 30px;
-    border-radius: 20px;
 }
-.bg-form{
-    border-radius: 20px;
-    box-shadow: 0 40px 80px 0 #00000029;
-    background-color: #d8e1ee40;
-    padding: 40px 30px 0px 30px
+.item:nth-of-type(4){
+    background: #787878;
+    margin-top: 30px;
+    margin-left: 35px;
 }
-.form-control{
-    border-radius: 10px;
-    box-shadow: 0 40px 80px 0 #00000029;
-    background-color: #ffffff;
-    border: none;
+.grid-table{
+    display: grid;
+    grid-template-columns: 698px 110px;
+    grid-template-rows: 50px 380px;
+    grid-gap: 35px;
+    padding-top: 45px;
+    padding-left: 50px;
 }
-.label-form{
-    font-family: 'Segoe UI';
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 40px;
-    text-align: left;
-    color: #707070;
+.grid-item-table{
+    background: steelblue;
+}
+.grid-item-table:nth-of-type(3){
+    grid-column-start: 1;
+    grid-column-end: 3;
 }

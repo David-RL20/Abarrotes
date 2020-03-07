@@ -38,7 +38,3 @@ insert into productos values
 insert into productos_departamento values 
 ('1235671','VERDU');
 
-
-use abarrotes;
-select * from productos_departamento;
-
