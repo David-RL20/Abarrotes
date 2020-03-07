@@ -12,9 +12,12 @@
     <script src="js/fontAwesome.js" ></script>
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- JS -->
+    <script src="js/sell.js"></script>
+
     <title>Venta</title>
 </head>
-<body>
+<body onload="init()">
     <!-- Principal container -->
     <div class="container-store">
         <!-- Navbar section -->
@@ -134,8 +137,10 @@
             <div class="table-bg">
                 <!-- Search product input -->
                 <div class="item-bg input-search">
-                    <input class="input-search-text" type="text" name="" id="" placeholder="Código de barras o nombre del producto">
+                    <input class="input-search-text" type="text" name="" list="dataListProducts" id="inputCodeProduct" placeholder="Código de barras o nombre del producto">
                 </div>
+                <datalist id="dataListProducts">
+                </datalist>
                 <!-- Recargas button link -->
                 <div class="item-bg recargas-button">
                     <!-- <button class="recargas-button recargas-button-text"></button> -->
@@ -147,71 +152,24 @@
                     <thead class="">
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total producto</th>
                       </tr>
                     </thead>
                   </table>
                   <table class="table scroll">
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
+                    <tbody id="tableBody">
                     </tbody>
                   </table>
                 </div>
                 <!-- Payment section -->
                 <div class="item-bg payment">
                     <div class="payment-text-total ml-3" style="margin-top: 60px;">Total:</div>
-                    <div class="payment-text-money-total ml-3">$125.00</div>
+                    <div class="payment-text-money-total ml-3"><div>$</div> <div id="totalCurrently">0.0</div></div>
                     <div class="d-flex justify-content-end text-center">
-                        <button class="payment-btn-close"><i class="fas fa-times btn-close-icon"></i></button>
+                        <button class="payment-btn-close" onclick="deleteArticle()"><i class="fas fa-times btn-close-icon"></i></button>
                     </div>
                 </div>
                 <!-- Payment button -->

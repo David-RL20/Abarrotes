@@ -231,6 +231,7 @@ th, td {
     font-size: 35px;
     font-weight: bold;
     line-height: 47px;
+    display: flex;
     color: #707070;
 }
 .payment-text-total{
@@ -380,4 +381,9 @@ th, td {
 }
 .scroll{
     overflow: scroll;
+}
+
+.tr-products{
+    border-bottom: 2px solid #d8e1eea2;
+    cursor: pointer;
 }
