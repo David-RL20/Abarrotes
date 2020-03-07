@@ -372,3 +372,12 @@ th, td {
     opacity: 1;
     transform: scale(1);
 }
+
+    /* Modificaciones del david */
+.table{
+    margin-bottom: 0;
+    
+}
+.scroll{
+    overflow: scroll;
+}
