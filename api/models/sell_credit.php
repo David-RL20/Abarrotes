@@ -1,7 +1,7 @@
 <?php
     require_once('mysqlconnection.php');
     require_once('models/exceptions/recordnotfoundexception.php');
-    class product {
+    class Sell_Credit {
 
         //attributes
         private $codeProduct ;

@@ -1,6 +1,6 @@
 <?php
     header('Access-Control-Allow-Origin:*');
-    require_once('models/supplier.php');
+    require_once('models/products_sell.php');
     if($_SERVER['REQUEST_METHOD']== 'GET'){
 
         echo supplier::getAllToJson();
