@@ -1,7 +1,7 @@
 //Executes every time the page is refresh
 function init(){
     getProducts();
-    sessionStorage.articleSelected = undefined;
+    // sessionStorage.articleSelected = undefined;
     infoInput = document.getElementById('inputCodeProduct');
     infoInput.focus();
     infoInput.addEventListener("keypress",function(){
@@ -17,7 +17,7 @@ function init(){
                 infoInput.value='';
             }
             else{
-                chargeSell();
+                abrirPopUp();
             }
         }
     });
@@ -54,22 +54,6 @@ function addProductsToDataList(products){
 
 }
 
-//execute the sell, open a division for the total and type of pay 
-//also save everything in the database 
-// function chargeSell(){
-//     //get elements 
-//     windowSell = document.getElementById('sellWindow');
-//     totalLabel = document.getElementById('totalLabelWindow');
-//     total = document.getElementById('totalCurrently').textContent;
-//     changeLabel = document.getElementById('changeClientLabel');
-//     inputAmount = document.getElementById('inputAmountPaid')
-//     //inner data
-//     totalLabel.innerHTML = '  '+' &#36'+' '+ parseFloat(total);
-
-//     windowSell.style.display = 'block';
-//     inputAmount.focus();
-
-// }
 
 //Deletes an article from the table and remove its from the array
 function deleteArticle(){
@@ -88,15 +72,6 @@ function deleteArticle(){
     alert('Selecciona un producto para continuar');
 
     
-}
-
-//When you click on a Table Row(tr)
-//This method assign the value or id of this TR
-//Then you can delete it 
-function selectArticle(id){
-    var tr = document.getElementById(id);
-    var tHead = document.getElementById('tableBody');
-    tHead.removeChild(tr);
 }
 
 //Search in database for the code of the product 
@@ -186,12 +161,6 @@ function addToTable(code , quantity){
         
     }
 }
-
-//Hide the window sell from content
-// function exitBuyWindow (){
-//     windowSell = document.getElementById('sellWindow');
-//     windowSell.style.display = 'none'
-// }
 
 function moreProducts(text){
     var stringInput = document.getElementById('inputCodeProduct')

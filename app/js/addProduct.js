@@ -21,6 +21,7 @@ function save(){
     x.send('code='+code+'&'+'stock='+stock+'&'+'name='+name+'&'+'price='+price+'&'+'dptoCode='+depto);
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){
+            console.log(x.responseText)
             if(x.responseText != '1'){
                 alert('Producto existente !');
                 clearValues()
@@ -37,17 +38,11 @@ function save(){
 
 //clear all values in html
 function clearValues(){
-     var name = document.getElementById('inputNameProduct');
-     var code = document.getElementById('inputCodeProduct');
-     var price =document.getElementById('inputPriceproduct');
-     var quantity = document.getElementById('quantityProduct');
-     var deparments = document.getElementById('selectDepartmentProduct');
-
-     name.value="";
-     code.value="";
-     price.value="";
-     quantity.value="";
-     deparments.value="";
+    document.getElementById('inputNameProduct').value ='';
+    document.getElementById('inputCodeProduct').value ='';
+    document.getElementById('inputPriceproduct').value ='';
+    document.getElementById('quantityProduct').value = '';
+    document.getElementById('selectDepartmentProduct').value ='';
 }
 
 //add the departments to the options 

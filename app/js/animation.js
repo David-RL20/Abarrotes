@@ -13,3 +13,13 @@ btnCerrarPopup.addEventListener('click', function(e){
 	overlay.classList.remove('active');
 	popup.classList.remove('active');
 });
+
+function abrirPopUp(){
+    overlay.classList.add('active');
+	popup.classList.add('active');
+}
+function cerrarPupUp(e){
+    e.preventDefault();
+	overlay.classList.remove('active');
+	popup.classList.remove('active');
+}
