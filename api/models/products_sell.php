@@ -47,7 +47,7 @@
             return json_encode(array(
                 'idSell'=> $this->idSell,
                 'codeProduct'=> $this->codeProduct,
-                'quantity'=> $this->idSell,
+                'quantity'=> $this->quantity,
                 'subTotal'=> $this->subTotal
             ));
         }

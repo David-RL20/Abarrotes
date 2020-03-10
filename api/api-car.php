@@ -20,6 +20,7 @@ if(isset($_GET['action'])){
         break;
         case 'done':
             done($car); 
+        break;
 
         default:
     }
@@ -96,13 +97,12 @@ function done($car){
             array_push($fullItems, $itemProducto);
         }
 
-        if($fullItems['items'] !== '' ){
+        if(!empty($fullItems) && $fullItems !== null ){
             foreach($fullItems as $item){
                 $URL='http://localhost/Abarrotes/api/AllProducts_sell.php';
                 $idSell=2;
                 $response = file_get_contents($URL.'?idSell='.$idSell.'&codeProduct='. $item['code'].'&quantity='.$item['quantity'].'&subTotal='.$item['subtotal']);
-                echo $response;
-                $car->remove($item['code']);
+                    $car->remove($item['code']);
             }
             echo json_encode(array(
                 'statusCode'=>200,
@@ -111,7 +111,7 @@ function done($car){
 
         }else {
             echo json_encode(array(
-                'statusCode'=>200,
+                'statusCode'=>404,
                 'messsage'=>'No items storage'
             ));
         }
