@@ -12,9 +12,12 @@
     <script src="js/fontAwesome.js" ></script>
     <!-- CSS -->
     <link rel="stylesheet" href="css/style-addProduct.css">
+
+    <!-- JS -->
+    <script src="js/addProduct.js"></script>
     <title>Agregar producto</title>
 </head>
-<body>
+<body onload="init()">
     <!-- Principal container -->
     <div class="container-store">
         <!-- Navbar section -->
@@ -89,28 +92,30 @@
         <div class="item bg-form">
             <form>
                 <div class="form-group">
-                  <label for="formGroupExampleInput" class="label-form">Nombre del producto</label>
+                  <label for="formGroupExampleInput" id="inputNameProduct" class="label-form">Nombre del producto</label>
                   <input type="text" class="form-control" id="formGroupExampleInput" >
                 </div>
                 <div class="form-group">
-                  <label for="formGroupExampleInput" class="label-form">Código de barras</label>
-                  <input type="text" class="form-control" id="formGroupExampleInput2" >
+                  <label for="formGroupExampleInput" id="inputCodeProduct" class="label-form">Código de barras</label>
+                  <input type="number" class="form-control" id="formGroupExampleInput2" >
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label for="formGroupExampleInput" class="label-form">Precio</label>
-                      <input type="text" class="form-control" >
+                        <label for="formGroupExampleInput" id="inputPriceproduct" class="label-form">Precio</label>
+                      <input type="number" class="form-control" >
                     </div>
                     <div class="col">
-                      <label for="formGroupExampleInput" class="label-form">Cantidad</label>
-                      <input type="text" class="form-control">
+                      <label for="formGroupExampleInput" id="quantityProduct" class="label-form">Cantidad</label>
+                      <input type="number" class="form-control">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput" class="label-form">Departamento</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput">
+                    <select id="selectDepartmentProduct" type="text" class="form-control" id="formGroupExampleInput">
+                      <option value="">...</option>
+                    </select>
                   </div>
-                  <button type="button" class="btn btn-primary btn-lg btn-block">Agregar</button>
+                  <button type="button" onclick="save()" class="btn btn-primary btn-lg btn-block">Agregar</button>
               </form>
         </div>
     </div>

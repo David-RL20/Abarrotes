@@ -12,9 +12,11 @@
     <script src="js/fontAwesome.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="css/style-product.css">
+    <!-- JS -->
+    <script src="js/products.js"></script>
     <title>Productos</title>
 </head>
-<body>
+<body onload="init()">
 
     <!-- Principal container -->
     <div class="container-store">
@@ -90,49 +92,21 @@
         <div class="item">Productos</div>
 
         <div class="item container-product">
-          <div class="item-product"><input type="text" class="input-search" style="padding-left: 30px;" name="" id="" placeholder="Ingrese código de barras o nombre del producto"></div>
+          <div class="item-product"><input type="text" class="input-search" style="padding-left: 30px;" name="" id="" placeholder="Nombre o Codigo del producto"></div>
           <div class="item-product"><button class="btn-search">Buscar</button></div>
           <div class="item-product">
             <table class="table">
               <thead class="thead">
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">Nombre del proveedor</th>
-                  <th scope="col">Día de reparto</th>
-                  <th scope="col">Día de entrega</th>
+                  <th scope="col">Nombre </th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Departamento</th>
+                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+              <tbody id="tableBody"> 
               </tbody>
             </table> 
           </div>

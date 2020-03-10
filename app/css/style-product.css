@@ -184,4 +184,9 @@ thead{
     grid-column-end: 3;
     border-radius: 10px;
     box-shadow: 0 40px 80px 0 #00000029;
+    overflow: scroll;
+}
+
+.image{
+    width: 30px;
 }
