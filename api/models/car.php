@@ -59,17 +59,6 @@ class Car extends Session{
             }
         }
     }
-    public function removeAll(){
-        if($this->getValue() == NULL){
-            $items = [];
-        }else{
-            $items = json_decode($this->getValue(), 1);
-            for($i =0; $i< sizeof($items); $i++){
-                unset($items[$i]);
-                 $items = array_values($items);
-                 $this->setValue(json_encode($items));
-            }
-        }
-    }
+     
 }
 ?>

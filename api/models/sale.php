@@ -13,7 +13,23 @@
 
         //getters and setters
         public function getNumDailySell(){ return $this->numDailySell;}
-        public function setNumDailySell($numDailySell){ return $this->numDailySell = $numDailySell;}
+        //set the last id plus 1 to the sale
+        public function setNumDailySell(){ 
+            $connection = MySqlConnection::getConnection();//get connection
+            $query = 'select count(*) from ventas;';//query
+            $command = $connection->prepare($query);//prepare statement
+            $command->execute();//execute
+            $command->bind_result($numDailySell);//bind results
+            //fetch data
+            if($command->fetch()) {
+                //pass tha values of the fields to the attributes
+                $this->numDailySell = $numDailySell+1;
+            }
+            else
+                throw new RecordNotFoundException($arguments[0]);
+            mysqli_stmt_close($command); //close command
+            $connection->close(); //close connection
+        }
 
         public function getDate(){ return $this->date;}
         public function setDate($date){ return $this->date = $date;}
@@ -122,7 +138,7 @@
         }
         public function add() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'insert into ventas (numVentaDia , montoTotal , numCliente ,tipoVenta) values (?,?,?, ?)';//query
+            $query = 'insert into ventas (consecutivo , montoTotal , numCliente ,tipoVenta) values (?,?,?,?);';//query
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('idis', $this->numDailySell,$this->total,$this->client,$this->type); //bind parameters
             $result = $command->execute();//execute
@@ -152,6 +168,7 @@
             $connection->close(); //close connection
             return $result; //return result
         }
+    
     }
     
 ?>

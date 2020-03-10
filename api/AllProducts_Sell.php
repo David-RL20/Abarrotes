@@ -11,17 +11,22 @@
             $product_sell->setSubTotal($_GET['subTotal']);
 
             
-            if($product_sell->toJson()){
+            if($product_sell->add()){
                 echo json_encode(array(
                     'message'=>'add succesfully',
                     'statusCode'=>200
+                ));
+            }else {
+                echo json_encode(array(
+                    'message'=>'error at add',
+                    'statusCode'=>404
                 ));
             }
         }else {
            echo json_encode(array(
                 'message'=>'not enough variables',
                 'statusCode'=>404
-            ));
+            )); 
         }
     }
     // if($_SERVER['REQUEST_METHOD']== 'POST'){

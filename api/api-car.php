@@ -1,6 +1,8 @@
 <?php
 
 include_once 'models/car.php';
+include_once 'models/sale.php';
+include_once 'models/products_sell.php';
 
 if(isset($_GET['action'])){
     $action = $_GET['action'];
@@ -85,6 +87,14 @@ function done($car){
         $fullItems = [];
         $total = 0;
         $totalItems = 0;
+        $idClient=1;
+        $type= 'efectivo';
+        if(isset($_GET['client'])){
+            $idClient = $_GET['client'];
+        }
+        if(isset($_GET['type'])){
+            $type = $_GET['type'];
+        }
         foreach($itemsCar as $itemCar){
             $httpRequest = file_get_contents('http://localhost/Abarrotes/api/AllProducts.php?code=' . $itemCar['code']);
             $itemProducto = json_decode($httpRequest, 1);
@@ -97,17 +107,36 @@ function done($car){
             array_push($fullItems, $itemProducto);
         }
 
+        
+
         if(!empty($fullItems) && $fullItems !== null ){
-            foreach($fullItems as $item){
-                $URL='http://localhost/Abarrotes/api/AllProducts_sell.php';
-                $idSell=2;
-                $response = file_get_contents($URL.'?idSell='.$idSell.'&codeProduct='. $item['code'].'&quantity='.$item['quantity'].'&subTotal='.$item['subtotal']);
-                    $car->remove($item['code']);
+            $newSale = new sale();
+            $newSale->setNumDailySell(); 
+            $newSale->setTotal($total); 
+            $newSale->setClient($idClient); 
+            $newSale->setType($type); 
+            $idSell = $newSale->getNumDailySell();
+             if($newSale->add()){
+                foreach($fullItems as $item){
+                    $quantity =$item['quantity'];
+                    $subTotal = $item['subtotal'];
+                    $productCode = $item['code'];
+                    $product_sell = new Product_Sell($idSell,$productCode,$quantity,$subTotal);
+                    if($product_sell->add()){
+                        $car->remove($item['code']);
+                    }
+                }
+                echo json_encode(array(
+                    'statusCode'=>200,
+                    'messsage'=>'Operations executed successfully'
+                ));
+            }else {
+                echo json_encode(array(
+                    'statusCode'=>404,
+                    'messsage'=>'Error at Add'
+                ));
             }
-            echo json_encode(array(
-                'statusCode'=>200,
-                'messsage'=>'Operations executed successfully'
-            ));
+            
 
         }else {
             echo json_encode(array(

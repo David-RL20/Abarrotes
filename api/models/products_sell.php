@@ -38,8 +38,8 @@
             if(func_num_args() == 4){
                 $this->idSell = $arguments[0];
                 $this->codeProduct = $arguments[1];
-                $this->quantity = $arguments[3];
-                $this->subTotal = $arguments[4];
+                $this->quantity = $arguments[2];
+                $this->subTotal = $arguments[3];
             }
         }
         //instance method
