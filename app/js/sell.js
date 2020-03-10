@@ -1,8 +1,44 @@
+//Constants like inputs, URLs, etc...
+const idInputCode = "inputCodeProduct";
+const idDataList = "dataListProducts";
+const idTableBody = "tableBody";
+const idTotalCurrentLabel = "totalCurrently";
+const AllProductsURL = "http://localhost/Abarrotes/api/AllProducts.php"
+const cartURL = "http://localhost/Abarrotes/api/AllProducts.php"
+var AllProducts = JSON.parse(sessionStorage.products)
+class product{
+    constructor(code,quantity){
+        this.code = code;
+        this.quantity= quantity
+
+    }
+
+    setCode(code){this.code=code};
+    getCode(){return this.code};
+
+    setQuantity(quantity){this.quantity=quantity};
+    getQuantity(){return this.quantity};
+
+    sendToBackEnd(){
+        x= new XMLHttpRequest();
+        x.open('GET',cartURL+"?code="+this.code+"&quantity="+this.quantity)
+        x.send()
+        x.onreadystatechange = function(){
+          if(x.status == 200 && x.readyState == 4){
+               x.responseText;
+            }
+        
+        }
+    }
+
+}
+
+
 //Executes every time the page is refresh
 function init(){
     getProducts();
     // sessionStorage.articleSelected = undefined;
-    infoInput = document.getElementById('inputCodeProduct');
+    infoInput = document.getElementById(idInputCode);
     infoInput.focus();
     infoInput.addEventListener("keypress",function(){
         if(event.keyCode == '13'){
@@ -29,7 +65,7 @@ function init(){
 function getProducts(){
     // Ask for all the products
     x= new XMLHttpRequest();
-    x.open('GET','http://localhost/Abarrotes/api/AllProducts.php')
+    x.open('GET',AllProductsURL)
     x.send()
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){
@@ -43,7 +79,7 @@ function getProducts(){
 //ADD the products to the data list
 function addProductsToDataList(products){
 
-    var dataList = document.getElementById('dataListProducts');
+    var dataList = document.getElementById(idDataList);
     products.forEach(product => {
         var option = document.createElement('option');
         option.value = product.code;
@@ -59,9 +95,9 @@ function addProductsToDataList(products){
 function deleteArticle(){
     if( sessionStorage.articleSelected != 'undefined'){
         tr =document.getElementById('row'+sessionStorage.articleSelected)
-        tableBody = document.getElementById('tableBody')
+        tableBody = document.getElementById(idTableBody)
         totalProduct =document.getElementById('total'+sessionStorage.articleSelected)
-        totalAmount = document.getElementById('totalCurrently')
+        totalAmount = document.getElementById(idTotalCurrentLabel)
         
 
         totalAmount.innerHTML = parseFloat(totalAmount.textContent) - parseFloat(totalProduct.textContent);
@@ -77,7 +113,7 @@ function deleteArticle(){
 //Search in database for the code of the product 
 //and add all its data 
 function addToTable(code , quantity){
-    infoInput = document.getElementById('inputCodeProduct');
+    infoInput = document.getElementById(idInputCode);
     products = JSON.parse(sessionStorage.products)
     var found = false;
     
@@ -87,7 +123,7 @@ function addToTable(code , quantity){
             var existing = verifyIsInTable(code, quantity);
             if(!existing){
                 //Elements
-                tableBody = document.getElementById('tableBody')
+                tableBody = document.getElementById(idTableBody)
                 tr = document.createElement('tr')
                 tr.className= "tr-products"
                 tdCode = document.createElement('td')
@@ -95,7 +131,7 @@ function addToTable(code , quantity){
                 tdPrice = document.createElement('td')
                 tdQuantity = document.createElement('td')
                 tdTotal = document.createElement('td')
-                totalAmount = document.getElementById('totalCurrently');
+                totalAmount = document.getElementById(idTotalCurrentLabel);
                 //Set ids
                 tr.id='row'+code;
                 tdCode.id='code'+code;
@@ -163,7 +199,7 @@ function addToTable(code , quantity){
 }
 
 function moreProducts(text){
-    var stringInput = document.getElementById('inputCodeProduct')
+    var stringInput = document.getElementById(idInputCode)
     string = text;
     position = string.indexOf("*");
     if(position != -1){
@@ -205,7 +241,7 @@ function verifyIsInTable(code , quantity){
         tdQuantity = document.getElementById('quantity'+code);
         tdPrice = document.getElementById('price'+code);
         tdTotal = document.getElementById('total'+code);
-        totalAmount =document.getElementById('totalCurrently');
+        totalAmount =document.getElementById(idTotalCurrentLabel);
         if(totalAmount.textContent !='')
         totalCurrent = parseFloat(totalAmount.textContent) - (parseFloat(tdQuantity.textContent) * parseFloat(tdPrice.textContent));
         if(typeof quantity !== 'undefined')
@@ -225,21 +261,3 @@ function verifyIsInTable(code , quantity){
     
     return found;
 }
-
-function inputPaid(){
-    var input = document.getElementById('inputAmountPaid');
-
-    //event listener
-    input.addEventListener('keyup', function(){
-        if(event.keyCode == '13'){
-            console.log('u paining');
-        }
-        if(event.keyCode == '27'){
-            windowSell = document.getElementById('sellWindow');
-            inputProduct = document.getElementById('inputCodeProduct');
-            windowSell.style.display = 'none';
-            inputProduct.focus();
-        }
-    });
-}
-

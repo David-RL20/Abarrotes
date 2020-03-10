@@ -6,22 +6,29 @@
     
     
     if($_SERVER['REQUEST_METHOD']== 'GET'){
-        $allProducts = json_decode(product::getAllToJson());
-        $finalArray = array();
-        foreach($allProducts as $product){
-            $department = json_decode(department::getAllToJsonProducts($product->code));
-
-            array_push( $finalArray, array(
-                'code'=>$product->code,
-                'stock'=>$product->stock,
-                'name'=>$product->name,
-                'price'=>$product->price,
-                'department'=> $department
-                
-            ));
+        if(isset($_GET['code'])){
+            $code = $_GET['code'];
+            if($code != ''){
+                $product = new product($code);
+                echo $product->toJson();
+            }
+        }else{
+             $allProducts = json_decode(product::getAllToJson());
+             $finalArray = array();
+            foreach($allProducts as $product){
+                $department = json_decode(department::getAllToJsonProducts($product->code));
+    
+                array_push( $finalArray, array(
+                    'code'=>$product->code,
+                    'stock'=>$product->stock,
+                    'name'=>$product->name,
+                    'price'=>$product->price,
+                    'department'=> $department
+                    
+                ));
+            }
+            echo json_encode($finalArray);
         }
-
-        echo json_encode($finalArray);
     }
     if($_SERVER['REQUEST_METHOD']== 'POST'){
         if(isset($_POST['code']) && isset($_POST['stock']) && isset($_POST['name']) && isset($_POST['price'])&& isset($_POST['dptoCode'])){

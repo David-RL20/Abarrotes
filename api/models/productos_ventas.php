@@ -1,44 +1,63 @@
 <?php
-    require_once('mysqlconnection.php');
-    require_once('models/exceptions/recordnotfoundexception.php');
+    require_once('../mysqlconnection.php');
+    require_once('exceptions/recordnotfoundexception.php');
     class product {
 
         //attributes
-        private $codeProduct ;
-        private $codeDpto;
+        private $idSell ;
+        private $codeProduct;
+        private $quantity;
+        private $subTotal; 
 
         //getters and setters
         public function getCodeProduct(){ return $this->codeProduct;}
         public function setCodeProduct($codeProduct){ return $this->codeProduct = $codeProduct;}
 
-        public function getCodeDpto(){ return $this->codeDpto;}
-        public function setCodeDpto($codeDpto){ return $this->codeDpto = $codeDpto;}
+        public function getIdSell(){ return $this->idSell;}
+        public function setIdSell($idSell){ return $this->idSell = $idSell;}
+        
+        public function getQuantity(){ return $this->quantity;}
+        public function setQuantity($quantity){ return $this->quantity = $quantity;}
+
+        public function getSubTotal(){ return $this->subTotal;}
+        public function setSubTotal($subTotal){ return $this->subTotal = $subTotal;}
 
         //constructor
         public function __construct(){
             // get arguments
             $arguments = func_get_args();
              
-            //2 arguments : create object with dara from the argument
-            if(func_num_args() == 2){
-                $this->codeProduct = $arguments[0];
-                $this->codeDpto = $arguments[1];
+            //0 arguments : create an empty object
+            if(func_num_args() == 0){
+                $this->idSell = "";
+                $this->codeProduct ="";
+                $this->quantity = "";
+                $this->subTotal = "";
+            }
+            //4 arguments : create object with data from the argument
+            if(func_num_args() == 4){
+                $this->idSell = $arguments[0];
+                $this->codeProduct = $arguments[1];
+                $this->quantity = $arguments[3];
+                $this->subTotal = $arguments[4];
             }
         }
         //instance method
         public function toJson(){   
             return json_encode(array(
+                'idSell'=> $this->idSell,
                 'codeProduct'=> $this->codeProduct,
-                'codeDepto'=> $this->codeDpto
+                'quantity'=> $this->idSell,
+                'subTotal'=> $this->subTotal
             ));
         }
 
                 //class methods
         public function add() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'insert into productos_departamento values (?,?);';//query
+            $query = 'insert into productos_ventas(consecutivoVenta,codigoProducto,monto,cantidadGramos) values(?,?,?,?);';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('ss', $this->codeProduct,$this->codeDpto); //bind parameters
+            $command->bind_param('isdd', $this->idSell,$this->codeProduct,$this->subTotal,$this->quantity); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
@@ -47,9 +66,9 @@
 
         public function delete() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'insert into productos_departamento values (?,?); ';//query
+            $query = 'update productos_ventas set monto = 0 where consecutivoVenta=?; ';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('s', $this->codeProduct); //bind parameters
+            $command->bind_param('i', $this->idSell); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
@@ -58,9 +77,9 @@
 
         public function update() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'update productos  set codigoBarras=? , stock=? , nombre=? , precio= ?  where codigoBarras = ?';//query
+            $query = 'update productos_ventas set codigoProducto=?,monto = ?, cantidad = ? where consecutivoVenta=?;';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('ss',$this->codeProduct, $this->codeDpto); //bind parameters
+            $command->bind_param('ss',$this->codeProduct, $this->subTotal,$this->quantity,$this->idSell); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
