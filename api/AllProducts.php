@@ -2,7 +2,7 @@
     header('Access-Control-Allow-Origin:*');
     require_once('models/product.php');
     require_once('models/department.php');
-    require_once('models/product_departament.php');
+    require_once('models/product_department.php');
     
     
     if($_SERVER['REQUEST_METHOD']== 'GET'){

@@ -2,34 +2,22 @@
     header('Access-Control-Allow-Origin:*');
     require_once('models/products_sell.php');
     if($_SERVER['REQUEST_METHOD']== 'GET'){
+        if(isset($_POST['idSell']) && isset($_POST['codeProduct']) && isset($_POST['quantity'])&& isset($_POST['subTotal'])){
+            $product_sell = new Product_Sell();
 
-        echo supplier::getAllToJson();
-    }
-    if($_SERVER['REQUEST_METHOD']== 'POST'){
-        if(isset($_POST['deliveryDay']) && isset($_POST['orderDay']) && isset($_POST['name'])){
-            $newSupplier = new supplier();
-
-            $newSupplier->setDeliveryDay($_POST['deliveryDay']);
-            $newSupplier->setOrderDay($_POST['orderDay']);
-            $newSupplier->setName($_POST['name']);
+            $product_sell->setIdSell($_POST['idSell']);
+            $product_sell->setCodeProduct($_POST['codeProduct']);
+            $product_sell->setQuantity($_POST['quantity']);
+            $product_sell->setSubTotal($_POST['subTotal']);
 
             
-            echo $newSupplier->add();
+            echo $product_sell->toJson();
         }
+    }
+    // if($_SERVER['REQUEST_METHOD']== 'POST'){
+       
         
-    }
-    if($_SERVER['REQUEST_METHOD']== 'PUT'){
-        if(isset($_PUT['number'])  && isset($_PUT['deliveryDay']) && isset($_PUT['orderDay']) && isset($_PUT['name'])){
-            $newSupplier = new supplier($_PUT['number']);
-
-            // $newSupplier->setDeliveryDay($_PUT['deliveryDay']);
-            // $newSupplier->setOrderDay($_PUT['orderDay']);
-            // $newSupplier->setName($_PUT['name']);
-
-            echo $newSupplier->toJson();
-        } 
-
-    }
+    // } 
 
 
 ?>

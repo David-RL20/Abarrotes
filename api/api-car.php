@@ -19,8 +19,7 @@ if(isset($_GET['action'])){
         remove($car);
         break;
         case 'done':
-            done($car);
-            break;
+            done($car); 
 
         default:
     }
@@ -70,7 +69,7 @@ function remove($car){
         if($res){
             echo json_encode(['statuscode' => 200]);
         }else{
-            echo json_encode(['statuscode' => 400]);
+            echo json_encode(['statuscode' => 400]); 
         }
     }else{
         // error
@@ -79,37 +78,52 @@ function remove($car){
     }
 }
 function done($car){
-    $itemsCar = json_decode($car->load(), 1);
-    $fullItems = [];
-    $total = 0;
-    $totalItems = 0;
+    try{
+        
+        $itemsCar = json_decode($car->load(), 1);
+        $fullItems = [];
+        $total = 0;
+        $totalItems = 0;
+        foreach($itemsCar as $itemCar){
+            $httpRequest = file_get_contents('http://localhost/Abarrotes/api/AllProducts.php?code=' . $itemCar['code']);
+            $itemProducto = json_decode($httpRequest, 1);
+            $itemProducto['quantity'] = $itemCar['quantity'];
+            $itemProducto['subtotal'] = $itemProducto['quantity'] * $itemProducto['price'];
+    
+            $total += $itemProducto['subtotal'];
+            $totalItems += $itemProducto['quantity'];
+    
+            array_push($fullItems, $itemProducto);
+        }
 
-    foreach($itemsCar as $itemCar){
-        $httpRequest = file_get_contents('http://localhost/Abarrotes/api/AllProducts.php?code=' . $itemCar['code']);
-        $itemProducto = json_decode($httpRequest, 1);
-        $itemProducto['quantity'] = $itemCar['quantity'];
-        $itemProducto['subtotal'] = $itemProducto['quantity'] * $itemProducto['price'];
+        if($fullItems['items'] !== '' ){
+            foreach($fullItems as $item){
+                $URL='http://localhost/Abarrotes/api/AllProducts_sell.php';
+                $idSell=2;
+                $response = file_get_contents($URL.'?idSell='.$idSell.'&codeProduct='. $item['code'].'&quantity='.$item['quantity'].'&subTotal='.$item['subtotal']);
+                echo $response;
+                $car->remove($item['code']);
+            }
+            echo json_encode(array(
+                'statusCode'=>200,
+                'messsage'=>'Operations executed successfully'
+            ));
 
-        $total += $itemProducto['subtotal'];
-        $totalItems += $itemProducto['quantity'];
-
-        array_push($fullItems, $itemProducto);
+        }else {
+            echo json_encode(array(
+                'statusCode'=>200,
+                'messsage'=>'No items storage'
+            ));
+        }
+        
+        
     }
-
-    foreach($fullItems as $item){
-        $URL="";
-        $httpRequest = httpPost($URL,"");
-        $itemProducto = json_decode($httpRequest, 1);
+    catch(exception $e){
+        # code
+        echo json_encode(array(
+            'statusCode'=>404,
+            'messsage'=>'Error'. $e
+        ));
     }
 }
-function httpPost($url, $data)
-{
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($curl);
-    curl_close($curl);
-    return $response;
-}
-?>
+
