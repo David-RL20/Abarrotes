@@ -2,10 +2,9 @@
     require_once('mysqlconnection.php');
     require_once('models/exceptions/recordnotfoundexception.php');
     class product {
-
         //attributes
         private $code ;
-        private $stock;
+        private $bulkSale;
         private $name;
         private $price;
 
@@ -13,8 +12,8 @@
         public function getCode(){ return $this->code;}
         public function setCode($code){ return $this->code = $code;}
 
-        public function getStock(){ return $this->stock;}
-        public function setStock($stock){ return $this->stock = $stock;}
+        public function getBulkSale(){ return $this->bulkSale;}
+        public function setBulkSale($bulkSale){ return $this->bulkSale = $bulkSale;}
 
         public function getName(){ return $this->name;}
         public function setName($name){ return $this->name = $name;}
@@ -29,7 +28,7 @@
             //0 arguments : creates an empty object
             if(func_num_args() == 0){
                 $this->code = '';
-                $this->stock = '';
+                $this->bulkSale = '';
                 $this->name = '';
                 $this->price = '';
             }
@@ -39,12 +38,12 @@
                 $command = $connection->prepare($query);//prepare statement
                 $command->bind_param('s',$arguments[0]);
                 $command->execute();//execute
-                $command->bind_result($code,$stock,$name,$price);//bind results
+                $command->bind_result($code,$name,$price,$bulkSale);//bind results
                 //fetch data
                 if($command->fetch()) {
                     //pass tha values of the fields to the attributes
                     $this->code = $code;
-                    $this->stock = $stock;
+                    $this->bulkSale = $bulkSale;
                     $this->name = $name;
                     $this->price = $price;
                 }
@@ -57,16 +56,16 @@
             //2 arguments : create object with dara from the argument
             if(func_num_args() == 2){
                 $this->code = $arguments[0];
-                $this->stock = $arguments[1];
+                $this->bulkSale = $arguments[1];
             }
             if(func_num_args() == 3){
                 $this->code = $arguments[0];
-                $this->stock = $arguments[1];
+                $this->bulkSale = $arguments[1];
                 $this->name = $arguments[2];
             }
             if(func_num_args() == 4){
                 $this->code = $arguments[0];
-                $this->stock = $arguments[1];
+                $this->bulkSale = $arguments[1];
                 $this->name = $arguments[2];
                 $this->price = $arguments[3];
             }
@@ -75,7 +74,7 @@
         public function toJson(){   
             return json_encode(array(
                 'code'=> $this->code,
-                'stock'=> $this->stock,
+                'bulkSale'=> $this->bulkSale,
                 'name'=> $this->name,
                 'price'=> $this->price
             ));
@@ -89,10 +88,10 @@
             $query = ' select * from productos order by nombre';//query
 			$command = $connection->prepare($query);//prepare statement
 			$command->execute();//execute
-            $command->bind_result($code,$stock,$name,$price,);//bind results
+            $command->bind_result($code,$name,$price,$bulkSale);//bind results
             //fetch data
 			while ($command->fetch()) {
-				array_push($list, new product($code,$stock,$name,$price));//add item to list
+				array_push($list, new product($code,$bulkSale,$name,$price));//add item to list
             }
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
@@ -111,9 +110,9 @@
 
         public function add() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'insert into productos values (?,?,?,?);';//query
+            $query = 'insert into productos (codigoBarras,nombre,precio,ventaGranel)values (?,?,?,?)';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('sisd', $this->code,$this->stock,$this->name,$this->price); //bind parameters
+            $command->bind_param('ssds', $this->code,$this->name,$this->price,$this->bulkSale); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
@@ -122,7 +121,7 @@
 
         public function delete() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'update productos set stock=0 where codigoBarras = ?; ';//query
+            $query = "update productos set codigoBarras='' where codigoBarras = ?; ";//query
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('s', $this->code); //bind parameters
             $result = $command->execute();//execute
@@ -131,11 +130,11 @@
             return $result; //return result
         }
 
-        public function update() {
+        public function update($newCode) {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'update productos  set codigoBarras=? , stock=? , nombre=? , precio= ?  where codigoBarras = ?';//query
+            $query = 'update productos set codigoBarras = ?,nombre = ? , precio=?,ventaGranel=? where codigoBarras=?;';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('sisds',$this->code, $this->stock, $this->name, $this->price, $this->code); //bind parameters
+            $command->bind_param('ssdss',$newCode, $this->name, $this->price,$this->bulkSale,  $this->code); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection

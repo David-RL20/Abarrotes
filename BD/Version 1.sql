@@ -39,7 +39,7 @@ create table ventas(
 create table productos_ventas(
 	consecutivoVenta int ,
 	codigoProducto varchar(30),
-	monto decimal(7,2),
+	subtotal decimal(7,2),
 	cantidad decimal(7,2) ,
     foreign key(consecutivoVenta) references ventas(consecutivo),
     foreign key(codigoProducto) references productos(codigoBarras)

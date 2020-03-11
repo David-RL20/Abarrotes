@@ -55,7 +55,7 @@
                 //class methods
         public function add() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'insert into productos_ventas(consecutivoVenta,codigoProducto,monto,cantidadGramos) values(?,?,?,?);';//query
+            $query = 'insert into productos_ventas(consecutivoVenta,codigoProducto,subtotal,cantidadGramos) values(?,?,?,?);';//query
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('isdd', $this->idSell,$this->codeProduct,$this->subTotal,$this->quantity); //bind parameters
             $result = $command->execute();//execute
@@ -66,7 +66,7 @@
 
         public function delete() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'update productos_ventas set monto = 0 where consecutivoVenta=?; ';//query
+            $query = 'update productos_ventas set subtotal = 0 where consecutivoVenta=?; ';//query
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('i', $this->idSell); //bind parameters
             $result = $command->execute();//execute
