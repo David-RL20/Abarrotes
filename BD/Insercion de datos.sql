@@ -22,6 +22,8 @@ create procedure productos_departamentos(in codigoProducto varchar(30))
 	on p.codigoBarras = dp.codigoProducto and d.codigoDpto = dp.codigoDpto
 	where p.codigoBarras = codigoProducto
 ;
+insert into productos_departamento values (26000003056,'123C');
+select * from departamento;
 /*INSERCION DE PRODUCTOS*/
 update productos set codigoBarras = ?,nombre = ? , precio=?,ventaGranel=? where codigoBarras=?;
 update productos set codigoBarras = '12345',nombre ='Prueba modificada' , precio=2.0,ventaGranel='no' where codigoBarras='123';

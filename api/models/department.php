@@ -89,7 +89,7 @@
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('s', $productCode);
             $command->execute();//execute
-            $command->bind_result($code, $name );//bind results
+            $command->bind_result($code, $name);//bind results
             //fetch data
             while ($command->fetch()) {
 				array_push($list, new department($code,$name));//add item to list

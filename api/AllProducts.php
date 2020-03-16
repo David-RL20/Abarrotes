@@ -19,10 +19,10 @@
                 $department = json_decode(department::getAllToJsonProducts($product->code));
     
                 array_push( $finalArray, array(
-                    'code'=>$product->code,
-                    'stock'=>$product->stock,
+                    'code'=>$product->code, 
                     'name'=>$product->name,
                     'price'=>$product->price,
+                    'bulk'=>$product->bulkSale,
                     'department'=> $department
                     
                 ));
@@ -31,7 +31,7 @@
         }
     }
     if($_SERVER['REQUEST_METHOD']== 'POST'){
-        if(isset($_POST['code']) && isset($_POST['stock']) && isset($_POST['name']) && isset($_POST['price'])&& isset($_POST['dptoCode'])){
+        if(isset($_POST['code']) && isset($_POST['bulk']) && isset($_POST['name']) && isset($_POST['price'])&& isset($_POST['dptoCode'])){
             $newProduct = new product();
             $newProd_Depto = new product_depto();
             
@@ -41,14 +41,18 @@
 
             //product
             $newProduct->setCode($_POST['code']);
-            $newProduct->setStock($_POST['stock']);
             $newProduct->setName($_POST['name']);
+            $newProduct->setBulkSale($_POST['bulk']);
             $newProduct->setPrice($_POST['price']);
 
            if( $newProduct->add() && $newProd_Depto->add()){
                echo '1';
+           }else{
+               echo 'No se pudo agregar';
            }
 
+        }else{
+            echo 'variables insuficientes';
         }
         
     }
