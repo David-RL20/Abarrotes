@@ -34,25 +34,29 @@ if(isset($_GET['action'])){
 function show($car){
     //cargar arreglo en la sesion
     // consultar DB para actualizar valores de los productos
-    $itemsCar = json_decode($car->load(), 1);
-    $fullItems = [];
-    $total = 0;
-    $totalItems = 0;
-
-    foreach($itemsCar as $itemCar){
-        $httpRequest = file_get_contents('http://localhost/Abarrotes/api/AllProducts.php?code=' . $itemCar['code']);
-        $itemProducto = json_decode($httpRequest, 1);
-        $itemProducto['quantity'] = $itemCar['quantity'];
-        $itemProducto['subtotal'] = $itemProducto['quantity'] * $itemProducto['price'];
-
-        $total += $itemProducto['subtotal'];
-        $totalItems += $itemProducto['quantity'];
-
-        array_push($fullItems, $itemProducto);
+    if(!empty($car->load())){
+        $itemsCar = json_decode($car->load(), 1);
+        $fullItems = [];
+        $total = 0;
+        $totalItems = 0;
+    
+        foreach($itemsCar as $itemCar){
+            $httpRequest = file_get_contents('http://localhost/Abarrotes/api/AllProducts.php?code=' . $itemCar['code']);
+            $itemProducto = json_decode($httpRequest, 1);
+            $itemProducto['quantity'] = $itemCar['quantity'];
+            $itemProducto['subtotal'] = $itemProducto['quantity'] * $itemProducto['price'];
+    
+            $total += $itemProducto['subtotal'];
+            $totalItems += $itemProducto['quantity'];
+    
+            array_push($fullItems, $itemProducto);
+        }
+        $resArray = array('info' => ['count' => $totalItems, 'total' => $total], 'items' =>$fullItems);
+    
+        echo json_encode($resArray);
+    }else{
+        echo json_encode(array('info' => ['count' => 0, 'total' => 0]));
     }
-    $resArray = array('info' => ['count' => $totalItems, 'total' => $total], 'items' =>$fullItems);
-
-    echo json_encode($resArray);
 }
 
 function add($car){
