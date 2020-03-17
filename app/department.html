@@ -10,11 +10,14 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- Font awesome -->
     <script src="js/fontAwesome.js"  ></script>
+    <!-- JS -->
+    <script src="js/department.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/style-provider.css">
     <title>Departamentos</title>
 </head>
-<body>
+<body onload="init()">
     <!-- Principal container -->
     <div class="container-store">
         <!-- Navbar section -->
@@ -85,75 +88,23 @@
               </div>
           </div>
       </div>
-        <div class="item txt-provider">Proveedores</div>
+        <div class="item txt-provider">Departamentos</div>
         <div class="item container-table">
-          <div class="item-table"><input class="input-search" type="text" name="Nombre" id="" placeholder="Nombre del proveedor"></div>
-          <div class="item-table"><button class="btn-search-provider">Agregar</button></div>
-          <div class="item-table drop-menu-day btn-display">
-            <select class="custom-select btn-select" id="inputGroupSelect01">
-              <option selected value="0">Día de reparto</option>
-              <option value="1">Lunes</option>
-              <option value="2">Martes</option>
-              <option value="3">Miércoles</option>
-              <option value="4">Jueves</option>
-              <option value="5">Viernes</option>
-              <option value="6">Sábado</option>
-              <option value="7">Domingo</option>
-            </select>
-          </div>
-          <div class="item-table drop-menu-day btn-display">
-            <select class="custom-select btn-select" id="inputGroupSelect01">
-              <option selected value="0">Día de entrega</option>
-              <option value="1">Lunes</option>
-              <option value="2">Martes</option>
-              <option value="3">Miércoles</option>
-              <option value="4">Jueves</option>
-              <option value="5">Viernes</option>
-              <option value="6">Sábado</option>
-              <option value="7">Domingo</option>
-            </select>
-          </div>
+          <div class="item-table drop-menu-day btn-display"><input type="text" class="btn-select input-search" placeholder="Código del departamento" id="codeDepto"/></div>
+          <div class="item-table"><input class="input-search" type="text" name="Nombre" id="nameDepto" placeholder="Nombre del departmento"></div>
+          <div class="item-table drop-menu-day"></div>
+          <div class="item-table"><button onclick="save()" class="btn-search-provider">Agregar</button></div>
           <div class="item-table table-bg">
-            <table class="table">
+            <table class="table table-striped">
               <thead class="thead">
                 <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">Nombre del proveedor</th>
-                  <th scope="col">Día de reparto</th>
-                  <th scope="col">Día de entrega</th>
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Nombre </th>
+                  <th scope="col">Acciones</th> 
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+              <tbody id="body">
+                
               </tbody>
             </table>  
           </div>

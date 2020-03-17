@@ -21,6 +21,7 @@ create table clienteCredito(
 create table departamento(
 	codigoDpto char(5) primary key,
 	nombre varchar(50)
+    
 );
 
 create table ventas(
@@ -50,7 +51,7 @@ create table productos_departamento(
 	codigoProducto varchar(30) ,
 	codigoDpto char(5) ,
     foreign key(codigoProducto) references productos(codigoBarras),
-    foreign key (codigoDpto)references departamento(codigoDpto)
+    foreign key (codigoDpto)references departamento(codigoDpto) on delete cascade
 );
 
 create table ventas_credito(

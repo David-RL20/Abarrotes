@@ -95,6 +95,7 @@ body {
     margin-top: 30px;
     margin-bottom: 40px;
     background: #f8f8f8;
+    overflow: scroll;
 }
 thead{
     background-color: #5084fd;
@@ -165,4 +166,15 @@ th, td {
     line-height: 27px;
     text-align: left;
     color: #595f71;
+    width: 100%;
+}
+
+.image {
+    width: 30px;
+    margin: 0 10px ;
+}
+
+input{
+    padding-left: 10px;
+    width: 100%;
 }

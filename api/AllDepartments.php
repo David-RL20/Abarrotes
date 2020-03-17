@@ -4,8 +4,23 @@
 
 
     if($_SERVER['REQUEST_METHOD']== 'GET'){
+        if(isset($_GET['delete'])){
+            $department = new department($_GET['delete']);
+            echo $department->delete();
+        }else if(isset($_GET['update']) && isset($_GET['name'])){
+            $newDepartment = new department($_GET['update']);
 
-        echo department::getAllToJson();
+            $newDepartment->setName($_GET['name']);
+
+            if($newDepartment->update()){
+                echo json_encode(array(
+                    'status'=>1,
+                ));
+            }
+        }else{
+            echo department::getAllToJson();
+        }
+        
     }
     if($_SERVER['REQUEST_METHOD']== 'POST'){
         if(isset($_POST['code']) && isset($_POST['name'])){
@@ -15,21 +30,26 @@
             $newDepartment->setName($_POST['name']);
 
             
-            echo $newDepartment->add();
+            if($newDepartment->add()){
+                echo json_encode(array(
+                    'status'=>1,
+                    'department'=>json_decode($newDepartment->toJson())
+                ));
+            }
+        }else{
+            echo json_encode(array(
+                'status'=>404,
+                'message'=>'No se pudo agregar'
+            ));
         }
         
     }
-    if($_SERVER['REQUEST_METHOD']== 'PUT'){
-        if(isset($_PUT['code']) && isset($_PUT['name'])){
-            $newDepartment = new department();
-
-            $newDepartment->setCode($_PUT['code']);
-            $newDepartment->setName($_PUT['name']);
-
+    // if($_SERVER['REQUEST_METHOD']== 'PUT'){
+    //     if(isset($_PUT['code']) && isset($_PUT['name'])){
             
-            echo $newDepartment->toJson();
-        } 
+    //     } 
 
-    }
+    // }
+    
      
 ?>

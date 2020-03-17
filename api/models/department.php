@@ -121,7 +121,7 @@
 
         public function delete() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'update departamento set codigoDpto = null where codigoDpto = ?';//query
+            $query = 'delete from departamento where codigoDpto=?;';//query
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('s', $this->code); //bind parameters
             $result = $command->execute();//execute
