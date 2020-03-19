@@ -1,169 +1,113 @@
 body {
-
     width: auto;
     height: auto;
     background-color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-
   }
-
 /* Principal container */
 .container-store{
-
     display: grid;
-
-    grid-template-columns: 200px 930px;
-
-    grid-template-rows:     70px 570px;
-
+    grid-template-columns: 200px 1010px;
+    grid-template-rows:     70px 140px 580px;
     grid-gap: 10px;
-
     margin-right: 0px;
-
 }
-
 /* Nav bar section (Logo - ventas - clientes - proveedores - departamentos) */
-
 .item:nth-of-type(1){
-
     grid-column-start: 1;
-
     grid-column-end: 2;
-
     grid-row-start: 1;
-
-    grid-row-end: 3;
-
+    grid-row-end: 4;
     height: auto;
-
     background-color: #595f71;
-
     border-top-right-radius: 20px;
-
     border-bottom-right-radius: 20px;
-
 }
-
 /* Nav bar container */
-
 .nav-bar-container{
-
     display: grid;
-
     grid-template-columns: 180px;
-
     grid-template-rows: 80px repeat(4, 40px);
-
     grid-gap: 40px;
-
     margin-top: 40px;
-
     justify-content: center;
-
 }
-
 .logo-nav-bar{
-
     width: 110px;
-
     height: 80px;
-
 }
-
 .square-color-item{
-
     width: 25px;
-
     height: 25px;
-
     margin-right: 5px;
-
 }
-
 .text-navbar{
-
     font-family: 'Segoe UI';
-
     font-size: 20px;
-
     font-weight: 600;
-
     line-height: 30px;
-
     text-align: left;
-
     color: #ffffff;
-
 }
-
 .item:nth-of-type(2){
-    /* margin-top: 30px; */
-    margin-left: 35px;
+    padding-top: 30px;
+    margin-left: 35px;  
     font-family: 'Segoe UI';
     font-size: 40px;
     font-weight: bold;
-    line-height: 67px;
+    line-height: 53px;
     text-align: left;
-    color: #707070;
+    color: #595f71;
 }
-
-.item:nth-of-type(3){
-    /* margin-top: 30px; */
-    margin-left: 35px;
-    padding-top: 35px;
-    padding-left: 35px;
-}
-thead{
-    background-color: #5084fd;
-    color: #ffffff;
-}
-.container-product{
+.grid-search{
     display: grid;
-    grid-template-columns: 700px 100px;
-    grid-template-rows: 50px 400px;
-    grid-gap: 25px;
-    border-radius: 20px;
-    background: #d8e1ee40;
+    grid-template-columns: 573px 110px 110px;
+    grid-template-rows: 50px;
+    grid-gap: 35px;
+    padding-top: 30px;
+    padding-left: 45px;
 }
-.table{
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-.item-product{
-    background: #FFFF;
-}
-.item-product:nth-of-type(1){
+.inputs-search{
     border-radius: 10px;
     box-shadow: 0 40px 80px 0 #00000029;
     background-color: #ffffff;
+    border: none;
+    height: 50px;
+
 }
-.input-search{
-    width: 708px;
+.label-input{
+    width: 573px;
+    padding-left: 30px;
+}
+.label-input-show{
+    width: 698px;
+    padding-left: 30px;
+}
+.btn-select{
+    width: 110px;
     height: 50px;
     border-radius: 10px;
     box-shadow: 0 40px 80px 0 #00000029;
     background-color: #ffffff;
     border: none;
-    font-family: 'Segoe UI';
-    font-size: 20px;
-    line-height: 27px;
-    text-align: left;
-    color: #707070;
 }
-.item-product:nth-of-type(2){
+.limit-option{
+    width: 110px;
+    height: 50px;
     border-radius: 10px;
-    -webkit-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
     box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #ffffff;
+    padding-left: 30px;
+    border: none;
 }
 .btn-search{
-    width: 100px;
+    width: 110px;
     height: 50px;
     border-radius: 10px;
     -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
     box-shadow: 0 40px 80px 0 #00000029;
-    background-color: #5084fd;
+    background-color: #47e69c;
     border: none;
     font-family: 'Segoe UI';
     font-size: 20px;
@@ -172,16 +116,63 @@ thead{
     text-align: center;
     color: #ffffff;
 }
+.btn-search:hover{
+    outline: none;
+    background: rgba(71, 230, 156, .4);
+    text-decoration: none;
+}
 .btn-search:focus{
     outline: none;
 }
-.btn-search:hover{
-    background-color: rgba(80, 132, 253, .7);
-    text-decoration: none;
+.item:nth-of-type(3){
+    border-radius: 20px;
+    background-color: #d8e1ee40;
+    margin-top: 30px;
+    margin-left: 35px;
 }
-.item-product:nth-of-type(3){
-    grid-column-start: 1;
-    grid-column-end: 3;
+.item:nth-of-type(4){
+    border-radius: 20px;
+    background-color: #d8e1ee40;
+    margin-top: 30px;
+    margin-left: 35px;
+}
+.item-table-list{
+    height: 380px;
     border-radius: 10px;
     box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #ffffff;
+}
+.btn-show{
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #5084fd;
+    width: 110px;
+    height: 50px;
+    border: none;
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 27px;
+    text-align: center;
+    color: #ffffff;
+}
+.btn-show:focus{
+    outline: none;
+}
+.btn-show:hover{
+    background-color: rgba(80, 132, 253, .7);
+}
+.grid-table{
+    display: grid;
+    grid-template-columns: 698px 110px;
+    grid-template-rows: 50px 380px;
+    grid-gap: 35px;
+    padding-top: 45px;
+    padding-left: 50px;
+}
+.grid-item-table:nth-of-type(3){
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
