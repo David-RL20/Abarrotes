@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin:*');
 include_once 'models/car.php';
 include_once 'models/sale.php';
 include_once 'models/products_sell.php';
