@@ -81,3 +81,10 @@ insert into productos (codigoBarras,nombre,precio,ventaGranel)values
 ('7501000000000',"Emperador Vainilla (101g)",14,'no'),
 ('7501000000000',"Emperador Nuez (101g)",14,'no'),
 ('7501000000000',"Emperador conbinadad (101g)",14,'no');
+
+
+select * from clienteCredito;
+
+insert into clienteCredito values (1,'Publico General',null);
+
+select  * from productos_ventas;
