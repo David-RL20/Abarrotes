@@ -175,7 +175,7 @@ function showCart(){
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){
             // updateTable(JSON.parse(x.responseText));
-            console.log(JSON.parse(x.responseText))
+            console.log((x.responseText))
         }
         
     }
