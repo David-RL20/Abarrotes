@@ -51,9 +51,9 @@ function show($car){
     
             array_push($fullItems, $itemProducto);
         }
-        $resArray = array('info' => ['count' => $totalItems, 'total' => $total], 'items' =>$fullItems);
+        // $resArray = array('info' => ['count' => $totalItems, 'total' => $total], 'items' =>$fullItems);
     
-        echo json_encode($resArray);
+        echo json_encode($fullItems);
     }else{
         echo json_encode(array('info' => ['count' => 0, 'total' => 0]));
     }

@@ -4,7 +4,7 @@ const idDataList = "dataListProducts";
 const idTableBody = "tableBody";
 const idTotalCurrentLabel = "totalCurrently";
 const AllProductsURL = "http://localhost/Abarrotes/api/AllProducts.php"
-const cartURL = "http://localhost/Abarrotes/api/AllProducts.php"
+const cartURL = "http://localhost/Abarrotes/api/api-car.php"
 var AllProducts = JSON.parse(sessionStorage.products)
 class product{
     constructor(code,quantity){
@@ -57,7 +57,7 @@ function init(){
             }
         }
     });
-    
+    showCart();
 }
 
 
@@ -101,7 +101,7 @@ function deleteArticle(){
         
 
         totalAmount.innerHTML = parseFloat(totalAmount.textContent) - parseFloat(totalProduct.textContent);
-        removeFromCar(sessionStorage.articleSelected);
+
         tableBody.removeChild(tr);
     }
     else
@@ -262,6 +262,7 @@ function verifyIsInTable(code , quantity){
     return found;
 }
 
+
 function addToCart(code, quantity){
     x= new XMLHttpRequest();
     x.open('GET',cartURL+'?action=add'+'&code='+code+'&quantity='+quantity)
@@ -283,7 +284,7 @@ function showCart(){
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){
             // updateTable(JSON.parse(x.responseText));
-            console.log((x.responseText))
+            console.log(JSON.parse(x.responseText))
         }
         
     }
@@ -291,7 +292,7 @@ function showCart(){
 
 function removeFromCar(code){
     x= new XMLHttpRequest();
-    x.open('GET',cartURL+'?action=remove'+'&code='+code)
+    x.open('GET',cartURL+'?action=add'+'&code='+code)
     x.send()
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){
