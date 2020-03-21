@@ -6,33 +6,6 @@ const idTotalCurrentLabel = "totalCurrently";
 const AllProductsURL = "http://localhost/Abarrotes/api/AllProducts.php"
 const cartURL = "http://localhost/Abarrotes/api/api-car.php"
 var AllProducts = JSON.parse(sessionStorage.products)
-class product{
-    constructor(code,quantity){
-        this.code = code;
-        this.quantity= quantity
-
-    }
-
-    setCode(code){this.code=code};
-    getCode(){return this.code};
-
-    setQuantity(quantity){this.quantity=quantity};
-    getQuantity(){return this.quantity};
-
-    sendToBackEnd(){
-        x= new XMLHttpRequest();
-        x.open('GET',cartURL+"?code="+this.code+"&quantity="+this.quantity)
-        x.send()
-        x.onreadystatechange = function(){
-          if(x.status == 200 && x.readyState == 4){
-               x.responseText;
-            }
-        
-        }
-    }
-
-}
-
 
 //Executes every time the page is refresh
 function init(){
@@ -57,7 +30,7 @@ function init(){
             }
         }
     });
-    showCart();
+    
 }
 
 
@@ -274,8 +247,6 @@ function addToCart(code, quantity){
         
     }
 }
-
-
 
 function showCart(){
     x= new XMLHttpRequest();
