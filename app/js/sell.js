@@ -1,11 +1,9 @@
-//Constants like inputs, URLs, etc...
 const idInputCode = "inputCodeProduct";
 const idDataList = "dataListProducts";
 const idTableBody = "tableBody";
 const idTotalCurrentLabel = "totalCurrently";
 const AllProductsURL = "http://localhost/Abarrotes/api/AllProducts.php"
-const cartURL = "http://localhost/Abarrotes/api/api-car.php"
-var AllProducts = JSON.parse(sessionStorage.products)
+
 
 //Executes every time the page is refresh
 function init(){
@@ -22,7 +20,7 @@ function init(){
                 else 
                     addToTable(infoInput.value)
 
-                infoInput.focus();
+                // infoInput.focus();
                 infoInput.value='';
             }
             else{
@@ -30,6 +28,7 @@ function init(){
             }
         }
     });
+    
     
 }
 
@@ -116,12 +115,25 @@ function addToTable(code , quantity){
                 tdCode.innerHTML = product.code;
                 tdName.innerHTML = product.name;
                 tdPrice.innerHTML= product.price;
-                if(typeof quantity !== 'undefined'){
-                    tdQuantity.innerHTML=quantity;
-                }else
-                {
-                    tdQuantity.innerHTML=1;
+                if(product.bulk == 'si'){
+                    if(typeof quantity !== 'undefined'){
+                        tdQuantity.innerHTML=quantity;
+                    }else
+                    {   
+                        showQuantity();
+                        tdQuantity.innerHTML= document.getElementById('popup-input-quantity').value
+                        
+                    }
+                }else{
+                    if(typeof quantity !== 'undefined'){
+                        tdQuantity.innerHTML=quantity;
+                    }else
+                    {
+                        tdQuantity.innerHTML=1;
+                    }
                 }
+                
+
                 tdTotal.innerHTML = (product.price * parseFloat(tdQuantity.textContent));
 
                 if(totalAmount.textContent != '')
@@ -170,7 +182,7 @@ function addToTable(code , quantity){
         
     }
 }
-
+//if is a * separates the code and the quantity of each 
 function moreProducts(text){
     var stringInput = document.getElementById(idInputCode)
     string = text;
@@ -206,7 +218,9 @@ function moreProducts(text){
     else
         return undefined
 }
-
+//checks for an existing product in the table
+// returns true if exists 
+// and false if not
 function verifyIsInTable(code , quantity){
     found = false;
     try {
@@ -217,11 +231,33 @@ function verifyIsInTable(code , quantity){
         totalAmount =document.getElementById(idTotalCurrentLabel);
         if(totalAmount.textContent !='')
         totalCurrent = parseFloat(totalAmount.textContent) - (parseFloat(tdQuantity.textContent) * parseFloat(tdPrice.textContent));
-        if(typeof quantity !== 'undefined')
-         totalProduct = parseFloat(tdQuantity.textContent) + parseFloat(quantity);
-         else
-         totalProduct = parseFloat(tdQuantity.textContent) + 1;
-
+        
+         
+         x= new XMLHttpRequest();
+         x.open('GET',AllProductsURL+'?code='+code)
+         x.send()
+         x.onreadystatechange = function(){
+             if(x.status == 200 && x.readyState == 4){
+                result= JSON.parse(x.responseText);
+                if(result.bulk == 'si'){
+                    if(typeof quantity !== 'undefined'){
+                        totalProduct = parseFloat(tdQuantity.textContent) + parseFloat(quantity);
+                    }
+                    else{
+                        totalProduct = parseFloat(tdQuantity.textContent) + showQuantity();
+                    }
+                    
+                }else{
+                    if(typeof quantity !== 'undefined')
+                    totalProduct = parseFloat(tdQuantity.textContent) + parseFloat(quantity);
+                    else
+                    totalProduct = parseFloat(tdQuantity.textContent) + 1;
+                }
+             }else{
+                 result= false;
+             }
+             
+         }
     
         totalAmount.innerHTML = totalCurrent + (totalProduct * parseFloat(tdPrice.textContent));
         tdQuantity.innerHTML = totalProduct;
@@ -234,41 +270,58 @@ function verifyIsInTable(code , quantity){
     
     return found;
 }
+//for each tr in table body realice the sell
+//send the sell to backend
+function chargeSell(){
+    body = document.querySelector('#'+idTableBody);
+    trs = body.getElementsByTagName('tr');
 
-
-function addToCart(code, quantity){
-    x= new XMLHttpRequest();
-    x.open('GET',cartURL+'?action=add'+'&code='+code+'&quantity='+quantity)
-    x.send()
-    x.onreadystatechange = function(){
-        if(x.status == 200 && x.readyState == 4){
-            console.log(JSON.parse(x.responseText))
-        }
+    for(i=0;i<trs.length;i++){
+        tds = trs[i].getElementsByTagName('td');
+        code = tds[0].textContent
+        quantity =tds[3].textContent
         
     }
 }
+//show an window with and input
+//  returns input's values
+function showQuantity(){
+    overlay = document.getElementById('overlay-quantity');
+    div = document.getElementById('div-quantity');
+    button = document.getElementById('cerrar-popup');
+    input = document.getElementById('popup-input-quantity');
 
-function showCart(){
-    x= new XMLHttpRequest();
-    x.open('GET',cartURL+'?action=show')
-    x.send()
-    x.onreadystatechange = function(){
-        if(x.status == 200 && x.readyState == 4){
-            // updateTable(JSON.parse(x.responseText));
-            console.log(JSON.parse(x.responseText))
-        }
-        
-    }
-}
+    overlay.classList.add('active');
+    div.classList.add('active');
 
-function removeFromCar(code){
-    x= new XMLHttpRequest();
-    x.open('GET',cartURL+'?action=add'+'&code='+code)
-    x.send()
-    x.onreadystatechange = function(){
-        if(x.status == 200 && x.readyState == 4){
-            console.log(JSON.parse(x.responseText))
+    
+    
+    //asignar para poder cerrar la ventana
+    button.addEventListener('click',function(){
+        overlay.classList.remove('active');
+	    div.classList.remove('active');
+    })
+    
+    input.addEventListener('keypress',function(){
+        if(event.keyCode == 13){
+            if(typeof input.value !== 'undefined'){
+                
+                overlay.classList.remove('active');
+                div.classList.remove('active');
+            }else{
+                //cancelar transaccion porque el valor esta vacio
+                alert('Cantidad vacia');
+                overlay.classList.remove('active');
+                div.classList.remove('active');
+                
+            }
+        }else if(event.keyCode == 27){
+            overlay.classList.remove('active');
+            div.classList.remove('active');
+
         }
-        
-    }
+    });
+
+    //focus input
+    input.focus();
 }
