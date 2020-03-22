@@ -388,3 +388,7 @@ th, td {
     border-bottom: 2px solid #d8e1eea2;
     cursor: pointer;
 }
+.image{
+    width: 30px;
+    cursor: pointer;
+}

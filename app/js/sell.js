@@ -1,66 +1,317 @@
-const idInputCode = "inputCodeProduct";
-const idDataList = "dataListProducts";
+const idInputCode  = 'inputCodeProduct'
+const dataList =  'dataListProducts' 
 const idTableBody = "tableBody";
 const idTotalCurrentLabel = "totalCurrently";
 const AllProductsURL = "http://localhost/Abarrotes/api/AllProducts.php"
 
+class Product{
+    constructor(){
+        this.getProducts()
+        this.addInputListener()
+        this.car = new Array()
+        this.isInCar;
+    }
 
-//Executes every time the page is refresh
-function init(){
-    getProducts();
-    // sessionStorage.articleSelected = undefined;
-    infoInput = document.getElementById(idInputCode);
-    infoInput.focus();
-    infoInput.addEventListener("keypress",function(){
-        if(event.keyCode == '13'){
-            if(infoInput.value != ''){
-                var array = moreProducts(infoInput.value);
-                if(typeof array !== 'undefined')
-                    addToTable(array[1],array[0]);
-                else 
-                    addToTable(infoInput.value)
-
-                // infoInput.focus();
-                infoInput.value='';
-            }
-            else{
-                abrirPopUp();
-            }
+    getProducts(){
+        let x= new XMLHttpRequest();
+        x.open('GET',AllProductsURL)
+        x.send()
+        x.onreadystatechange = ()=>{
+            if(x.status == 200 && x.readyState == 4){
+                this.products = JSON.parse(x.responseText)
+                this.addProductsToDataList()
+            } 
+            
         }
-    });
+    }
+    addProductsToDataList(){
+        let list = document.getElementById(dataList)
+        this.products.forEach(product => {
+            let option = document.createElement('option');
+            option.value = product.code;
+            option.innerHTML = product.name;
+            list.appendChild(option);
+        });
+    }
+    addInputListener(){
+        let input = document.getElementById(idInputCode);
+        input.focus();
+        input.addEventListener("keypress",() => {
+            if(event.keyCode == '13'){
+                if(input.value != ''){
+                    let array = this.moreProducts(input.value);
+                    if(typeof array !== 'undefined'){
+                        //get the values of code an quantity if * on input
+                        this.code = array[1]
+                        this.quantity=array[0]
+                        this.verification();
+                    }
+                    else {
+                        this.code = input.value 
+                       this.verification()
+                    }
+                }
+                else{
+                    abrirPopUp();
+                }
+            }
+        });
+    }
+    verification(){
+        let infoInput = document.getElementById(idInputCode);
+        let products = this.products
+        var found = false;
+        products.forEach(product => {
+            if(product.code == this.code){
+                found=true;
+                var existing = this.verifyIsInCar();
+                if(!existing){
+                   
+                    //add to cart
+                    this.price = product.price
+                    this.name = product.name
+                    //#region confirmation for quantity
+            
+                    if(product.bulk == 'si' && typeof this.quantity == 'undefined'){
+                        //metodo que muestra un popup y regresa el valor del input
+                        //vere si lo puedo hacer con una promesa
+                        this.setPopUpListener()
+                        this.showQuantityPopUp();
+                    }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
+                        this.quantity=1;
+                    }
+                    //#endregion
+                    this.addToCar();
+                    this.updateTotal();
+                    this.addToTable();   
+                    
+                }else{
+                    console.log("ya esta en el arrito wei")
+                }
+            }
+        });
     
-    
-}
-
-
-//Get all the products from the data base
-function getProducts(){
-    // Ask for all the products
-    x= new XMLHttpRequest();
-    x.open('GET',AllProductsURL)
-    x.send()
-    x.onreadystatechange = function(){
-        if(x.status == 200 && x.readyState == 4){
-            sessionStorage.products = x.responseText;
-            addProductsToDataList(JSON.parse(sessionStorage.products))
+        if(!found){
+            alert('Producto invalido');
+            infoInput.value='';
+            infoInput.focus();
+            
         }
+    }
+    moreProducts(text){
+        let stringInput = document.getElementById(idInputCode)
+        let string = text;
+        let position = string.indexOf("*");
+        if(position != -1){
+            let totalProducts = string[position];
+            let quantity = string.slice(0,position);
+            if(quantity.match(/[a-z]/i)){
+                alert('Cantidad equivocada');
+                stringInput.value=''
+                stringInput.focus();
+            }
+            let productCode = string.slice(position + 1,string.length)
+            if(productCode.match(/[a-z]/i)){
+                alert('El codigo del producto no deber contener letras');
+                stringInput.value=''
+                stringInput.focus();
+            }
+            var error = false;
+            //validates if it has more than one *
+            for(var i = 1; i< productCode.length;i++){
+                if(productCode[i] == '*'){
+                    error=true;
+                }
+            }
+            if(error){
+                alert('Error De Cantidad, Demasiados ** ')
+                stringInput.value=''
+                stringInput.focus();
+            }
+            return Array(quantity,productCode) 
+        }
+        else
+            return undefined
+    }
+    verifyIsInCar(){
+        let found = false
+        if(typeof this.car !== 'undefined' && this.car !== null && this.car !== ''){
+            this.car.forEach(ele => {
+                if(ele['code'] == this.code){
+                    found=true
+                }
+            });
+        }
+        return found;
+
+    }
+    addToCar(){
+        this.car.push({
+            code:this.code,
+            quantity:this.quantity,
+            subtotal:(this.subtotal = this.quantity * this.price)
+            }
+        )
         
+    }
+    removeFromCar(code){
+        for(let i=0;i < this.car.length;i++){
+            if(this.car[i].code == code){
+                if(this.car.length == 1){
+                    this.car = new Array()
+                }else{
+                    this.car.splice(i,1);
+                }
+                console.log(this.car.length)
+            }
+        }
+    }
+    addToTable(){
+        //creating elements
+        let tr = document.createElement('tr')
+        let tdCode = document.createElement('td')
+        let tdName = document.createElement('td')
+        let tdPrice = document.createElement('td')
+        let tdQuantity = document.createElement('td')
+        let tdSubTotal = document.createElement('td')
+        let tdDelete = document.createElement('td')
+        let image = document.createElement('img')
+
+        //get body
+        let tableBody = document.getElementById(idTableBody);
+
+        //set id's
+        tr.id='tr'+this.code
+        tdCode.id='code'+this.code
+        tdName.id='name'+this.code
+        tdPrice.id='price'+this.code
+        tdQuantity.id='quantity'+this.code
+        tdSubTotal.id='subtotal'+this.code
+
+        // image
+        image.src="images/delete.png"
+        image.classList.add("image")
+        //append image
+        tdDelete.appendChild(image);
+
+        //On click delete row
+            //argumento this.code se esta sobre escribiendo entonces hay que encontrar una manera 
+            //de que cada uno se pueda eliminar de el carrito
+        image.addEventListener('click',()=>{
+            tableBody.removeChild(tr);
+            this.removeFromCar(this.code);
+            this.updateTotal();
+        })
+        //on mouse over
+        image.addEventListener("mouseover",()=>{
+            image.src = "images/delete_red.png"
+        })
+        image.addEventListener("mouseout",()=>{
+            image.src = "images/delete.png"
+        })
+
+        //inner data 
+        tdCode.innerHTML= this.code
+        tdName.innerHTML = this.name
+        tdPrice.innerHTML= this.price
+        tdQuantity.innerHTML=this.quantity
+        tdSubTotal.innerHTML=this.subtotal
+
+        //append tds to tr
+        tr.appendChild(tdCode)
+        tr.appendChild(tdName)
+        tr.appendChild(tdPrice)
+        tr.appendChild(tdQuantity)
+        tr.appendChild(tdSubTotal)
+        tr.appendChild(tdDelete)
+
+        //append tr to body
+        tableBody.appendChild(tr)
+
+    }
+     
+    getTotal(){
+        let total = 0;
+        this.car.forEach(ele=>{
+            total = (ele.subtotal + total)
+        })
+        this.total=total;
+    }
+    updateTotal(){
+        this.getTotal();
+        let labelTotal = document.getElementById(idTotalCurrentLabel);
+        console.log(this.total)
+        labelTotal.innerHTML= this.total;
+    }
+    
+    setPopUpListener(){
+        let overlay = document.getElementById('overlay-quantity');
+        let div = document.getElementById('div-quantity');
+        let button = document.getElementById('cerrar-popup');
+        let input = document.getElementById('popup-input-quantity');
+
+        //asignar para poder cerrar la ventana
+        button.addEventListener('click',this.hiddeQuantityPopUp)
+        
+        input.addEventListener('keypress',()=>{
+            if(event.keyCode == 13){
+                if(typeof input.value !== 'undefined'){
+                    this.quantity= input.value
+                    this.hiddeQuantityPopUp()
+                }else{
+                    //cancelar transaccion porque el valor esta vacio
+                    alert('Cantidad vacia');
+                    this.hiddeQuantityPopUp();
+                    
+                }
+            }else if(event.keyCode == 27){
+                this.hiddeQuantityPopUp();
+                
+            }
+        });
+        
+        
+    }
+    showQuantityPopUp(){
+        let overlay = document.getElementById('overlay-quantity');
+        let div = document.getElementById('div-quantity');
+        overlay.classList.add('active');
+        div.classList.add('active');
+    }
+    hiddeQuantityPopUp(){
+        let overlay = document.getElementById('overlay-quantity');
+        let div = document.getElementById('div-quantity');
+        overlay.classList.remove('active');
+        div.classList.remove('active');
     }
 
 }
-//ADD the products to the data list
-function addProductsToDataList(products){
 
-    var dataList = document.getElementById(idDataList);
-    products.forEach(product => {
-        var option = document.createElement('option');
-        option.value = product.code;
-        // option.className="list-group-item";
-        option.innerHTML = product.name;
-        dataList.appendChild(option);
-    });
-
+//Executes every time the page is refresh
+function init(){
+    window.product = new Product();  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Deletes an article from the table and remove its from the array
@@ -82,196 +333,6 @@ function deleteArticle(){
     
 }
 
-//Search in database for the code of the product 
-//and add all its data 
-function addToTable(code , quantity){
-    infoInput = document.getElementById(idInputCode);
-    products = JSON.parse(sessionStorage.products)
-    var found = false;
-    
-    products.forEach(product => {
-        if(product.code == code){
-            found=true;
-            var existing = verifyIsInTable(code, quantity);
-            if(!existing){
-                //Elements
-                tableBody = document.getElementById(idTableBody)
-                tr = document.createElement('tr')
-                tr.className= "tr-products"
-                tdCode = document.createElement('td')
-                tdName = document.createElement('td')
-                tdPrice = document.createElement('td')
-                tdQuantity = document.createElement('td')
-                tdTotal = document.createElement('td')
-                totalAmount = document.getElementById(idTotalCurrentLabel);
-                //Set ids
-                tr.id='row'+code;
-                tdCode.id='code'+code;
-                tdName.id='name'+code;
-                tdPrice.id='price'+code;
-                tdQuantity.id ='quantity'+code;
-                tdTotal.id ='total'+code;
-                //innerHTML
-                tdCode.innerHTML = product.code;
-                tdName.innerHTML = product.name;
-                tdPrice.innerHTML= product.price;
-                if(product.bulk == 'si'){
-                    if(typeof quantity !== 'undefined'){
-                        tdQuantity.innerHTML=quantity;
-                    }else
-                    {   
-                        showQuantity();
-                        tdQuantity.innerHTML= document.getElementById('popup-input-quantity').value
-                        
-                    }
-                }else{
-                    if(typeof quantity !== 'undefined'){
-                        tdQuantity.innerHTML=quantity;
-                    }else
-                    {
-                        tdQuantity.innerHTML=1;
-                    }
-                }
-                
-
-                tdTotal.innerHTML = (product.price * parseFloat(tdQuantity.textContent));
-
-                if(totalAmount.textContent != '')
-                 totalAmount.innerHTML = parseFloat(totalAmount.textContent) + parseFloat(tdTotal.textContent);
-                 else
-                 totalAmount.innerHTML = parseFloat(tdTotal.textContent);
-
-                 //onclick event
-
-                 tr.onclick = function(){
-                     if( sessionStorage.articleSelected != 'undefined'){
-                         try {
-                             tableBefore = document.getElementById('row'+sessionStorage.articleSelected)
-                             tableBefore.style.background = '#FFF';
-                             
-                         } catch (error) {
-                             console.log('Articulo fue eliminado');
-                         }
-                         sessionStorage.articleSelected = product.code;
-                         tableRow = document.getElementById('row'+product.code)
-                         tableRow.style.background = '#ccc'
-                     }else{
-                        sessionStorage.articleSelected = product.code;
-                        tableRow = document.getElementById('row'+product.code)
-                        tableRow.style.background = '#ccc'
-                     }
-                         
-                     
-                 }
-
-                //Append everthing
-                tr.appendChild(tdCode);
-                tr.appendChild(tdName);
-                tr.appendChild(tdPrice);
-                tr.appendChild(tdQuantity);
-                tr.appendChild(tdTotal);
-                tableBody.appendChild(tr);
-            }
-        }
-    });
-
-    if(!found){
-        alert('Producto invalido');
-        infoInput.value='';
-        infoInput.focus();
-        
-    }
-}
-//if is a * separates the code and the quantity of each 
-function moreProducts(text){
-    var stringInput = document.getElementById(idInputCode)
-    string = text;
-    position = string.indexOf("*");
-    if(position != -1){
-        totalProducts = string[position];
-        quantity = string.slice(0,position);
-        if(quantity.match(/[a-z]/i)){
-            alert('Cantidad equivocada');
-            stringInput.value=''
-            stringInput.focus();
-        }
-        productCode = string.slice(position + 1,string.length)
-        if(productCode.match(/[a-z]/i)){
-            alert('El codigo del producto no deber contener letras');
-            stringInput.value=''
-            stringInput.focus();
-        }
-        error = false;
-        //validates if it has more than one *
-        for(var i = 1; i< productCode.length;i++){
-            if(productCode[i] == '*'){
-                error=true;
-            }
-        }
-        if(error){
-            alert('Error De Cantidad, Demasiados ** ')
-            stringInput.value=''
-            stringInput.focus();
-        }
-        return Array(quantity,productCode) 
-    }
-    else
-        return undefined
-}
-//checks for an existing product in the table
-// returns true if exists 
-// and false if not
-function verifyIsInTable(code , quantity){
-    found = false;
-    try {
-        tdCode =document.getElementById('code'+code)
-        tdQuantity = document.getElementById('quantity'+code);
-        tdPrice = document.getElementById('price'+code);
-        tdTotal = document.getElementById('total'+code);
-        totalAmount =document.getElementById(idTotalCurrentLabel);
-        if(totalAmount.textContent !='')
-        totalCurrent = parseFloat(totalAmount.textContent) - (parseFloat(tdQuantity.textContent) * parseFloat(tdPrice.textContent));
-        
-         
-         x= new XMLHttpRequest();
-         x.open('GET',AllProductsURL+'?code='+code)
-         x.send()
-         x.onreadystatechange = function(){
-             if(x.status == 200 && x.readyState == 4){
-                result= JSON.parse(x.responseText);
-                if(result.bulk == 'si'){
-                    if(typeof quantity !== 'undefined'){
-                        totalProduct = parseFloat(tdQuantity.textContent) + parseFloat(quantity);
-                    }
-                    else{
-                        totalProduct = parseFloat(tdQuantity.textContent) + showQuantity();
-                    }
-                    
-                }else{
-                    if(typeof quantity !== 'undefined')
-                    totalProduct = parseFloat(tdQuantity.textContent) + parseFloat(quantity);
-                    else
-                    totalProduct = parseFloat(tdQuantity.textContent) + 1;
-                }
-             }else{
-                 result= false;
-             }
-             
-         }
-    
-        totalAmount.innerHTML = totalCurrent + (totalProduct * parseFloat(tdPrice.textContent));
-        tdQuantity.innerHTML = totalProduct;
-        tdTotal.innerHTML = totalProduct * parseFloat(tdPrice.textContent);
-
-        found=true;
-    } catch (error) {
-        found = false;
-    }
-    
-    return found;
-}
-//for each tr in table body realice the sell
-//send the sell to backend
 function chargeSell(){
     body = document.querySelector('#'+idTableBody);
     trs = body.getElementsByTagName('tr');
@@ -285,43 +346,4 @@ function chargeSell(){
 }
 //show an window with and input
 //  returns input's values
-function showQuantity(){
-    overlay = document.getElementById('overlay-quantity');
-    div = document.getElementById('div-quantity');
-    button = document.getElementById('cerrar-popup');
-    input = document.getElementById('popup-input-quantity');
 
-    overlay.classList.add('active');
-    div.classList.add('active');
-
-    
-    
-    //asignar para poder cerrar la ventana
-    button.addEventListener('click',function(){
-        overlay.classList.remove('active');
-	    div.classList.remove('active');
-    })
-    
-    input.addEventListener('keypress',function(){
-        if(event.keyCode == 13){
-            if(typeof input.value !== 'undefined'){
-                
-                overlay.classList.remove('active');
-                div.classList.remove('active');
-            }else{
-                //cancelar transaccion porque el valor esta vacio
-                alert('Cantidad vacia');
-                overlay.classList.remove('active');
-                div.classList.remove('active');
-                
-            }
-        }else if(event.keyCode == 27){
-            overlay.classList.remove('active');
-            div.classList.remove('active');
-
-        }
-    });
-
-    //focus input
-    input.focus();
-}
