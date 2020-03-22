@@ -8,8 +8,7 @@ class Product{
     constructor(){
         this.getProducts()
         this.addInputListener()
-        this.car = new Array()
-        this.isInCar;
+        this.car = new Array() 
     }
 
     getProducts(){
@@ -56,6 +55,7 @@ class Product{
                 }
             }
         });
+        this.addCancelationListener()
     }
     verification(){
         let infoInput = document.getElementById(idInputCode);
@@ -284,10 +284,37 @@ class Product{
         overlay.classList.remove('active');
         div.classList.remove('active');
     }
+    addCancelationListener(){
+        let btnCancel = document.getElementById("btn-cancel-sell");
+        btnCancel.addEventListener("click",()=>{
+            swal({
+                title: 'Cancelar compra?',
+                text: "La compra se cancelara completamente,esta seguro que quiere cancelar ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si,cancelar!'
+              }).then((result) => {
+                if (result.value) {
+                  swal(
+                    'Eliminada!',
+                    'Compra eliminada de maanera exitosa',
+                    'success'
+                  )
+                }
+                this.cancelTransaction()
+              })
+        })
+    }
+    cancelTransaction(){
+        setTimeout(() => {
+            console.log("Cancelar comprar")
+        }, 2000);
+    }
 
 }
-
-//Executes every time the page is refresh
+ 
 function init(){
     window.product = new Product();  
 }
