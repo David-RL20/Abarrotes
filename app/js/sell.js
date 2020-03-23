@@ -2,13 +2,16 @@ const idInputCode  = 'inputCodeProduct'
 const dataList =  'dataListProducts' 
 const idTableBody = "tableBody";
 const idTotalCurrentLabel = "totalCurrently";
+const ID_TOTAL_LABEL_WINDOW = "label-total-window";
 const AllProductsURL = "http://localhost/Abarrotes/api/AllProducts.php"
-
+ 
 class Product{
     constructor(){
         this.getProducts()
         this.addInputListener()
         this.car = new Array() 
+        this.addChargeSellListener();
+        this.resetProduct();
     }
 
     getProducts(){
@@ -51,7 +54,7 @@ class Product{
                     }
                 }
                 else{
-                    abrirPopUp();
+                    this.openPopUpSell();
                 }
             }
         });
@@ -76,17 +79,46 @@ class Product{
                         //metodo que muestra un popup y regresa el valor del input
                         //vere si lo puedo hacer con una promesa
                         this.setPopUpListener()
-                        this.showQuantityPopUp();
+                        this.showQuantityPopUp();    
+                        this.verifyQuantityBulk();
+
                     }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
                         this.quantity=1;
+                        this.subtotal = this.quantity * this.price 
+                        this.addToCar();
+                        this.updateTotal();
+                        this.addToTable(); 
+                        this.resetProduct();
                     }
                     //#endregion
-                    this.addToCar();
-                    this.updateTotal();
-                    this.addToTable();   
+
+                   
+                    infoInput.value=''
+                    infoInput.focus()  
                     
                 }else{
-                    console.log("ya esta en el arrito wei")
+                    //#region confirmation for quantity
+                    if(product.bulk == 'si' && typeof this.quantity == 'undefined'){
+                        //metodo que muestra un popup y regresa el valor del input
+                        //vere si lo puedo hacer con una promesa
+                        this.showQuantityPopUp();    
+                        this.verifyQuantityBulk();  
+                        this.setPopUpListener()
+
+
+                    }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
+                        this.quantity=1;
+                        this.subtotal = this.quantity * this.price
+
+                        this.updateCart();
+                        this.updateTable();
+                        this.updateTotal(); 
+                        this.resetProduct();
+                        infoInput.value=''
+                        infoInput.focus() 
+                    }
+                    //#endregion
+                   
                 }
             }
         });
@@ -149,7 +181,7 @@ class Product{
         this.car.push({
             code:this.code,
             quantity:this.quantity,
-            subtotal:(this.subtotal = this.quantity * this.price)
+            subtotal:this.subtotal
             }
         )
         
@@ -181,7 +213,7 @@ class Product{
         let tableBody = document.getElementById(idTableBody);
 
         //set id's
-        tr.id='tr'+this.code
+        tr.id=this.code
         tdCode.id='code'+this.code
         tdName.id='name'+this.code
         tdPrice.id='price'+this.code
@@ -196,10 +228,11 @@ class Product{
 
         //On click delete row
             //argumento this.code se esta sobre escribiendo entonces hay que encontrar una manera 
-            //de que cada uno se pueda eliminar de el carrito
+            //de que cada uno se pueda eliminar de el carrito 
         image.addEventListener('click',()=>{
             tableBody.removeChild(tr);
-            this.removeFromCar(this.code);
+            let code = tr.id
+            this.removeFromCar(code);
             this.updateTotal();
         })
         //on mouse over
@@ -216,6 +249,7 @@ class Product{
         tdPrice.innerHTML= this.price
         tdQuantity.innerHTML=this.quantity
         tdSubTotal.innerHTML=this.subtotal
+        this.updateTotal(); 
 
         //append tds to tr
         tr.appendChild(tdCode)
@@ -229,6 +263,12 @@ class Product{
         tableBody.appendChild(tr)
 
     }
+    updateTable(){
+        let tdSubTotal = document.getElementById('subtotal'+this.code)
+        let tdQuantity = document.getElementById('quantity'+this.code)
+        tdQuantity.innerHTML = this.quantity;
+        tdSubTotal.innerHTML = this.subtotal;
+    }
      
     getTotal(){
         let total = 0;
@@ -240,8 +280,9 @@ class Product{
     updateTotal(){
         this.getTotal();
         let labelTotal = document.getElementById(idTotalCurrentLabel);
-        console.log(this.total)
+        let labelWindow = document.getElementById(ID_TOTAL_LABEL_WINDOW); 
         labelTotal.innerHTML= this.total;
+        labelWindow.innerHTML = '$'+this.total;
     }
     
     setPopUpListener(){
@@ -249,19 +290,46 @@ class Product{
         let div = document.getElementById('div-quantity');
         let button = document.getElementById('cerrar-popup');
         let input = document.getElementById('popup-input-quantity');
+        let infoInput = document.getElementById(idInputCode);
 
         //asignar para poder cerrar la ventana
         button.addEventListener('click',this.hiddeQuantityPopUp)
         
-        input.addEventListener('keypress',()=>{
+        input.addEventListener('keydown',()=>{
             if(event.keyCode == 13){
-                if(typeof input.value !== 'undefined'){
+                if(typeof input.value !== 'undefined' && input.value != ''){
                     this.quantity= input.value
+                    this.subtotal = this.quantity * this.price
+                    let isInCar = this.verifyIsInCar()
+                    if(this.verifyIsInCar() == true){
+                        console.log(this.code)
+                        this.updateCart();
+                        this.updateTable();
+                        this.updateTotal();  
+                        this.resetProduct();
+                    }else{
+
+                        this.addToCar(); 
+                        this.addToTable(); 
+                        this.resetProduct();
+                    } 
                     this.hiddeQuantityPopUp()
+                    infoInput.value='' 
+                    input.value=''
                 }else{
                     //cancelar transaccion porque el valor esta vacio
-                    alert('Cantidad vacia');
-                    this.hiddeQuantityPopUp();
+                    swal({
+                        title: 'Cantidad Vacia',
+                        text: "La cantidad que se ingreso es 0 ",
+                        icon: 'error', 
+                        color: '#123', 
+                        button: 'ok',
+                        cancel:'cancelar'
+                      })
+                      .then(()=>{
+                         setTimeout(()=>input.focus(),150)
+                      }) 
+                    
                     
                 }
             }else if(event.keyCode == 27){
@@ -275,27 +343,35 @@ class Product{
     showQuantityPopUp(){
         let overlay = document.getElementById('overlay-quantity');
         let div = document.getElementById('div-quantity');
+        let input = document.getElementById('popup-input-quantity')
         overlay.classList.add('active');
         div.classList.add('active');
+
+        setTimeout(() => {input.focus()}, 100);
+
     }
     hiddeQuantityPopUp(){
         let overlay = document.getElementById('overlay-quantity');
         let div = document.getElementById('div-quantity');
         overlay.classList.remove('active');
         div.classList.remove('active');
+        this.focusInputProduct();
     }
     addCancelationListener(){
         let btnCancel = document.getElementById("btn-cancel-sell");
         btnCancel.addEventListener("click",()=>{
             swal({
-                title: 'Cancelar compra?',
+                title: 'Cancelar compra',
                 text: "La compra se cancelara completamente,esta seguro que quiere cancelar ?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si,cancelar!'
-              }).then((result) => {
+                icon: 'warning', 
+                color: '#123', 
+                buttons: [
+                    'No, cancelar',
+                    '  Si  '
+                  ],
+                cancel:'cancelar'
+              })
+              .then((result) => {
                 if (result.value) {
                   swal(
                     'Eliminada!',
@@ -304,19 +380,131 @@ class Product{
                   )
                 }
                 this.cancelTransaction()
-              })
+              }) 
+            .catch(()=>{
+                console.log("se cancela la cancelacion")
+            })
         })
     }
     cancelTransaction(){
-        setTimeout(() => {
-            console.log("Cancelar comprar")
-        }, 2000);
+        if(this.car != '' && typeof this.car !== 'undefined'){
+            this.car.forEach(ele => {
+                let tr = document.getElementById(ele.code)
+                let body = document.getElementById(idTableBody)
+                body.removeChild(tr);
+            });
+            let input = document.getElementById(idInputCode);
+            input.value='';
+            this.resetProduct();
+            this.total=0
+            this.name=''
+            this.price=0.0
+            this.subtotal=0
+            this.car = new Array()
+            this.updateTotal()
+        }
     }
+
+    addChargeSellListener(){
+        let btnAbrirPopup = document.getElementById('abrir-popup'),
+         btnCerrarPopup = document.getElementById('btn-cerrar-popup'),
+         
+        input = document.getElementById('inputAmount'); 
+
+        //Add events listeners
+        btnAbrirPopup.addEventListener('click', this.openPopUpSell);
+        btnCerrarPopup.addEventListener('click', this.closePopUpSell);
+        input.addEventListener('keydown',this.checkChange.bind(this))
+    }
+
+     openPopUpSell(){
+        let overlay = document.getElementById('overlay'),
+        popup = document.getElementById('popup'),
+        input = document.getElementById('inputAmount');
+        // focus input
+        setTimeout(() => {input.focus()}, 100); 
+        
+        overlay.classList.add('active');
+        popup.classList.add('active');
+        
+    }
+    closePopUpSell(){ 
+        let overlay = document.getElementById('overlay'),
+        popup = document.getElementById('popup')
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+        this.focusInputProduct()
+    }
+    checkChange(){
+        let input = document.getElementById('inputAmount'); 
+        if(event.keyCode == '13'){
+            if(input.value >= this.total){
+                //vamos bien
+                let changeLabel = document.getElementById('change-label')
+                changeLabel.innerHTML = (input.value - this.total)
+            }else{
+                let missing = this.total - input.value;
+                swal({
+                    icon: 'warning',
+                    title: 'Aun faltan unos billetitos en esta cuenta',
+                    text: 'faltan :  $'+ missing
+                })
+                .then(()=>{
+                    input.focus();
+                })
+            }
+        }
+        if(event.keyCode == 27){
+            this.closePopUpSell();
+        }
+        console.log(event.keyCode)
+        
+        
+    }
+
+    resetProduct(){
+        this.subtotal=undefined;
+        this.code=undefined;
+        this.quantity=undefined;
+    }
+    focusInputProduct(){
+        setTimeout(() => {
+            let input = document.getElementById(idInputCode)
+            input.focus() 
+        }, 100);
+    }
+    verifyQuantityBulk(){
+        if(typeof this.quantity == 'undefined'){
+            this.verifyQuantityBulk()
+        }else{
+
+            console.clear()
+        }
+    }
+    updateCart(){
+        let indexFound = this.indexFound()
+        let totalQuantity = parseFloat(this.car[indexFound].quantity) + parseFloat(this.quantity)
+        let subtotal =  parseFloat(this.car[indexFound].subtotal) + parseFloat(this.subtotal)
+        this.car[indexFound].subtotal = subtotal
+        this.car[indexFound].quantity = totalQuantity 
+        this.quantity = totalQuantity;
+        this.subtotal = subtotal;
+    }
+    indexFound(){ 
+        let position = 0
+        for(let i=0;i<this.car.length;i++){
+            if(this.code == this.car[i].code){
+               position=i
+            }
+        } 
+        return position;
+    }
+
 
 }
  
 function init(){
-    window.product = new Product();  
+    product = new Product();  
 }
 
 

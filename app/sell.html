@@ -184,10 +184,14 @@
           <div class="popup" id="popup">
               <div class="btn-cerrar-popup" id="btn-cerrar-popup"><i class="fas fa-times"></i></div>
               <div class="total-payment-label">Total</div>
-              <div class="total-price-label">$125.00</div>
-              <div class="inputs-window-payment"></div>
-              <div class="inputs-window-payment"></div>
-              <button class="btn-credit">Crédito</button>
+              <div class="total-price-label" id="label-total-window">$0.00</div>
+              <input type="number" id="inputAmount" class="inputs-window-payment"> 
+              <div>
+                <h4 style="color: #707070;">Cambio:</h4>
+                <label  class="inputs-window-payment" id="change-label"></label>
+              </div>
+              <button class="btn-credit" style="background-color: #707070;">Crédito</button>
+              <button class="btn-credit" style="width: 150px;">Finalizar Compra</button>
           </div>
         </div>
         <!-- Input quantity if is bulke sale -->
@@ -196,12 +200,12 @@
               <div class="btn-cerrar-popup" id="cerrar-popup"><i class="fas fa-times"></i></div>
               <div class="total-payment-label" style="margin-left: 100px; width: 200px;">Cantidad : </div>
               <input type="number" style="margin: 30px 0;" id="popup-input-quantity"/>  
+              <div style=" font-size: 10pt;">Peso es en gramos</div>
               <div style="color: #fd5052;font-size: 10pt;">** Este producto es en venta a granel</div>
           </div>
         </div>
     </div>
-    <!-- JavaScript -->
-    <script src="js/animation.js"></script>
-    <script src="js/sweetAlert.js"></script>
+    <!-- JavaScript --> 
+    <script src="js/sweetAlert.js"></script> 
 </body>
 </html>
