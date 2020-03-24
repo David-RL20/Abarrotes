@@ -31,50 +31,82 @@
         }
     }
     if($_SERVER['REQUEST_METHOD']== 'POST'){
-        if(isset($_POST['code']) && isset($_POST['bulk']) && isset($_POST['name']) && isset($_POST['price'])&& isset($_POST['dptoCode'])){
-            $newProduct = new product();
-            $newProd_Depto = new product_depto();
-            
-            //productos_departamento
-            $newProd_Depto->setCodeProduct($_POST['code']);
-            $newProd_Depto->setCodeDpto($_POST['dptoCode']);
+        if(isset($_POST['action'])){
+        switch ($_POST['action']) {
+            case 'post':
+                # post a product
+                if(isset($_POST['code']) && isset($_POST['bulk']) && isset($_POST['name']) && isset($_POST['price'])&& isset($_POST['dptoCode'])){
+                    $newProduct = new product();
+                    $newProd_Depto = new product_depto();
+                    
+                    //productos_departamento
+                    $newProd_Depto->setCodeProduct($_POST['code']);
+                    $newProd_Depto->setCodeDpto($_POST['dptoCode']);
+        
+                    //product
+                    $newProduct->setCode($_POST['code']);
+                    $newProduct->setName($_POST['name']);
+                    $newProduct->setBulkSale($_POST['bulk']);
+                    $newProduct->setPrice($_POST['price']);
+        
+                   if( $newProduct->add() && $newProd_Depto->add()){
+                       echo '1';
+                   }else{
+                       echo 'No se pudo agregar';
+                   }
+        
+                }else{
+                    echo 'variables insuficientes';
+                }
+                break;
+            case 'update':
+                if(isset($_POST['code']) && isset($_POST['bulk']) && isset($_POST['name']) && isset($_POST['price'])&& isset($_POST['dptoCode']) ){
+                    $newProduct = new product($_POST['code']);
+                    $newProd_Depto= new product_depto();
+        
+                    //update product 
+                    $newProduct->setBulkSale($_POST['bulk']);
+                    $newProduct->setName($_POST['name']);
+                    $newProduct->setPrice($_POST['price']);
+        
+        
+                    //update product_department 
+                    $newProd_Depto->setCodeProduct($_POST['code']);
+                    $newProd_Depto->setCodeDpto($_POST['dptoCode']);
+        
+                    if( $newProduct->toJson() && $newProd_Depto->toJson()){
+                        echo $newProduct->toJson();
+                        echo $newProd_Depto->toJson();
+                    }else{
+                        echo 'Error al editar este producto';
+                    }
+                }else{
+                    echo 'Variables insuficientes para editar';
+                }
+                break;
+            case 'delete':
+                if(isset($_POST['code'])){
+                    $product = new product($_POST['code']);
+                    $product_dep  = new product_depto();
+                    $product_dep->setCodeProduct($_POST['code']);
 
-            //product
-            $newProduct->setCode($_POST['code']);
-            $newProduct->setName($_POST['name']);
-            $newProduct->setBulkSale($_POST['bulk']);
-            $newProduct->setPrice($_POST['price']);
+                    if($product->delete() && $product_dep->delete()){
+                        echo  'Departamento eliminado exitosamente'; 
+                    }else{
+                        echo 'Error al eliminar este producto';
+                    }
 
-           if( $newProduct->add() && $newProd_Depto->add()){
-               echo '1';
-           }else{
-               echo 'No se pudo agregar';
-           }
-
-        }else{
-            echo 'variables insuficientes';
+                }else{
+                    echo 'variables insuficientes para eliminar';
+                }
+                break;
+                default:
+                # 
+                 echo 'Accion erronea';
+                break;    
         }
         
     }
-    if($_SERVER['REQUEST_METHOD']== 'PUT'){
-        if(isset($_PUT['code']) && isset($_PUT['stock']) && isset($_PUT['name']) && isset($_PUT['price'])&& isset($_PUT['dptoCode']) ){
-            $newProduct = new product($_PUT['code']);
-            $newProd_Depto= new product_depto();
-
-            //update product 
-            $newProduct->setStock($_PUT['stock']);
-            $newProduct->setName($_PUT['name']);
-            $newProduct->setPrice($_PUT['price']);
-
-
-            //update product_department 
-            $newProd_Depto->setCodeProduct($_POST['code']);
-            $newProd_Depto->setCodeDpto($_POST['dptoCode']);
-
-            if( $newProduct->toJson() && $newProd_Depto->toJson()){
-               echo '1';
-           }
-        }
-
-    }
+}
+     
 ?>

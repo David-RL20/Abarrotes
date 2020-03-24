@@ -47,9 +47,9 @@
 
         public function delete() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'delete from productos_departamento where codigoProducto=? and codigoDpto=?;';//query
+            $query = 'delete from productos_departamento where codigoProducto=?';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('ss', $this->codeProduct); //bind parameters
+            $command->bind_param('s', $this->codeProduct); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection

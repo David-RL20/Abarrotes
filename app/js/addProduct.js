@@ -17,7 +17,7 @@ function save(){
     var x = new XMLHttpRequest();
     x.open('POST',url,true);
     x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-    x.send('code='+code+'&bulk='+bulk+'&name='+name+'&price='+price+'&dptoCode='+depto);
+    x.send('action=post&'+'code='+code+'&bulk='+bulk+'&name='+name+'&price='+price+'&dptoCode='+depto);
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){ 
             if(x.responseText != '1'){

@@ -180,7 +180,7 @@ function insertProductsToTable(products){
                         // var x = new XMLHttpRequest();
                         // x.open('PUT','http://192.168.100.195/Abarrotes/api/AllProducts.php',true);
                         // x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-                        // x.send('code='+product.code+'&bulk='+bulk+'&name='+name+'&price='+price+'&dptoCode='+depto);
+                        // x.send('action=update'&code='+product.code+'&bulk='+bulk+'&name='+name+'&price='+price+'&dptoCode='+depto);
                         // x.onreadystatechange = function(){
                         //     if(x.status == 200 && x.readyState == 4){ 
                         //         if(x.responseText != '1'){
