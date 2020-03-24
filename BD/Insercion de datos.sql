@@ -14,4 +14,5 @@ insert into departamento values
 /*		Utilizar este formato par al incercion de datos con auto_increment*/
 insert into clienteCredito (nombre,limiteCredito) values ('Publico General',null);
 
-select * from productos_ventas;
+
+select * from clienteCredito;

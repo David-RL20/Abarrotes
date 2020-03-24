@@ -156,9 +156,7 @@ function insertProductsToTable(products){
                 else{
                     //we click and begin saving
                     if(editing){
-                        console.log('Saving...')
-                        imageButton.src =  'images/edit.png'
-    
+                        console.log('Saving...') 
                         //Get inputs 
                         inputName= document.getElementById('inputName'+product.code)
                         inputPrice= document.getElementById('inputPrice'+product.code) 

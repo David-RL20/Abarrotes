@@ -25,23 +25,32 @@ function addDepartments(){
                 tdCode = document.createElement('td')
                 tdName = document.createElement('td')
                 tdAction = document.createElement('td')
+                btnDelete = document.createElement('button')
+                btnEdit = document.createElement('button')
                 //Inner information
                 tdCode.innerHTML = dept.code
                 tdName.innerHTML = dept.name
                 tdName.id= 'name'+dept.code
-
+                btnEdit.classList.add('btn-outline-primary')
+                btnDelete.classList.add('btn-outline-danger')
+                btnEdit.classList.add('btn')
+                btnDelete.classList.add('btn')
                 //image 
                 imgDelete = document.createElement('img')
                 imgEdit = document.createElement('img')
+
+                imgEdit.id = 'edit'+dept.code
+                imgDelete.id = 'delete'+dept.code
                     //src
-                    imgDelete.src="images/delete.png"
-                    imgEdit.src="images/edit.png"
+                    imgDelete.src="images/delete_red.png"
+                    imgEdit.src="images/edit_blue.png"
 
                     //css
-                    imgDelete.className="image"
-                    imgEdit.className="image"
+                    imgDelete.classList.add('image')
+                    imgEdit.classList.add('image')
+                    
                     //onclick delete
-                    imgDelete.onclick = function(){
+                    btnDelete.onclick = function(){
                         swal({
                             title: 'Producto',
                             text: "Desea eliminar este producto?",
@@ -72,9 +81,8 @@ function addDepartments(){
                     }
                     //onclick update
                     update = false;
-                    imgEdit.addEventListener('click',function(){
-                        if(!update){
-                            imgEdit.src='images/save.png'
+                    btnEdit.addEventListener('click',function(){
+                        if(!update){ 
                             //is updating
                             tdName = document.getElementById('name'+dept.code)
                             input = document.createElement('input')
@@ -84,8 +92,7 @@ function addDepartments(){
                             tdName.appendChild(input)
  
                         }else if(update){
-                            //ready to update
-                            imgEdit.src='images/edit.png'
+                            //ready to update 
                             input = document.getElementById('input'+dept.code);
                             tdName = document.getElementById('name'+dept.code);
                             tdName.innerHTML = input.value;
@@ -120,9 +127,16 @@ function addDepartments(){
                         update = !update; 
                     }) 
 
+                    btnEdit.addEventListener('mouseover' ,function(){ imgEdit = document.getElementById('edit'+ dept.code) ; imgEdit.src = 'images/edit_white.png'})
+                    btnDelete.addEventListener('mouseover' ,function(){imgDelete = document.getElementById('delete'+ dept.code) ; imgDelete.src = 'images/delete_white.png'})
+                    btnEdit.addEventListener('mouseout' ,function(){imgEdit = document.getElementById('edit'+ dept.code) ; imgEdit.src = 'images/edit_blue.png'})
+                    btnDelete.addEventListener('mouseout' ,function(){imgDelete = document.getElementById('delete'+ dept.code) ; imgDelete.src = 'images/delete_red.png'})
+
+                    btnDelete.appendChild(imgDelete)
+                    btnEdit.appendChild(imgEdit)
                     //appendChild
-                    tdAction.appendChild(imgEdit);
-                    tdAction.appendChild(imgDelete);
+                    tdAction.appendChild(btnDelete);
+                    tdAction.appendChild(btnEdit);
                 
                 //append tds
                 tr.appendChild(tdCode)

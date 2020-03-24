@@ -170,11 +170,16 @@ th, td {
 }
 
 .image {
-    width: 30px;
-    margin: 0 10px ;
+    width: 25px;
+    margin: 0 5px ;
+    cursor: pointer;
 }
 
 input{
     padding-left: 10px;
     width: 100%;
+}
+.btn{
+    padding: 5px;
+    margin-left: 10px;
 }
