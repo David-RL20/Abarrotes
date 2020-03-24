@@ -130,11 +130,11 @@
             return $result; //return result
         }
 
-        public function update($newCode) {
+        public function update() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'update productos set codigoBarras = ?,nombre = ? , precio=?,ventaGranel=? where codigoBarras=?;';//query
+            $query = 'update productos set nombre = ? , precio=?,ventaGranel=? where codigoBarras=?;';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('ssdss',$newCode, $this->name, $this->price,$this->bulkSale,  $this->code); //bind parameters
+            $command->bind_param('sdss', $this->name, $this->price,$this->bulkSale,  $this->code); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection

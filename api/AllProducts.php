@@ -74,9 +74,8 @@
                     $newProd_Depto->setCodeProduct($_POST['code']);
                     $newProd_Depto->setCodeDpto($_POST['dptoCode']);
         
-                    if( $newProduct->toJson() && $newProd_Depto->toJson()){
-                        echo $newProduct->toJson();
-                        echo $newProd_Depto->toJson();
+                    if( $newProduct->update() && $newProd_Depto->update()){
+                        echo '1';
                     }else{
                         echo 'Error al editar este producto';
                     }

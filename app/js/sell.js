@@ -45,8 +45,7 @@ class Product{
         input.addEventListener("keypress",() => {
             if(event.keyCode == '13'){
                 if(input.value != ''){
-                    let array = this.moreProducts(input.value);
-                    debugger
+                    let array = this.moreProducts(input.value); 
                     if(typeof array !== 'undefined'){
                         //get the values of code an quantity if * on input
                         this.code = array[1]

@@ -52,6 +52,7 @@ function insertProductsToTable(products){
             tdPrice.id= 'price'+product.code 
             tdDepartament.id= 'department'+product.code
             tdBulk.id='bulk'+product.code
+            tr.id = 'tr'+product.code
             //#region Buttons 
     
             tdButton = document.createElement('td')
@@ -172,37 +173,38 @@ function insertProductsToTable(products){
                         //put values of inputs into tds              
                         tdName.innerHTML=inputName.value;                    
                         tdPrice.innerHTML=inputPrice.value;
-                        index = selectDepartment.selectedIndex
-                        tdDepartament.innerHTML = selectDepartment[index].textContent    
-                        tdBulk.innerHTML = selectBulk[index].textContent    
-                        
-                        //send to backend
-                        // var x = new XMLHttpRequest();
-                        // x.open('PUT','http://192.168.100.195/Abarrotes/api/AllProducts.php',true);
-                        // x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-                        // x.send('action=update'&code='+product.code+'&bulk='+bulk+'&name='+name+'&price='+price+'&dptoCode='+depto);
-                        // x.onreadystatechange = function(){
-                        //     if(x.status == 200 && x.readyState == 4){ 
-                        //         if(x.responseText != '1'){
-                        //             swal({
-                        //                 position: 'top-end',
-                        //                 icon: 'error',
-                        //                 title: x.responseText,
-                        //                 showConfirmButton: false,
-                        //                 timer: 1480
-                        //             })
-                        //         }else{
-                        //             swal({
-                        //                 position: 'top-end',
-                        //                 icon: 'success',
-                        //                 title: 'Producto agregado de manera exitosa',
-                        //                 showConfirmButton: false,
-                        //                 timer: 1480
-                        //             })
-                        //         } 
-                        //         debugger 
-                        //     }
-                        // }
+
+                        indexDepto = selectDepartment.selectedIndex
+                        indexBulk = selectBulk.selectedIndex
+
+                        tdDepartament.innerHTML = selectDepartment[indexDepto].textContent    
+                        tdBulk.innerHTML = selectBulk[indexBulk].textContent     
+                        // send to backend
+                        var x = new XMLHttpRequest();
+                        x.open('POST','http://192.168.100.195/Abarrotes/api/AllProducts.php',true);
+                        x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                        x.send('action=update'+'&code='+product.code+'&bulk='+tdBulk.textContent+'&name='+tdName.textContent+'&price='+tdPrice.textContent+'&dptoCode='+selectDepartment[indexDepto].value);
+                        x.onreadystatechange = function(){
+                            if(x.status == 200 && x.readyState == 4){ 
+                                if(x.responseText != '1'){
+                                    swal({
+                                        position: 'top-end',
+                                        icon: 'error',
+                                        title: x.responseText,
+                                        showConfirmButton: false,
+                                        timer: 1480
+                                    })
+                                }else{
+                                    swal({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Producto editado',
+                                        showConfirmButton: false,
+                                        timer: 1480
+                                    })
+                                }  
+                            }
+                        }
                         
                     }
                 }
@@ -211,9 +213,11 @@ function insertProductsToTable(products){
     
             //onclick delete
             deleteButton.onclick = function(){
-                swal({
-                    title: 'Producto',
-                    text: "Desea eliminar este producto?",
+                 //remover divs y enviar un request para eliminar este producto 
+                 /////////SWAL
+                 swal({
+                    title: 'Eliminar ',
+                    text: "Eliminar este producto?",
                     icon: 'warning', 
                     color: '#123', 
                     buttons: [
@@ -223,18 +227,19 @@ function insertProductsToTable(products){
                     cancel:'cancelar'
                   })
                   .then((result) => {
-                    if (result) {
+                    if (result.value) {
                       swal(
                         'Eliminado!',
-                        'Este producto fue eliminado',
+                        ' ',
                         'success'
                       )
                     }
-                    //remover divs y enviar un request para eliminar este producto
-                    tableBody.removeChild(tr) 
+                    trToDelete = document.getElementById('tr'+product.code)
+                    tableBody.removeChild(trToDelete) 
+                    //send to back end to deleted
                   }) 
                 .catch(()=>{
-                    console.log("se cancela la cancelacion")
+                    console.log("Operation just got canceled")
                 })
             }
             //mouse over

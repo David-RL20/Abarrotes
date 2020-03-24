@@ -77,8 +77,8 @@ insert into productos (codigoBarras,nombre,precio,ventaGranel)values
 ('7501000000000',"Emperador conbinadad (101g)",14,'no');
 
 
-select * from productos_departamento; 
+select * from productos  where codigoBarras = '7622210581686'; 
 delete from productos_departamento where codigoProducto ='prueba' ;
 select * from productos_ventas join productos on codigoProducto = codigoBarras;
-update productos set nombre = 'pelon peloneta' where codigoBarras = '719886250330'
+update productos set ventaGranel = 'no' where codigoBarras = '7622210581686';
 
