@@ -233,9 +233,7 @@ function insertProductsToTable(products){
                         ' ',
                         'success'
                       )
-                    }
-                    trToDelete = document.getElementById('tr'+product.code)
-                    tableBody.removeChild(trToDelete) 
+                    } 
                     //send to back end to deleted
                         var x = new XMLHttpRequest();
                         x.open('POST','http://192.168.100.195/Abarrotes/api/AllProducts.php',true);
@@ -250,7 +248,7 @@ function insertProductsToTable(products){
                                         title: x.responseText,
                                         showConfirmButton: false,
                                         timer: 1300
-                                    })
+                                    }) 
                                 }else{
                                     swal({
                                         position: 'top-end',
@@ -259,6 +257,8 @@ function insertProductsToTable(products){
                                         showConfirmButton: false,
                                         timer: 1300
                                     })
+                                    trToDelete = document.getElementById('tr'+product.code)
+                                    tableBody.removeChild(trToDelete)
                                 }  
                             }
                         }

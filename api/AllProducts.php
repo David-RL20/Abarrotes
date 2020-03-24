@@ -88,8 +88,8 @@
                     $product = new product($_POST['code']);
                     $product_dep  = new product_depto();
                     $product_dep->setCodeProduct($_POST['code']);
-
-                    if($product_dep->delete() && $product->delete()){
+                    $product_dep->delete();
+                    if($product->delete()){
                         echo  '1'; 
                     }else{
                         echo 'Error al eliminar este producto';
