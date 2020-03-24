@@ -89,8 +89,8 @@
                     $product_dep  = new product_depto();
                     $product_dep->setCodeProduct($_POST['code']);
 
-                    if($product->delete() && $product_dep->delete()){
-                        echo  'Departamento eliminado exitosamente'; 
+                    if($product_dep->delete() && $product->delete()){
+                        echo  '1'; 
                     }else{
                         echo 'Error al eliminar este producto';
                     }

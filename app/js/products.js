@@ -237,6 +237,32 @@ function insertProductsToTable(products){
                     trToDelete = document.getElementById('tr'+product.code)
                     tableBody.removeChild(trToDelete) 
                     //send to back end to deleted
+                        var x = new XMLHttpRequest();
+                        x.open('POST','http://192.168.100.195/Abarrotes/api/AllProducts.php',true);
+                        x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                        x.send('action=delete'+'&code='+product.code);
+                        x.onreadystatechange = function(){
+                            if(x.status == 200 && x.readyState == 4){ 
+                                if(x.responseText != '1'){
+                                    swal({
+                                        position: 'top-end',
+                                        icon: 'error',
+                                        title: x.responseText,
+                                        showConfirmButton: false,
+                                        timer: 1300
+                                    })
+                                }else{
+                                    swal({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Producto eliminado',
+                                        showConfirmButton: false,
+                                        timer: 1300
+                                    })
+                                }  
+                            }
+                        }
+
                   }) 
                 .catch(()=>{
                     console.log("Operation just got canceled")
