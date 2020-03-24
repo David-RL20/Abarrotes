@@ -19,15 +19,25 @@ function save(){
     x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
     x.send('code='+code+'&bulk='+bulk+'&name='+name+'&price='+price+'&dptoCode='+depto);
     x.onreadystatechange = function(){
-        if(x.status == 200 && x.readyState == 4){
-            console.log()
+        if(x.status == 200 && x.readyState == 4){ 
             if(x.responseText != '1'){
-                alert(x.responseText);
-                clearValues()
+                swal({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: x.responseText,
+                    showConfirmButton: false,
+                    timer: 1480
+                  })
             }else{
-                alert('Producto agregado de manera exitosa!');
-                clearValues();
+                swal({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Producto agregado de manera exitosa',
+                    showConfirmButton: false,
+                    timer: 1480
+                  })
             }
+            setTimeout(function(){window.location.reload(true)},1500)
         }
     }
 }

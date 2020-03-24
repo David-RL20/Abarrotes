@@ -58,11 +58,10 @@
     }
     if($_SERVER['REQUEST_METHOD']== 'PUT'){
         if(isset($_PUT['code']) && isset($_PUT['stock']) && isset($_PUT['name']) && isset($_PUT['price'])&& isset($_PUT['dptoCode']) ){
-            $newProduct = new product();
-            $newProd_Depto= new product_depto;
+            $newProduct = new product($_PUT['code']);
+            $newProd_Depto= new product_depto();
 
-            //update product
-            $newProduct->setCode($_PUT['code']);
+            //update product 
             $newProduct->setStock($_PUT['stock']);
             $newProduct->setName($_PUT['name']);
             $newProduct->setPrice($_PUT['price']);
@@ -72,7 +71,7 @@
             $newProd_Depto->setCodeProduct($_POST['code']);
             $newProd_Depto->setCodeDpto($_POST['dptoCode']);
 
-            if( $newProduct->update() && $newProd_Depto->update()){
+            if( $newProduct->toJson() && $newProd_Depto->toJson()){
                echo '1';
            }
         }

@@ -1,7 +1,4 @@
 use abarrotes;
-select *  from productos_ventas;
-select * from  ventas;
-SET SQL_SAFE_UPDATES = 0;
 							/*			D E P A R T A M E N T O  */
 insert into departamento values
 ('VERDU','Dpto. de Verduras'),
@@ -18,13 +15,7 @@ insert into departamento values
 insert into clienteCredito (nombre,limiteCredito) values ('Publico General',null);
 
 
--- Consigue todos los departamentos de un producto
-create procedure productos_departamentos(in codigoProducto varchar(30))
-	select d.codigoDpto , d.nombre
-	from productos_departamento dp join productos p join departamento d
-	on p.codigoBarras = dp.codigoProducto and d.codigoDpto = dp.codigoDpto
-	where p.codigoBarras = codigoProducto
-;
+
 insert into productos_departamento values (26000003056,'123C');
 select * from departamento;
 /*INSERCION DE PRODUCTOS*/
@@ -88,6 +79,5 @@ insert into productos (codigoBarras,nombre,precio,ventaGranel)values
 
 select * from clienteCredito;
 
-insert into clienteCredito values (1,'Publico General',null);
 
-select  * from productos_ventas;
+

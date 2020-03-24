@@ -1,7 +1,8 @@
 function init(){
     console.log('Initializing document');
     getProducts();
-    setTimeout(getDepartments,2000)   
+    setTimeout(getDepartments,2000) 
+    setSearchListener()  
     
  
 
@@ -43,12 +44,14 @@ function insertProductsToTable(products){
             tdCode =document.createElement('td')
             tdName =document.createElement('td')
             tdPrice =document.createElement('td') 
+            tdBulk =document.createElement('td') 
             tdDepartament =document.createElement('td')
     
             tdCode.id= 'code'+product.code
             tdName.id= 'name'+product.code
             tdPrice.id= 'price'+product.code 
             tdDepartament.id= 'department'+product.code
+            tdBulk.id='bulk'+product.code
             //#region Buttons 
     
             tdButton = document.createElement('td')
@@ -78,6 +81,7 @@ function insertProductsToTable(products){
                 tdName =document.getElementById('name'+product.code)
                 tdPrice =document.getElementById('price'+product.code) 
                 tdDepartament =document.getElementById('department'+product.code)
+                tdBulk =document.getElementById('bulk'+product.code)
     
                 
                 
@@ -88,41 +92,63 @@ function insertProductsToTable(products){
                     console.log(imageButton) 
                     var inputName = document.createElement('input')
                     var inputPrice = document.createElement('input') 
+                    var selectBulk = document.createElement('select')
                     var selectDepartment = document.createElement('select')
     
                     //ids 
                     inputName.id= 'inputName'+product.code;
                     inputPrice.id= 'inputPrice'+product.code; 
                     selectDepartment.id= 'selectDepartment'+product.code;
+                    selectBulk.id= 'selectBulk'+product.code;
     
                     tdDepartament.innerHTML=''
+                    tdBulk  .innerHTML=''
                     //set input 
                     inputName.value= tdName.textContent;
-                    inputPrice.value= tdPrice.textContent; 
-                    selectDepartment.textContent= tdDepartament.textContent;
+                    inputPrice.value= tdPrice.textContent;  
+                    
     
                     //input type
                     inputName.type='text';
                     inputPrice.type='number'; 
+                    //select 
                     if(typeof sessionStorage.departments !== 'undefined' && sessionStorage.departments != ''){
                         let departments = JSON.parse(sessionStorage.departments)
                         departments.forEach(department => {
                             let  option = document.createElement('option')
                             option.value = department.code
                             option.innerHTML = department.name
-
                             selectDepartment.appendChild(option)
                         });
                     }
+
+                    //options
+                    optionSi = document.createElement('option')
+                    optionNo = document.createElement('option')
+                    //values
+                    optionSi.value='si'
+                    optionNo.value='no'
+                    optionSi.innerHTML = 'si'
+                    optionNo.innerHTML = 'no'  
+                    selectBulk.appendChild(optionSi)
+                    selectBulk.appendChild(optionNo)  
+                    if(product.bulk == 'si'){
+                        selectBulk.selectedIndex = 0
+                    }
+                    if(product.bulk == 'no'){
+                        selectBulk.selectedIndex = 1
+                    } 
                     //Poner el texto de los td en blanco      
                     tdName.innerHTML=''                
                     tdPrice.innerHTML='' 
                     tdDepartament.innerHTML=''  
+                    tdBulk.innerHTML=''  
                     
                     //add options to the select 
      
                     tdName.appendChild(inputName)
                     tdPrice.appendChild(inputPrice) 
+                    tdBulk.appendChild(selectBulk) 
                     tdDepartament.appendChild(selectDepartment)
     
                 }
@@ -132,21 +158,51 @@ function insertProductsToTable(products){
                         console.log('Saving...')
                         imageButton.src =  'images/edit.png'
     
-                        //Get inputs
-                        inputCode= document.getElementById('inputCode'+product.code)
+                        //Get inputs 
                         inputName= document.getElementById('inputName'+product.code)
                         inputPrice= document.getElementById('inputPrice'+product.code) 
                         selectDepartment= document.getElementById('selectDepartment'+product.code)
+                        selectBulk= document.getElementById('selectBulk'+product.code)
                         //Get td 
                         tdName= document.getElementById('name'+product.code)
                         tdPrice= document.getElementById('price'+product.code) 
                         tdDepartament= document.getElementById('department'+product.code);
+                        tdBulk= document.getElementById('bulk'+product.code);
     
                         //put values of inputs into tds              
                         tdName.innerHTML=inputName.value;                    
                         tdPrice.innerHTML=inputPrice.value;
                         index = selectDepartment.selectedIndex
-                        tdDepartament.innerHTML = selectDepartment[index].textContent                                           
+                        tdDepartament.innerHTML = selectDepartment[index].textContent    
+                        tdBulk.innerHTML = selectBulk[index].textContent    
+                        
+                        //send to backend
+                        // var x = new XMLHttpRequest();
+                        // x.open('PUT','http://localhost/Abarrotes/api/AllProducts.php',true);
+                        // x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                        // x.send('code='+product.code+'&bulk='+bulk+'&name='+name+'&price='+price+'&dptoCode='+depto);
+                        // x.onreadystatechange = function(){
+                        //     if(x.status == 200 && x.readyState == 4){ 
+                        //         if(x.responseText != '1'){
+                        //             swal({
+                        //                 position: 'top-end',
+                        //                 icon: 'error',
+                        //                 title: x.responseText,
+                        //                 showConfirmButton: false,
+                        //                 timer: 1480
+                        //             })
+                        //         }else{
+                        //             swal({
+                        //                 position: 'top-end',
+                        //                 icon: 'success',
+                        //                 title: 'Producto agregado de manera exitosa',
+                        //                 showConfirmButton: false,
+                        //                 timer: 1480
+                        //             })
+                        //         } 
+                        //         debugger 
+                        //     }
+                        // }
                         
                     }
                 }
@@ -175,8 +231,7 @@ function insertProductsToTable(products){
                       )
                     }
                     //remover divs y enviar un request para eliminar este producto
-                    console.log("codigo :"+product.code)
-    
+                    tableBody.removeChild(tr) 
                   }) 
                 .catch(()=>{
                     console.log("se cancela la cancelacion")
@@ -213,6 +268,7 @@ function insertProductsToTable(products){
                     tdDepartament.innerHTML = department.name;
                 });
             }
+            tdBulk.innerHTML=product.bulk
             
             editButton.appendChild(editImage);
             deleteButton.appendChild(deleteImage);
@@ -221,9 +277,41 @@ function insertProductsToTable(products){
             tr.appendChild(tdCode);
             tr.appendChild(tdName);
             tr.appendChild(tdPrice); 
+            tr.appendChild(tdBulk); 
             tr.appendChild(tdDepartament);
             tr.appendChild(tdButton);
             tableBody.appendChild(tr);
         }
     });
+}
+
+function setSearchListener(){
+    inputSearch = document.getElementById('input-search')
+    inputSearch.addEventListener('keypress',()=>{
+        if(event.keyCode == 13){
+            search();
+        }
+    })
+}
+
+function search(){ 
+    var input, filter, found, table, tr, td, i, j;
+    input = document.getElementById('input-search');
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tableBody");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
 }

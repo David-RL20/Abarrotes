@@ -28,6 +28,7 @@ function addDepartments(){
                 //Inner information
                 tdCode.innerHTML = dept.code
                 tdName.innerHTML = dept.name
+                tdName.id= 'name'+dept.code
 
                 //image 
                 imgDelete = document.createElement('img')
@@ -41,27 +42,41 @@ function addDepartments(){
                     imgEdit.className="image"
                     //onclick delete
                     imgDelete.onclick = function(){
-                        //Alerta para confirmar la eliminacion
-                        if (confirm("Si eliminas un departamento es probable que elimines algun producto")) {
-                            tr2 = document.getElementById('tr'+dept.code);
-                            body.removeChild(tr2)
-                            x = new XMLHttpRequest();
-                            url='http://localhost/Abarrotes/api/AllDepartments.php'
-                            x.open('GET',url+'?delete='+dept.code);
-                            x.send();
-                            x.onreadystatechange = function(){
-                            console.log("Respuesta" + x.responseText);
-                        } 
-                        } else {
-                        txt = "You pressed Cancel!";
-                        }                       
+                        swal({
+                            title: 'Producto',
+                            text: "Desea eliminar este producto?",
+                            icon: 'warning', 
+                            color: '#123', 
+                            buttons: [
+                                'No, cancelar',
+                                '  Si  '
+                              ],
+                            cancel:'cancelar'
+                          })
+                          .then((result) => {
+                            if(result){
+                                    tr2 = document.getElementById('tr'+dept.code);
+                                    body.removeChild(tr2)
+                                    x = new XMLHttpRequest();
+                                    url='http://localhost/Abarrotes/api/AllDepartments.php'
+                                    x.open('GET',url+'?delete='+dept.code);
+                                    x.send();
+                                    x.onreadystatechange = function(){
+                                    console.log("Respuesta" + x.responseText);
+                                }
+                            }
+                          }) 
+                        .catch(()=>{
+                            console.log("se cancela la cancelacion")
+                        })                     
                     }
                     //onclick update
                     update = false;
-                    imgEdit.onclick = function(){
+                    imgEdit.addEventListener('click',function(){
                         if(!update){
-                            //is updating
                             imgEdit.src='images/save.png'
+                            //is updating
+                            tdName = document.getElementById('name'+dept.code)
                             input = document.createElement('input')
                             input.value = tdName.textContent;
                             input.id="input"+dept.code
@@ -72,6 +87,7 @@ function addDepartments(){
                             //ready to update
                             imgEdit.src='images/edit.png'
                             input = document.getElementById('input'+dept.code);
+                            tdName = document.getElementById('name'+dept.code);
                             tdName.innerHTML = input.value;
                             
                             code = dept.code;
@@ -87,7 +103,13 @@ function addDepartments(){
                                     if(answer.status == 1){
                                         console.log("Modificado de manera");
                                     }else{
-                                        alert(answer.message);
+                                        swal({
+                                            position: 'top-end',
+                                            icon: 'error',
+                                            title: answer.message,
+                                            showConfirmButton: false,
+                                            timer: 5000
+                                          })
                                     }
                                 }
                             }
@@ -95,9 +117,8 @@ function addDepartments(){
 
                         }
 
-                        update = !update;
-                        console.log(update)
-                    }
+                        update = !update; 
+                    }) 
 
                     //appendChild
                     tdAction.appendChild(imgEdit);
@@ -128,34 +149,59 @@ function save(){
         x.send('code='+code+'&'+'name='+name);
         x.onreadystatechange = function(){
             if(x.status == 200 && x.readyState == 4){
-                answer = JSON.parse(x.responseText);
-                console.log(answer);
+                answer = JSON.parse(x.responseText); 
                 if(answer.status = 1){
-                    alert('Departamento agregado de manera exitosa!');
+                    swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Departamento agregado de manera exitosa',
+                        showConfirmButton: false,
+                        timer: 2000
+                      })
                     clear(); 
                 }else{
-                    alert(answer.message);
+                    swal({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: answer.message,
+                        showConfirmButton: false,
+                        timer: 5000
+                      })
                     clear();
                 }
                 
             }
         }
     }else{
-        alert('El codigo y nombre de departamento no bene estar vacios');
+        swal({
+            position: 'top-end',
+            icon: 'error',
+            title: 'El codigo y departamento no deben estar vacios',
+            showConfirmButton: false,
+            timer: 3000
+          })
     }
 }
 
 function clear(){
      document.getElementById('codeDepto').value = '';
      document.getElementById('nameDepto').value ='';
-     location.reload();
+     setTimeout(() => {
+        location.reload();
+     }, 2000);
 }
 
 function verifyCode(){
     input = document.getElementById('codeDepto')
     input.addEventListener("keypress",function(){
         if(input.value.length >= 5){
-            alert("El codigo debe tener maximo 5 caracteres o letras \n \n \n Porfavor reingrese el codigo");
+            swal({
+                position: 'top-end',
+                icon: 'error',
+                title: 'El maximo de un codigo es 5 letras o numeros',
+                showConfirmButton: false,
+                timer: 3000
+              })
         }
     })
 }
