@@ -8,7 +8,7 @@ function init(){
 }
 //when you click on the button save data in database
 function save(){
-    var url = 'http://localhost/Abarrotes/api/AllProducts.php ';
+    var url = 'http://192.168.100.195/Abarrotes/api/AllProducts.php ';
     var name = document.getElementById('inputNameProduct').value;
     var code = document.getElementById('inputCodeProduct').value;
     var price = document.getElementById('inputPriceproduct').value;
@@ -54,7 +54,7 @@ function clearValues(){
 //add the departments to the options 
 function addDepartments(){
     var x = new XMLHttpRequest();
-    var url='http://localhost/Abarrotes/api/AllDepartments.php'
+    var url='http://192.168.100.195/Abarrotes/api/AllDepartments.php'
 
     var depto = document.getElementById('selectDepartmentProduct');
     x.open('GET',url);

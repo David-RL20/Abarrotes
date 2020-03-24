@@ -12,7 +12,7 @@ function init(){
 function getProducts(){
     // Ask for all the products
     x= new XMLHttpRequest();
-    x.open('GET','http://localhost/Abarrotes/api/AllProducts.php')
+    x.open('GET','http://192.168.100.195/Abarrotes/api/AllProducts.php')
     x.send()
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){
@@ -28,7 +28,7 @@ function getProducts(){
 function getDepartments(){ 
     // Ask for all the products
     x= new XMLHttpRequest();
-    x.open('GET','http://localhost/Abarrotes/api/AllDepartments.php')
+    x.open('GET','http://192.168.100.195/Abarrotes/api/AllDepartments.php')
     x.send()
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){ 
@@ -178,7 +178,7 @@ function insertProductsToTable(products){
                         
                         //send to backend
                         // var x = new XMLHttpRequest();
-                        // x.open('PUT','http://localhost/Abarrotes/api/AllProducts.php',true);
+                        // x.open('PUT','http://192.168.100.195/Abarrotes/api/AllProducts.php',true);
                         // x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
                         // x.send('code='+product.code+'&bulk='+bulk+'&name='+name+'&price='+price+'&dptoCode='+depto);
                         // x.onreadystatechange = function(){

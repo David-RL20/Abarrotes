@@ -3,9 +3,9 @@ const dataList =  'dataListProducts'
 const idTableBody = "tableBody";
 const idTotalCurrentLabel = "totalCurrently";
 const ID_TOTAL_LABEL_WINDOW = "label-total-window";
-const AllProductsURL = "http://localhost/Abarrotes/api/AllProducts.php"
-const URL_SALES_API = 'http://localhost/Abarrotes/api/AllSales.php';
-const URL_PROD_SALE_API = 'http://localhost/Abarrotes/api/AllProducts_Sell.php';
+const AllProductsURL = "http://192.168.100.195/Abarrotes/api/AllProducts.php"
+const URL_SALES_API = 'http://192.168.100.195/Abarrotes/api/AllSales.php';
+const URL_PROD_SALE_API = 'http://192.168.100.195/Abarrotes/api/AllProducts_Sell.php';
 const BTN_FINISH_SALE ='btn-finish-sale'
 class Product{
     constructor(){
@@ -46,6 +46,7 @@ class Product{
             if(event.keyCode == '13'){
                 if(input.value != ''){
                     let array = this.moreProducts(input.value);
+                    debugger
                     if(typeof array !== 'undefined'){
                         //get the values of code an quantity if * on input
                         this.code = array[1]
@@ -88,6 +89,12 @@ class Product{
 
                     }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
                         this.quantity=1;
+                        this.subtotal = this.quantity * this.price 
+                        this.addToCar();
+                        this.updateTotal();
+                        this.addToTable(); 
+                        this.resetProduct();
+                    }else if(product.bulk == 'no' && typeof this.quantity !=='undefined'){
                         this.subtotal = this.quantity * this.price 
                         this.addToCar();
                         this.updateTotal();
@@ -661,5 +668,5 @@ class Product{
 }
  
 function init(){
-    let product = new Product();   
+     product = new Product();   
 } 

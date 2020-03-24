@@ -6,7 +6,7 @@ function init(){
 //add the departments to the options 
 function addDepartments(){
     var x = new XMLHttpRequest();
-    var url='http://localhost/Abarrotes/api/AllDepartments.php'
+    var url='http://192.168.100.195/Abarrotes/api/AllDepartments.php'
 
     var depto = document.getElementById('selectDepartmentProduct');
     x.open('GET',url);
@@ -58,7 +58,7 @@ function addDepartments(){
                                     tr2 = document.getElementById('tr'+dept.code);
                                     body.removeChild(tr2)
                                     x = new XMLHttpRequest();
-                                    url='http://localhost/Abarrotes/api/AllDepartments.php'
+                                    url='http://192.168.100.195/Abarrotes/api/AllDepartments.php'
                                     x.open('GET',url+'?delete='+dept.code);
                                     x.send();
                                     x.onreadystatechange = function(){
@@ -94,7 +94,7 @@ function addDepartments(){
                             name = tdName.textContent;
                             //send a PUT request to all departments to edit the name of the department
                             x= new XMLHttpRequest();
-                            url= 'http://localhost/Abarrotes/api/AllDepartments.php'
+                            url= 'http://192.168.100.195/Abarrotes/api/AllDepartments.php'
                             x.open('GET',url+'?update='+code+'&name='+name,true)
                             x.send();
                             x.onreadystatechange = function(){
@@ -143,7 +143,7 @@ function save(){
     var name = document.getElementById('nameDepto').value;
     if(code != '' && name != ''){
         x= new XMLHttpRequest();
-        url= 'http://localhost/Abarrotes/api/AllDepartments.php'
+        url= 'http://192.168.100.195/Abarrotes/api/AllDepartments.php'
         x.open('POST',url,true)
         x.setRequestHeader('Content-type','application/x-www-form-urlencoded')
         x.send('code='+code+'&'+'name='+name);

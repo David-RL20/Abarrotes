@@ -79,5 +79,6 @@ insert into productos (codigoBarras,nombre,precio,ventaGranel)values
 
 select * from clienteCredito;
 
-
+select * from ventas;
+select * from productos_ventas join productos on codigoProducto = codigoBarras;
 
