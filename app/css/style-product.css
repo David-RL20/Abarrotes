@@ -188,5 +188,28 @@ thead{
 }
 
 .image{
-    width: 30px;
+    width: 25px;
+}
+td input{
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0 40px 80px 0 #00000029;
+    padding-left: 4px;
+}
+.table td{
+    padding: 10px;
+    
+}
+
+select{ 
+   border-radius: 10px;
+   width: 95%;
+}
+td button{
+    padding: 0px;
+    border:  1px solid transparent;
+    border-radius: .25rem;
+    padding: 2px;
 }

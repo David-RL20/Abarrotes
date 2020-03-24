@@ -4,7 +4,7 @@
     class sale {
 
         //attributes
-        private $numDailySell ;
+        private $id ;
         private $date;
         private $total;
         private $client;
@@ -12,18 +12,18 @@
 
 
         //getters and setters
-        public function getNumDailySell(){ return $this->numDailySell;}
+        public function getId(){ return $this->id;}
         //set the last id plus 1 to the sale
-        public function setNumDailySell(){ 
+        public function setId(){ 
             $connection = MySqlConnection::getConnection();//get connection
             $query = 'select count(*) from ventas;';//query
             $command = $connection->prepare($query);//prepare statement
             $command->execute();//execute
-            $command->bind_result($numDailySell);//bind results
+            $command->bind_result($id);//bind results
             //fetch data
             if($command->fetch()) {
                 //pass tha values of the fields to the attributes
-                $this->numDailySell = $numDailySell+1;
+                $this->id = $id+1;
             }
             else
                 throw new RecordNotFoundException($arguments[0]);
@@ -48,7 +48,7 @@
             $arguments = func_get_args();
             //0 arguments : creates an empty object
             if(func_num_args() == 0){
-                $this->numDailySell = '';
+                $this->id = '';
                 $this->date = '';
                 $this->total = '';
                 $this->client = '';
@@ -56,15 +56,15 @@
             }
             if(func_num_args() == 1){
                 $connection = MySqlConnection::getConnection();//get connection
-                $query = 'select numVentaDia , fechaVenta , montoTotal,numCliente, tipoVenta from ventas where numVentaDia = ?';//query
+                $query = 'select consecutivo , fechaVenta , montoTotal,numCliente, tipoVenta from ventas where consecutivo = ?';//query
                 $command = $connection->prepare($query);//prepare statement
                 $command->bind_param('i',$arguments[0]);
                 $command->execute();//execute
-                $command->bind_result($numDailySell,$date,$total,$client, $type);//bind results
+                $command->bind_result($id,$date,$total,$client, $type);//bind results
                 //fetch data
                 if($command->fetch()) {
                     //pass tha values of the fields to the attributes
-                    $this->numDailySell = $numDailySell;
+                    $this->id = $id;
                     $this->date = $date;
                     $this->total = $total;
                     $this->client = $client;
@@ -77,22 +77,22 @@
             }
             //2 arguments : create object with dara from the argument
             if(func_num_args() == 2){
-                $this->numDailySell = $arguments[0];
+                $this->id = $arguments[0];
                 $this->date = $arguments[1];
             }
             if(func_num_args() == 3){
-                $this->numDailySell = $arguments[0];
+                $this->id = $arguments[0];
                 $this->date = $arguments[1];
                 $this->total = $arguments[2];
             }
             if(func_num_args() == 4){
-                $this->numDailySell = $arguments[0];
+                $this->id = $arguments[0];
                 $this->date = $arguments[1];
                 $this->total = $arguments[2];
                 $this->client = $arguments[3];
             }
             if(func_num_args() == 5){
-                $this->numDailySell = $arguments[0];
+                $this->id = $arguments[0];
                 $this->date = $arguments[1];
                 $this->total = $arguments[2];
                 $this->client = $arguments[3];
@@ -102,7 +102,7 @@
         //instance method
         public function toJson(){   
             return json_encode(array(
-                'number'=> $this->numDailySell,
+                'id'=> $this->id,
                 'date'=> $this->date,
                 'total'=> $this->total,
                 'client'=> $this->client,
@@ -115,13 +115,13 @@
         public static function getSell() {
             $list = array(); //create list
             $connection = MySqlConnection::getConnection();//get connection
-            $query = "select numVentaDia , fechaVenta , montoTotal,numCliente, tipoVenta from ventas";//query
+            $query = "select consecutivo , fechaVenta , montoTotal,numCliente, tipoVenta from ventas";//query
 			$command = $connection->prepare($query);//prepare statement
 			$command->execute();//execute
-            $command->bind_result($numDailySell, $date,$total,$client,$type);//bind results
+            $command->bind_result($id, $date,$total,$client,$type);//bind results
             //fetch data
 			while ($command->fetch()) {
-				array_push($list, new sale ($numDailySell, $date,$total,$client,$type));//add item to list
+				array_push($list, new sale ($id, $date,$total,$client,$type));//add item to list
             }
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
@@ -140,7 +140,7 @@
             $connection = MySqlConnection::getConnection();//get connection
             $query = 'insert into ventas (consecutivo , montoTotal , numCliente ,tipoVenta) values (?,?,?,?);';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('idis', $this->numDailySell,$this->total,$this->client,$this->type); //bind parameters
+            $command->bind_param('idis', $this->id,$this->total,$this->client,$this->type); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
@@ -151,7 +151,7 @@
             $connection = MySqlConnection::getConnection();//get connection
             $query = 'update ventas set montoTotal=0 where consecutivo= ?';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('i', $this->numDailySell); //bind parameters
+            $command->bind_param('i', $this->id); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
@@ -162,7 +162,7 @@
             $connection = MySqlConnection::getConnection();//get connection
             $query = 'update ventas set  numVentaDia=?,montoTotal= ? , numCliente= ?, tipoVenta=? where consecutivo= ?;';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('idisi',$this->numDailySell, $this->total, $this->client, $this->type,$this->numDailySell); //bind parameters
+            $command->bind_param('idisi',$this->id, $this->total, $this->client, $this->type,$this->id); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection

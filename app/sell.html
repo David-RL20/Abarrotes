@@ -92,42 +92,42 @@
         <div class="item">Productos principales</div>
         <!-- Principal items (frutas - verduras - lacteos - etc) -->
         <!-- Frutas -->
-        <div class="item item-container d-flex flex-column">
+        <div id="btnFrutas" class="item item-container d-flex flex-column" >
           <div class="icon-principal-products"><img src="svg/frutas.svg" alt=""></div>
           <div class="text-principal-products">Frutas</div>
         </div>
         <!-- Verduras -->
-        <div class="item item-container d-flex flex-column">
+        <div id="btnVerduras" class="item item-container d-flex flex-column">
           <div class="icon-principal-products"><img src="svg/verduras.svg" alt=""></div>
           <div class="text-principal-products">Verduras</div>
         </div>
         <!-- Lacteos -->
-        <div class="item item-container d-flex flex-column">
+        <div id="btnLacteos" class="item item-container d-flex flex-column">
           <div class="icon-principal-products"><img src="svg/lacteos.svg" alt=""></div>
           <div class="text-principal-products">Lácteos</div>
         </div>
         <!-- Sodas -->
-        <div class="item item-container d-flex flex-column">
+        <div id="btnSodas" class="item item-container d-flex flex-column">
           <div class="icon-principal-products"><img src="svg/sodas.svg" alt=""></div>
           <div class="text-principal-products">Sodas</div>
         </div>
         <!-- Pan -->
-        <div class="item item-container d-flex flex-column">
+        <div id="btnPan" class="item item-container d-flex flex-column">
           <div class="icon-principal-products"><img src="svg/panderia.svg" alt=""></div>
           <div class="text-principal-products">Pan</div>
         </div>
         <!-- Carnes -->
-        <div class="item item-container d-flex flex-column">
+        <div id="btnCarnes" class="item item-container d-flex flex-column">
           <div class="icon-principal-products"><img src="svg/carnes.svg" alt=""></div>
           <div class="text-principal-products">Carnes</div>
         </div>
         <!-- Sabritas -->
-        <div class="item item-container d-flex flex-column">
+        <div id="btnSabritas" class="item item-container d-flex flex-column">
           <div class="icon-principal-products"><img src="svg/sabritas.svg" alt=""></div>
           <div class="text-principal-products">Sabritas</div>
         </div>
         <!-- Enlatados -->
-        <div class="item item-container d-flex flex-column">
+        <div id="btnEnlatados" class="item item-container d-flex flex-column">
           <div class="icon-principal-products"><img src="svg/enlatados.svg" alt=""></div>
           <div class="text-principal-products">Enlatados</div>
         </div>
@@ -191,7 +191,7 @@
                 <label  class="inputs-window-payment" id="change-label"></label>
               </div>
               <button class="btn-credit" style="background-color: #707070;">Crédito</button>
-              <button class="btn-credit" style="width: 150px;">Finalizar Compra</button>
+              <button class="btn-credit" onclick="finishedSell()" id="btn-finish-sale" style="width: 150px;">Finalizar Compra</button>
           </div>
         </div>
         <!-- Input quantity if is bulke sale -->

@@ -4,14 +4,18 @@ const idTableBody = "tableBody";
 const idTotalCurrentLabel = "totalCurrently";
 const ID_TOTAL_LABEL_WINDOW = "label-total-window";
 const AllProductsURL = "http://localhost/Abarrotes/api/AllProducts.php"
- 
+const URL_SALES_API = 'http://localhost/Abarrotes/api/AllSales.php';
+const URL_PROD_SALE_API = 'http://localhost/Abarrotes/api/AllProducts_Sell.php';
+const BTN_FINISH_SALE ='btn-finish-sale'
 class Product{
     constructor(){
+        this.car = new Array() 
+        this.client=1;
         this.getProducts()
         this.addInputListener()
-        this.car = new Array() 
         this.addChargeSellListener();
         this.resetProduct();
+        this.addShortCutListeners();
     }
 
     getProducts(){
@@ -124,7 +128,13 @@ class Product{
         });
     
         if(!found){
-            alert('Producto invalido');
+            swal({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Producto invalido',
+                showConfirmButton: false,
+                timer: 800
+              })
             infoInput.value='';
             infoInput.focus();
             
@@ -138,15 +148,31 @@ class Product{
             let totalProducts = string[position];
             let quantity = string.slice(0,position);
             if(quantity.match(/[a-z]/i)){
-                alert('Cantidad equivocada');
-                stringInput.value=''
-                stringInput.focus();
+                swal({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Cantidad Equivocada',
+                    showConfirmButton: false,
+                    timer: 800
+                  })
+                  .then(()=>{
+                      stringInput.value=''
+                      stringInput.focus();
+                  })
             }
             let productCode = string.slice(position + 1,string.length)
             if(productCode.match(/[a-z]/i)){
-                alert('El codigo del producto no deber contener letras');
-                stringInput.value=''
-                stringInput.focus();
+                swal({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'El codigo de el producto no debe contener letras',
+                    showConfirmButton: false,
+                    timer: 5000
+                  })
+                  .then(()=>{
+                      stringInput.value=''
+                      stringInput.focus();
+                  })
             }
             var error = false;
             //validates if it has more than one *
@@ -156,9 +182,17 @@ class Product{
                 }
             }
             if(error){
-                alert('Error De Cantidad, Demasiados ** ')
-                stringInput.value=''
-                stringInput.focus();
+                swal({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Demasiados ( * ) en el ingreso de la cantidad',
+                    showConfirmButton: false,
+                    timer: 3000
+                  })
+                  .then(()=>{
+                      stringInput.value=''
+                      stringInput.focus();
+                  })
             }
             return Array(quantity,productCode) 
         }
@@ -193,8 +227,7 @@ class Product{
                     this.car = new Array()
                 }else{
                     this.car.splice(i,1);
-                }
-                console.log(this.car.length)
+                } 
             }
         }
     }
@@ -301,8 +334,7 @@ class Product{
                     this.quantity= input.value
                     this.subtotal = this.quantity * this.price
                     let isInCar = this.verifyIsInCar()
-                    if(this.verifyIsInCar() == true){
-                        console.log(this.code)
+                    if(this.verifyIsInCar() == true){ 
                         this.updateCart();
                         this.updateTable();
                         this.updateTotal();  
@@ -375,14 +407,14 @@ class Product{
                 if (result.value) {
                   swal(
                     'Eliminada!',
-                    'Compra eliminada de maanera exitosa',
+                    'Compra eliminada de manera exitosa',
                     'success'
                   )
                 }
                 this.cancelTransaction()
               }) 
             .catch(()=>{
-                console.log("se cancela la cancelacion")
+                console.log("Operation just got canceled")
             })
         })
     }
@@ -407,14 +439,14 @@ class Product{
 
     addChargeSellListener(){
         let btnAbrirPopup = document.getElementById('abrir-popup'),
-         btnCerrarPopup = document.getElementById('btn-cerrar-popup'),
-         
-        input = document.getElementById('inputAmount'); 
-
+         btnCerrarPopup = document.getElementById('btn-cerrar-popup'), 
+        input = document.getElementById('inputAmount')
+        
         //Add events listeners
         btnAbrirPopup.addEventListener('click', this.openPopUpSell);
         btnCerrarPopup.addEventListener('click', this.closePopUpSell);
-        input.addEventListener('keydown',this.checkChange.bind(this))
+        input.addEventListener('keydown',this.checkChange.bind(this));
+        
     }
 
      openPopUpSell(){
@@ -442,11 +474,20 @@ class Product{
                 //vamos bien
                 let changeLabel = document.getElementById('change-label')
                 changeLabel.innerHTML = (input.value - this.total)
+                if(input.value == this.total){
+                    this.finishedSell()
+                }
+                
+                setTimeout(() => {
+                    let btnFinishSale = document.getElementById(BTN_FINISH_SALE)
+                    btnFinishSale.addEventListener('click',this.finishedSell.bind(this))
+                }, 100);
+                
             }else{
                 let missing = this.total - input.value;
                 swal({
                     icon: 'warning',
-                    title: 'Aun faltan unos billetitos en esta cuenta',
+                    title: 'Faltante',
                     text: 'faltan :  $'+ missing
                 })
                 .then(()=>{
@@ -456,8 +497,7 @@ class Product{
         }
         if(event.keyCode == 27){
             this.closePopUpSell();
-        }
-        console.log(event.keyCode)
+        } 
         
         
     }
@@ -466,12 +506,13 @@ class Product{
         this.subtotal=undefined;
         this.code=undefined;
         this.quantity=undefined;
+        this.client = 1;
     }
     focusInputProduct(){
         setTimeout(() => {
             let input = document.getElementById(idInputCode)
             input.focus() 
-        }, 100);
+        }, 200);
     }
     verifyQuantityBulk(){
         if(typeof this.quantity == 'undefined'){
@@ -500,65 +541,125 @@ class Product{
         return position;
     }
 
+    finishedSell(){
+        //send a request to register sale  
+        let x = new XMLHttpRequest();
+        x.open('POST',URL_SALES_API,true);
+        x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        //if client is different to 1 which is the default 
+        if(typeof this.client !== 'undefined' && this.client != 1 ){
+            x.send('total='+this.total+'$client='+this.client+'&type=credito');
+        }else{
+            x.send('total='+this.total);
+        }
+        x.onreadystatechange = ()=>{
+            if(x.status == 200 && x.readyState == 4){
+                let sell = JSON.parse(x.responseText)  
+                if(typeof this.car !== 'undefined'){ 
+                    this.car.forEach(e => {
+                        setTimeout(() => {
+                            this.sendAProduct(sell.idSale,e.code, e.quantity,e.subtotal); 
+                        }, 200);
+                        
+                    });
+                    swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Compra exitosa',
+                        showConfirmButton: false,
+                        timer: 2000  
+                      })
+                    setTimeout(function(){window.location.reload(true)},2000)
+                }else{
+                    console.log('Empty car somehow')
+                    swal({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'El carrito esta vacio !',
+                        footer: '<a href>Ingresa algun producto para poder continuar</a>'
+                    })
+                }  
+            }
+        }
+    }
+    sendAProduct(saleID,code,quantity,subtotal){ 
+        if(typeof saleID !== 'undefined' && saleID != '' &&
+         typeof code !== 'undefined' && code != '' &&
+         typeof quantity !== 'undefined' && quantity != '' && 
+         typeof subtotal !== 'undefined' && subtotal != '' ){
+            //send request with not answer spected
+            var x = new XMLHttpRequest();
+            x.open('POST',URL_PROD_SALE_API,true);
+            x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+            x.send('idSell='+saleID+'&codeProduct='+code+'&quantity='+quantity+'&subTotal='+subtotal);
+            x.onreadystatechange = function(){
+                if(x.status == 200 && x.readyState == 4){
+                    answer = JSON.parse(x.responseText)
+                    if (answer.statusCode == 404){
+                        //if logical error
+                        swal({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Error'+ answer.message,
+                            showConfirmButton: true, 
+                        }) 
+                    }
+                } 
+            }
+
+        } 
+    }
+    addShortCutListeners(){
+        //#region shortcuts array
+        let shortCuts = new Array({
+                id:'btnFrutas',
+                code:257554
+            },
+            {
+                id:'btnVerduras',
+                code:257554
+            },
+            {
+                id:'btnLacteos',
+                code:257554
+            },
+            {
+                id:'btnSodas',
+                code:257554
+            },
+            {
+                id:'btnPan',
+                code:257554
+            },
+            {
+                id:'btnCarnes',
+                code:257554
+            },
+            {
+                id:'btnSabritas',
+                code:257554
+            },
+            {
+                id:'btnEnlatados',
+                code:257554
+            }
+        )
+        //#endregion
+        shortCuts.forEach(sc => {
+            let button = document.getElementById(sc.id)
+            button.addEventListener('click',()=>{ 
+                this.addProduct(sc.code)
+            })
+        });
+    }
+    addProduct(code){
+        this.code = code
+        this.verification()
+    }
+
 
 }
  
 function init(){
-    product = new Product();  
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Deletes an article from the table and remove its from the array
-function deleteArticle(){
-    if( sessionStorage.articleSelected != 'undefined'){
-        tr =document.getElementById('row'+sessionStorage.articleSelected)
-        tableBody = document.getElementById(idTableBody)
-        totalProduct =document.getElementById('total'+sessionStorage.articleSelected)
-        totalAmount = document.getElementById(idTotalCurrentLabel)
-        
-
-        totalAmount.innerHTML = parseFloat(totalAmount.textContent) - parseFloat(totalProduct.textContent);
-
-        tableBody.removeChild(tr);
-    }
-    else
-    alert('Selecciona un producto para continuar');
-
-    
-}
-
-function chargeSell(){
-    body = document.querySelector('#'+idTableBody);
-    trs = body.getElementsByTagName('tr');
-
-    for(i=0;i<trs.length;i++){
-        tds = trs[i].getElementsByTagName('td');
-        code = tds[0].textContent
-        quantity =tds[3].textContent
-        
-    }
-}
-//show an window with and input
-//  returns input's values
-
+    let product = new Product();   
+} 

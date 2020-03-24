@@ -344,8 +344,10 @@ th, td {
     margin-bottom: 7px;
     margin-left: 40px;
     border: none;
-    padding-left: 15px;
+    padding-left: 17px;
     margin-right: 60px;
+    font-size: 1.5rem;
+    color: #707070;
 }
 .btn-credit{
     width: 100px;
@@ -395,4 +397,4 @@ th, td {
 .image{
     width: 30px;
     cursor: pointer;
-}
+} 

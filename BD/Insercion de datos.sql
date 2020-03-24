@@ -1,5 +1,7 @@
 use abarrotes;
-select * from productos;
+select *  from productos_ventas;
+select * from  ventas;
+SET SQL_SAFE_UPDATES = 0;
 							/*			D E P A R T A M E N T O  */
 insert into departamento values
 ('VERDU','Dpto. de Verduras'),
