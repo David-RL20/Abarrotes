@@ -399,4 +399,8 @@ th, td {
     cursor: pointer;
 } 
 
- 
+#overlay-popup-credit select {
+    width: 70%;
+    margin: 15px;
+    height: 30px;
+ }

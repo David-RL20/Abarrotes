@@ -4,6 +4,7 @@ const idTableBody = "tableBody";
 const idTotalCurrentLabel = "totalCurrently";
 const ID_TOTAL_LABEL_WINDOW = "label-total-window";
 const AllProductsURL = "http://192.168.100.195/Abarrotes/api/AllProducts.php"
+const CLIENTS_API = "http://192.168.100.195/Abarrotes/api/AllClients.php"
 const URL_SALES_API = 'http://192.168.100.195/Abarrotes/api/AllSales.php';
 const URL_PROD_SALE_API = 'http://192.168.100.195/Abarrotes/api/AllProducts_Sell.php';
 const BTN_FINISH_SALE ='btn-finish-sale'
@@ -12,10 +13,11 @@ class Product{
         this.car = new Array() 
         this.client=1;
         this.getProducts()
+        this.getClients()
         this.addInputListener()
-        this.addChargeSellListener();
-        this.resetProduct();
-        this.addShortCutListeners();
+        this.addChargeSellListener()
+        this.resetProduct()
+        this.addShortCutListeners()
     }
 
     getProducts(){
@@ -446,12 +448,15 @@ class Product{
     addChargeSellListener(){
         let btnAbrirPopup = document.getElementById('abrir-popup'),
          btnCerrarPopup = document.getElementById('btn-cerrar-popup'), 
-        input = document.getElementById('inputAmount')
+        input = document.getElementById('inputAmount'),
+        btnCredit = document.getElementById('btn-to-credit')
         
         //Add events listeners
         btnAbrirPopup.addEventListener('click', this.openPopUpSell);
         btnCerrarPopup.addEventListener('click', this.closePopUpSell);
         input.addEventListener('keydown',this.checkChange.bind(this));
+        btnCredit.addEventListener('click',this.saleToCredit.bind(this))
+
         
     }
 
@@ -507,7 +512,6 @@ class Product{
         
         
     }
-
     resetProduct(){
         this.subtotal=undefined;
         this.code=undefined;
@@ -546,7 +550,6 @@ class Product{
         } 
         return position;
     }
-
     finishedSell(){
         //send a request to register sale  
         let x = new XMLHttpRequest();
@@ -662,8 +665,71 @@ class Product{
         this.code = code
         this.verification()
     }
+    getClients(){
+        setTimeout(() => {
+            let x= new XMLHttpRequest();
+            x.open('GET',CLIENTS_API)
+            x.send()
+            x.onreadystatechange = ()=>{
+                let select = document.getElementById('select-client')
+                if(x.status == 200 && x.readyState == 4){
+                    let clients = JSON.parse(x.responseText)
+                    clients.forEach(client => {
+                        //add to list
+                        let option = document.createElement('option')
+                        option.innerHTML = client.name
+                        option.value = client.number
 
+                        select.appendChild(option)
+                    });
+                } 
+                
+            }
+        }, 200);
+    }
+    saleToCredit(){
+        this.closePopUpSell();
+        this.openPopUpSellCredit();
+    }
+    openPopUpSellCredit(){
+        let overlay = document.getElementById('overlay-popup-credit'),
+        popup = document.getElementById('popup-credit'),
+        btnCash = document.getElementById('btn-to-cash'),
+        btnClose = document.getElementById('cerrar-credit-popup'),
+        btnFinishCredit = document.getElementById('btn-finish-sale-credit'),
+        labelTotal  =document.getElementById('label-total-credit')
 
+        overlay.classList.add('active');
+        popup.classList.add('active');
+        //input total
+        if(typeof this.total !== 'undefined'){
+            labelTotal.innerHTML = '$'+ this.total
+        }else{
+            labelTotal.innerHTML = '$0.0'
+        }
+        btnClose.addEventListener('click',()=>{ this.closePopUpCredit()})
+        btnCash.addEventListener('click',()=>{
+            this.closePopUpCredit()
+            this.openPopUpSell()
+            this.client =1;
+        })
+
+        btnFinishCredit.addEventListener('click',()=>{
+            let select = document.getElementById('select-client')
+            let index = select.selectedIndex
+            //verify its amount of credit
+            
+            //we got client
+            this.client = select[index].value;
+
+        })
+    }
+    closePopUpCredit(){
+        let overlay = document.getElementById('overlay-popup-credit'),
+        popup = document.getElementById('popup-credit')
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+    }
 }
  
 function init(){
