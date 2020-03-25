@@ -97,7 +97,7 @@
         public function add() {
             $connection = MySqlConnection::getConnection();//get connection
             $query = 'insert into clientecredito (nombre , limiteCredito) values (?,?);';//query
-            $command = $connecti on->prepare($query);//prepare statement
+            $command = $connection->prepare($query);//prepare statement
             $command->bind_param('sd', $this->name,$this->limit); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
@@ -107,7 +107,7 @@
 
         public function delete() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'update clientecredito set limiteCredito=0 where numCliente = ?';//query
+            $query = 'delete  from clienteCredito where numCliente = ?;';//query
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('i', $this->number); //bind parameters
             $result = $command->execute();//execute

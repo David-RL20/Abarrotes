@@ -15,4 +15,6 @@ insert into departamento values
 insert into clienteCredito (nombre,limiteCredito) values ('Publico General',null);
 
 
+select count(*) from productos;
 select * from clienteCredito;
+delete  from clienteCredito where numCliente = 2;
