@@ -509,6 +509,9 @@ class Product{
         if(event.keyCode == 27){
             this.closePopUpSell();
         } 
+        if(event.keyCode == 69){
+            this.saleToCredit();
+        }
         
         
     }
@@ -679,7 +682,8 @@ class Product{
                         let option = document.createElement('option')
                         option.innerHTML = client.name
                         option.value = client.number
-
+                        option.dataset.limit = client.limit
+                        option.dataset.used = client.total_used 
                         select.appendChild(option)
                     });
                 } 
@@ -697,7 +701,8 @@ class Product{
         btnCash = document.getElementById('btn-to-cash'),
         btnClose = document.getElementById('cerrar-credit-popup'),
         btnFinishCredit = document.getElementById('btn-finish-sale-credit'),
-        labelTotal  =document.getElementById('label-total-credit')
+        labelTotal  =document.getElementById('label-total-credit'),
+        select = document.getElementById('select-client')
 
         overlay.classList.add('active');
         popup.classList.add('active');
@@ -716,13 +721,29 @@ class Product{
 
         btnFinishCredit.addEventListener('click',()=>{
             let select = document.getElementById('select-client')
-            let index = select.selectedIndex
+            let index = select.selectedIndex 
             //verify its amount of credit
-            
-            //we got client
-            this.client = select[index].value;
+            let moneyfree = parseFloat(select[index].dataset.limit) - parseFloat(select[index].dataset.used) 
+            if(moneyfree >= this.total){
+                //finish transaction
+                //we got client
+                this.client = select[index].value
+                debugger
+            }else{
+                // show error
+                swal({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Saldo insuficiente',
+                    text: 'Saldo del cliente:'+ moneyfree,
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
+            }
 
         })
+
+        setTimeout(()=>{select.focus()},300)
     }
     closePopUpCredit(){
         let overlay = document.getElementById('overlay-popup-credit'),

@@ -404,3 +404,17 @@ th, td {
     margin: 15px;
     height: 30px;
  }
+ .btn-credit:focus{
+     box-shadow: #34353679 0px 0px 5px 3px;
+ }
+ 
+#select-client {
+    background-color: #ffffff;
+    color: #707070;
+    border-radius: 10px;
+  }
+   
+  /*
+  #select-client option {
+    padding: 30px;
+  } */

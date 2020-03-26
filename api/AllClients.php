@@ -1,10 +1,65 @@
 <?php
     header('Access-Control-Allow-Origin:*');
     require_once('models/client.php');
+    require_once('models/sale_credit.php');
 
     if($_SERVER['REQUEST_METHOD']== 'GET'){
-
-        echo client::getAllToJson();
+        $answer= array();
+        if(isset($_GET['number'])){ 
+            $sales =  json_decode(Sell_Credit::getAllToJson($_GET['number']));
+            $client = new client($_GET['number']);
+            if(!empty($sales)){
+                $total = 0;
+                foreach ($sales as $sale) {
+                $total = $total + $sale->total;
+                }
+                array_push($answer,json_decode(json_encode(array(
+                    'name'=>$client->getName(),
+                    'number'=>$client->getNumber(),
+                    'limit'=>$client->getLimit(), 
+                    'total_used'=>$total,
+                    'message'=>'Total de compras de un usuario'
+                ))));
+            }else{
+                $client = new client($_GET['number']);
+                array_push($answer ,json_decode(json_encode(array(
+                    'name'=>$client->getName(),
+                    'number'=>$client->getNumber(),
+                    'limit'=>$client->getLimit(), 
+                    'total_used'=>0,
+                    'message'=>'Total de compras de un usuario'
+                ))));
+            }
+        }else{
+            $clients = json_decode(client::getAllToJson());
+            $clientesFull = array();
+            foreach ($clients as $client) {  
+                $sales =  json_decode(Sell_Credit::getAllToJson($client->number));
+                if(!empty($sales)){
+                    $total = 0;
+                    foreach ($sales as $sale) {
+                    $total = $total + $sale->total;
+                    }
+                     array_push($answer,json_decode(json_encode(array(
+                        'name'=>$client->name,
+                        'number'=>$client->number,
+                        'limit'=>$client->limit, 
+                        'total_used'=>$total,
+                        'message'=>'Total de compras de un usuario'
+                    ))));
+                }
+                else{
+                    array_push($answer , json_decode( json_encode(array(
+                        'name'=>$client->name,
+                        'number'=>$client->number,
+                        'limit'=>$client->limit, 
+                        'total_used'=>0,
+                        'message'=>"Total de compras de un usuario"
+                    ))));
+                } 
+            }   
+        } 
+        echo json_encode($answer);
     }
     if($_SERVER['REQUEST_METHOD']== 'POST'){
         if(isset($_POST['action'])){
