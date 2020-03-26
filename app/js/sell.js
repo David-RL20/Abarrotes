@@ -7,6 +7,7 @@ const AllProductsURL = "http://192.168.100.195/Abarrotes/api/AllProducts.php"
 const CLIENTS_API = "http://192.168.100.195/Abarrotes/api/AllClients.php"
 const URL_SALES_API = 'http://192.168.100.195/Abarrotes/api/AllSales.php';
 const URL_PROD_SALE_API = 'http://192.168.100.195/Abarrotes/api/AllProducts_Sell.php';
+const URL_SALE_CREDIT_API = 'http://192.168.100.195/Abarrotes/api/AllSales_Credit.php';
 const BTN_FINISH_SALE ='btn-finish-sale'
 class Product{
     constructor(){
@@ -314,7 +315,7 @@ class Product{
     getTotal(){
         let total = 0;
         this.car.forEach(ele=>{
-            total = (ele.subtotal + total)
+            total = ele.subtotal + total
         })
         this.total=total;
     }
@@ -340,8 +341,7 @@ class Product{
             if(event.keyCode == 13){
                 if(typeof input.value !== 'undefined' && input.value != ''){
                     this.quantity= input.value
-                    this.subtotal = this.quantity * this.price
-                    let isInCar = this.verifyIsInCar()
+                    this.subtotal = Math.round(this.quantity * this.price) 
                     if(this.verifyIsInCar() == true){ 
                         this.updateCart();
                         this.updateTable();
@@ -480,6 +480,7 @@ class Product{
     }
     checkChange(){
         let input = document.getElementById('inputAmount'); 
+        console.log(event.keyCode)
         if(event.keyCode == '13'){
             if(input.value >= this.total){
                 //vamos bien
@@ -509,7 +510,7 @@ class Product{
         if(event.keyCode == 27){
             this.closePopUpSell();
         } 
-        if(event.keyCode == 69){
+        if(event.keyCode == 67){
             this.saleToCredit();
         }
         
@@ -728,6 +729,8 @@ class Product{
                 //finish transaction
                 //we got client
                 this.client = select[index].value
+                this.finishedSellCredit();
+                this.finishedSell()
                 debugger
             }else{
                 // show error
@@ -743,13 +746,59 @@ class Product{
 
         })
 
-        setTimeout(()=>{select.focus()},300)
+        select.addEventListener('keypress',()=>{
+            console.log("selec keycode : " +event.keyCode)
+            if(event.keyCode == 13){
+                let select = document.getElementById('select-client')
+                let index = select.selectedIndex 
+                //verify its amount of credit
+                let moneyfree = parseFloat(select[index].dataset.limit) - parseFloat(select[index].dataset.used) 
+                if(moneyfree >= this.total){
+                    //finish transaction
+                    //we got client
+                    this.client = select[index].value
+                    this.finishedSellCredit();
+                    this.finishedSell()
+                    debugger
+                }else{
+                    // show error
+                    this.closePopUpCredit();
+                    setTimeout(() => {
+                        swal({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Saldo insuficiente',
+                            text: 'Saldo del cliente:'+ moneyfree, 
+                            timer: 2000
+                        })
+                        this.focusInputProduct()
+                    }, 300);                    
+                }
+            }
+        })
+
+        setTimeout(() => {
+            select.focus()
+        }, 200);
+        
     }
     closePopUpCredit(){
         let overlay = document.getElementById('overlay-popup-credit'),
         popup = document.getElementById('popup-credit')
         overlay.classList.remove('active');
         popup.classList.remove('active');
+    }
+    finishedSellCredit(){
+        let a = new XMLHttpRequest();
+        a.open('POST',URL_SALE_CREDIT_API,true);
+        a.setRequestHeader('Content-type','application/x-www-form-urlencoded'); 
+        a.send('action=post'+'&client='+this.client+'&total='+this.total)
+        a.onreadystatechange = ()=>{
+            if(a.status == 200 && a.readyState == 4){
+                let answer  = JSON.parse(a.responseText);
+                debugger 
+            }
+        }
     }
 }
  

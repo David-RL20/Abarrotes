@@ -1,7 +1,7 @@
 function init(){
     console.log('Initializing document');
     getProducts();
-    setTimeout(getDepartments,2000) 
+    setTimeout(getDepartments,10000) 
     setSearchListener()  
     
  
@@ -16,8 +16,10 @@ function getProducts(){
     x.send()
     x.onreadystatechange = function(){
         if(x.status == 200 && x.readyState == 4){
-            let products = JSON.parse(x.responseText); 
+            let products = JSON.parse(x.responseText);
+            let loader = document.getElementById('loader') 
             insertProductsToTable(products)
+            loader.style.display= 'none' 
             
         }
         
