@@ -141,6 +141,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 40px 80px 0 #00000029;
     background-color: #ffffff;
+    overflow: scroll;
 }
 .btn-search{
     border-radius: 10px;
@@ -178,7 +179,7 @@ body {
 }
 
 .table{
-    font-family: 'Quicksand';
+    font-family: 'Quicksand'; 
 }
 
 .table thead{

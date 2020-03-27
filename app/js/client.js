@@ -84,9 +84,9 @@ function getClients(){
         if(x.status == 200 && x.readyState == 4){
             let clients = JSON.parse(x.responseText)
             clients.forEach(client => {  
-                // if(client.number != 1){s
+                if(client.number != 1){
                     addClientToTable(client) 
-                // }
+                }
             });
             let loader = document.getElementById('loader')
             loader.classList.remove('loader')

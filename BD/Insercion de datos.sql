@@ -13,8 +13,12 @@ insert into departamento values
 								/* C L I E N T E S*/
 /*		Utilizar este formato par al incercion de datos con auto_increment*/
 insert into clienteCredito (nombre,limiteCredito) values ('Publico General',null);
+insert into clienteCredito (nombre,limiteCredito) values ('Usuario Prueba',300);
 
 
 select count(*) from productos;
 select * from clienteCredito;
- select * from ventas_credito where numCliente = 1 and estatus=0
+ select * from ventas_credito where numCliente = 1 and estatus=0;
+ select * from ventas ;
+ 
+ select * from productos_ventas where consecutivoVenta =?;
