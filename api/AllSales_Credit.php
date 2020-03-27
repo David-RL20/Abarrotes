@@ -4,22 +4,8 @@
     if($_SERVER['REQUEST_METHOD']== 'GET'){
         if(isset($_GET['client'])){
             $sale_credit = new Sell_Credit(); 
-            $sales =  json_decode($sale_credit::getAllToJson($_GET['client']));
-            if(!empty($sales)){
-                $total = 0;
-                foreach ($sales as $sale) {
-                   $total = $total + $sale->total;
-                }
-                echo json_encode(array(
-                    'total'=>$total,
-                    'message'=>'Total de compras de un usuario'
-                ));
-            }else{
-                echo json_encode(array(
-                    'total'=>0,
-                    'message'=>'Cuenta sin adeudos'
-                ));
-            }
+             echo $sale_credit::getAllToJson($_GET['client']);
+             
         }else{ 
             echo 'error';
         }
@@ -29,13 +15,14 @@
         if(isset($_POST['action'])){
             switch ($_POST['action']) {
                 case 'post':
-                    if(isset($_POST['total']) && isset($_POST['client']) ){
+                    if(isset($_POST['total']) && isset($_POST['client']) && isset($_POST['sale'])){
                         //creating object
                         $sale = new Sell_Credit(); 
                         //confirmation for client
                         $sale->setClient($_POST['client']);
                         //total
-                        $sale->setTotal($_POST['total']); 
+                        $sale->setTotal($_POST['total']);
+                        $sale->setSale($_POST['sale']);
                         if($sale->add()){
                             echo json_encode(array(
                                 'message'=>'add succesfully',

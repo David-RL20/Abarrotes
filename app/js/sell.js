@@ -561,13 +561,15 @@ class Product{
         x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
         //if client is different to 1 which is the default 
         if(typeof this.client !== 'undefined' && this.client != 1 ){
-            x.send('total='+this.total+'$client='+this.client+'&type=credito');
+            x.send('total='+this.total+'&client='+this.client+'&type=credito'); 
         }else{
             x.send('total='+this.total);
-        }
+        } 
         x.onreadystatechange = ()=>{
             if(x.status == 200 && x.readyState == 4){
                 let sell = JSON.parse(x.responseText)  
+                debugger
+                this.idSale = sell.idSale
                 if(typeof this.car !== 'undefined'){ 
                     this.car.forEach(e => {
                         setTimeout(() => {
@@ -607,7 +609,7 @@ class Product{
             x.send('idSell='+saleID+'&codeProduct='+code+'&quantity='+quantity+'&subTotal='+subtotal);
             x.onreadystatechange = function(){
                 if(x.status == 200 && x.readyState == 4){
-                    answer = JSON.parse(x.responseText)
+                    let answer = JSON.parse(x.responseText)
                     if (answer.statusCode == 404){
                         //if logical error
                         swal({
@@ -728,10 +730,9 @@ class Product{
             if(moneyfree >= this.total){
                 //finish transaction
                 //we got client
-                this.client = select[index].value
+                this.client = parseInt(select[index].value) 
+                this.finishedSell() 
                 this.finishedSellCredit();
-                this.finishedSell()
-                debugger
             }else{
                 // show error
                 swal({
@@ -748,18 +749,20 @@ class Product{
 
         select.addEventListener('keypress',()=>{
             console.log("selec keycode : " +event.keyCode)
+            let select = document.getElementById('select-client')
+            let index = select.selectedIndex 
+            this.client = parseInt(select[index].value)  
             if(event.keyCode == 13){
-                let select = document.getElementById('select-client')
-                let index = select.selectedIndex 
+                
                 //verify its amount of credit
                 let moneyfree = parseFloat(select[index].dataset.limit) - parseFloat(select[index].dataset.used) 
                 if(moneyfree >= this.total){
                     //finish transaction
                     //we got client
-                    this.client = select[index].value
-                    this.finishedSellCredit();
+                    
                     this.finishedSell()
-                    debugger
+                    this.finishedSellCredit();
+                    
                 }else{
                     // show error
                     this.closePopUpCredit();
@@ -789,16 +792,18 @@ class Product{
         popup.classList.remove('active');
     }
     finishedSellCredit(){
-        let a = new XMLHttpRequest();
-        a.open('POST',URL_SALE_CREDIT_API,true);
-        a.setRequestHeader('Content-type','application/x-www-form-urlencoded'); 
-        a.send('action=post'+'&client='+this.client+'&total='+this.total)
-        a.onreadystatechange = ()=>{
-            if(a.status == 200 && a.readyState == 4){
-                let answer  = JSON.parse(a.responseText);
-                debugger 
+        setTimeout(() => {
+            let a = new XMLHttpRequest();
+            a.open('POST',URL_SALE_CREDIT_API,true);
+            a.setRequestHeader('Content-type','application/x-www-form-urlencoded');  
+            a.send('action=post'+'&client='+this.client+'&total='+this.total+'&sale='+this.idSale)
+            a.onreadystatechange = ()=>{
+                if(a.status == 200 && a.readyState == 4){
+                    let answer  = JSON.parse(a.responseText); 
+                }
             }
-        }
+        }, 200);
+        
     }
 }
  

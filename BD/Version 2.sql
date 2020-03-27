@@ -1,9 +1,9 @@
 
 use phpmyadmin;
-drop database abarrotes ;
- create database abarrotes;
-ALTER DATABASE abarrotes CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-use abarrotes;
+drop database abarrotes2 ;
+ create database abarrotes2;
+ALTER DATABASE abarrotes2 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+use abarrotes2;
 
 create table productos(
 	codigoBarras varchar(30) primary key,
@@ -60,10 +60,6 @@ create table ventas_credito(
     status bit default 0
 );
 
-alter table ventas 
-add constraint ck_type_Sell
-check  (tipoVenta='efectivo' or tipoVenta = 'credito') ;
-
 /*verificar si el producto se vende a granel */
 alter table productos 
 add constraint ck_quantity_type
@@ -77,5 +73,27 @@ create procedure productos_departamentos(in codigoProducto varchar(30))
 	from productos_departamento dp join productos p join departamento d
 	on p.codigoBarras = dp.codigoProducto and d.codigoDpto = dp.codigoDpto
 	where p.codigoBarras = codigoProducto
-; 
- 
+;
+
+
+/*
+drop table ventas_productos;
+drop table ventas_credito;
+drop table ventas;
+
+
+create table ventas(
+	consecutivo int primary key auto_increment,
+	fechaVenta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	montoTotal decimal(7,2),
+	numCliente int, 
+    foreign key(numCliente) references clienteCredito(numCliente)
+);
+create table ventas_credito(
+	total decimal(7,2),
+    numCliente int ,
+    numVenta int ,
+    status bit default 0
+);
+*/
+  

@@ -142,7 +142,7 @@ body {
     box-shadow: 0 40px 80px 0 #00000029;
     background-color: #ffffff;
 }
-.btn-show{
+.btn-search{
     border-radius: 10px;
     -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
@@ -175,4 +175,40 @@ body {
 .grid-item-table:nth-of-type(3){
     grid-column-start: 1;
     grid-column-end: 3;
+}
+
+.table{
+    font-family: 'Quicksand';
+}
+
+.table thead{
+    font-weight: 700;
+    background-color: #5084fd;
+    color: #ffffff;
+}
+.loader {
+    margin: auto;
+    margin-top: 100px;
+	display: block;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 1.3s linear infinite;
+} 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+td button img{
+    width: 25px;
+}
+td button{
+    margin-left: 6px;
+    padding: .125rem .35rem;
+}
+table tbody{
+    font-weight: 550;
 }

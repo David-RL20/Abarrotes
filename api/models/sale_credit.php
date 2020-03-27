@@ -6,6 +6,8 @@
         //attributes
         private $client ;
         private $total;
+        private $sale;
+        private $status;
 
         //getters and setters
         public function getClient(){ return $this->client;}
@@ -13,6 +15,12 @@
 
         public function getTotal(){ return $this->total;}
         public function setTotal($total){ return $this->total = $total;}
+
+        public function getSale(){ return $this->sale;}
+        public function setSale($sale){ return $this->sale = $sale;}
+
+        public function getStatus(){ return $this->status;}
+        public function setStatus($status){ return $this->status = $status;}
 
         //constructor
         public function __construct(){
@@ -23,25 +31,29 @@
             }
              
             //2 arguments : create object with dara from the argument
-            if(func_num_args() == 2){
+            if(func_num_args() == 4){
                 $this->client = $arguments[0];
                 $this->total = $arguments[1];
+                $this->sale = $arguments[2];
+                $this->status = $arguments[3];
             }
         }
         //instance method
         public function toJson(){   
             return json_encode(array(
                 'client'=> $this->client,
-                'total'=> $this->total
+                'total'=> $this->total,
+                'sale'=> $this->sale,
+                'status'=> $this->status
             ));
         }
 
                 //class methods
         public function add() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'insert into ventas_credito (numCliente,total) values (?,?)';//query
+            $query = 'insert into ventas_credito (total,numCliente,numVenta) values(?,?,?);';//query
             $command = $connection->prepare($query);//prepare statement
-            $command->bind_param('ss', $this->client,$this->total); //bind parameters
+            $command->bind_param('sss', $this->total,$this->client,$this->sale); //bind parameters
             $result = $command->execute();//execute
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection
@@ -50,7 +62,7 @@
 
         public function delete() {
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'delete from ventas_credito where numCliente = ?;';//query
+            $query = 'update ventas_credito set status=1 where numCliente =?';//query
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('s', $this->client); //bind parameters
             $result = $command->execute();//execute
@@ -64,14 +76,14 @@
         public static function getSalesCredit($client) {
             $list = array(); //create list
             $connection = MySqlConnection::getConnection();//get connection
-            $query = 'select * from ventas_credito where numCliente =?';//query
+            $query = 'select * from ventas_credito where numCliente =? and status=0';//query
             $command = $connection->prepare($query);//prepare statement
             $command->bind_param('s',$client); //bind parameters
 			$command->execute();//execute
-            $command->bind_result($total,$client);//bind results
+            $command->bind_result($total,$client,$sale,$status);//bind results
             //fetch data
 			while ($command->fetch()) {
-				array_push($list, new Sell_Credit($client,$total));//add item to list
+				array_push($list, new Sell_Credit($client,$total,$sale,$status));//add item to list
             }
             mysqli_stmt_close($command); //close command
             $connection->close(); //close connection

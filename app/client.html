@@ -13,9 +13,13 @@
     <script src="js/fontAwesome.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="css/style-client.css">
+    <!-- js -->
+    <script src="js/client.js"></script>
+    <!-- swal -->
+    <script src="js/sweetAlert.js"></script>
     <title>Clientes</title>
 </head>
-<body>
+<body onload="init()">
     <!-- Principal container -->
     <div class="container-store">
         <!-- Navbar section -->
@@ -91,30 +95,47 @@
         <div class="item">
             <div class="grid-search">
                 <div class="item-search-section inputs-search">
-                    <input type="text" class="inputs-search label-input" placeholder="Ingrese nuevo cliente">
+                    <input type="text"id="name" class="inputs-search label-input" placeholder="Ingrese nuevo cliente">
                 </div>
                 <div class="item-search-section inputs-search btn-display">
-                    <select class="custom-select btn-select" id="inputGroupSelect01">
+                    <select class="custom-select btn-select" id="selectLimit">
                         <option selected value="0">Límite</option>
-                        <option value="1">$100</option>
-                        <option value="2">$150</option>
-                        <option value="3">$200</option>
-                        <option value="4">$250</option>
-                        <option value="5">$300</option>
-                        <option value="6">$500</option>
-                        <option value="7">$1000</option>
+                        <option value="100">$100</option>
+                        <option value="150">$150</option>
+                        <option value="200">$200</option>
+                        <option value="250">$250</option>
+                        <option value="300">$300</option>
+                        <option value="500">$500</option>
+                        <option value="1000">$1000</option>
                       </select>
                 </div>
-                <div class="item-search-section btn-search"><button class="btn-search">Agregar</button></div>
+                <div class="item-search-section btn-search"><button onclick="add()" class="btn-search">Agregar</button></div>
             </div>
         </div>
         <div class="item">
             <div class="grid-table">
                 <div class="item-search-section inputs-search">
-                <input type="text" class="inputs-search label-input-show" placeholder="Buscar cliente">
+                <input type="text" id="inputSearch" class="inputs-search label-input-show" placeholder="Buscar cliente">
                 </div>
-                <div class="grid-item-table"><button class="btn-show">Buscar</button></div>
-                <div class="grid-item-table item-table-list">3</div>
+                <div class="grid-item-table"><button id="btn-search" class="btn-search">Buscar</button></div>
+                <div class="grid-item-table item-table-list">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <td>id</td>
+                        <td>Nombre</td>
+                        <td>Limite Credito</td>
+                        <td>Adeudo</td>
+                        <td>Credito restante</td>
+                        <td>Acciones</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+
+                    </tbody>
+                  </table>
+                  <div class="loader" id="loader"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -17,10 +17,4 @@ insert into clienteCredito (nombre,limiteCredito) values ('Publico General',null
 
 select count(*) from productos;
 select * from clienteCredito;
-delete  from clienteCredito where numCliente = 2;
-
-select * from ventas_credito where numCliente =?;
-
-insert into ventas_credito (numCliente,total) values (?,?);
-
-delete from ventas_credito where numCliente = 4;
+ select * from ventas_credito where numCliente = 1 and estatus=0

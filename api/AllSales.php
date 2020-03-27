@@ -22,18 +22,11 @@
             //confirmation for client
             if(isset($_POST['client'])){
                 $sale->setClient($_POST['client']);
-            }else{
-                $sale->setClient(1);
-            }
+            } 
             //total
             $sale->setTotal($_POST['total']);
             
-            //type confirmation
-            if(isset($_POST['type'])){
-                $sale->setType($_POST['type']);
-            }else{
-                $sale->setType('efectivo');
-            }
+             
             
             if($sale->add()){
                 echo json_encode(array(
