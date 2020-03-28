@@ -18,7 +18,7 @@ insert into clienteCredito (nombre,limiteCredito) values ('Usuario Prueba',300);
 
 select count(*) from productos;
 select * from clienteCredito;
- select * from ventas_credito where numCliente = 1 and estatus=0;
+ select v.fechaVenta,v.montoTotal,v.numCliente,numVenta from ventas_credito as vc join ventas as v on numVenta = consecutivo and vc.status=0 and  vc.numCliente =2;
  select * from ventas ;
  
  select * from productos_ventas where consecutivoVenta =?;

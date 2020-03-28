@@ -568,7 +568,6 @@ class Product{
         x.onreadystatechange = ()=>{
             if(x.status == 200 && x.readyState == 4){
                 let sell = JSON.parse(x.responseText)  
-                debugger
                 this.idSale = sell.idSale
                 if(typeof this.car !== 'undefined'){ 
                     this.car.forEach(e => {

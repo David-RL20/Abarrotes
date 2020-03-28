@@ -202,6 +202,7 @@ table tbody{
     flex-wrap: wrap;
     grid-gap: 10px;
     font-family: 'Quicksand';
+    margin-top: 30px;
 }
 
 .btn-link{
@@ -222,4 +223,33 @@ table tbody{
 }
 .btn-success{
     margin-left: 5px;
+    width: 35%;
+}
+.btn-primary{
+    width: 60%;
+}
+.loader {
+    margin: auto;
+    margin-top: 100px;
+	display: block;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 1.3s linear infinite;
+}
+.loader.active {
+	display: block;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.sale-info{
+    width: 100%;
+    border-bottom: 1px solid #ccc;  
+}
+.collapse{
+    padding: 4px;
 }
