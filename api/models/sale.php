@@ -107,7 +107,7 @@
         public static function getSell() {
             $list = array(); //create list
             $connection = MySqlConnection::getConnection();//get connection
-            $query = "select consecutivo , fechaVenta , montoTotal,numCliente from ventas";//query
+            $query = " select consecutivo,fechaVenta,montoTotal,numCliente from ventas order by fechaVenta desc";//query
 			$command = $connection->prepare($query);//prepare statement
 			$command->execute();//execute
             $command->bind_result($id, $date,$total,$client);//bind results

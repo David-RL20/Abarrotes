@@ -7,15 +7,17 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css" >
     <script src="js/jquerry.min.js"  ></script>
-    <script src="js/popper.min.js"  ></script>
+    <script src="js/popper.min.js" ></script>
     <script src="js/bootstrap.min.js" ></script>
     <!-- Font awesome -->
-    <script src="js/fontAwesome.js" ></script>
+    <script src="js/fontAwesome.js"></script>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style_sell_list.css">
-    <!-- JS --> 
-  <script src="js/sales_list.js"></script>
-    <title>Venta</title>
+    <link rel="stylesheet" href="css/style-products-sale.css">
+    <!-- js -->
+    <script src="js/products_sale.js"></script>
+    <!-- swal -->
+    <script src="js/sweetAlert.js"></script>
+    <title>Ventas</title>
 </head>
 <body onload="init()">
     <!-- Principal container -->
@@ -88,30 +90,10 @@
               </div>
           </div>
       </div>
-        <!-- Title section -->
-        <div><h1>Lista de ventas</h1> <h5>Busca una venta</h5></div>
-        <div class="div-search">
-          <div class="item-search"><label id="label_num_sale" for="">No Venta : </label> <input id="input_sale_number" class="input-search-text" placeholder="Ingrese numero de venta" type="number"/>  </div> 
-          <div class="item-search"><label for="">Cliente:</label> <select id="select-client"> <option value="1">Seleccione un cliente</option></select></div>
-        </div> 
-        <div class="table">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <td>No</td>
-                <td>Cliente</td>
-                <td>Fecha</td>
-                <td>Total</td>
-                <td>Acciones</td>
-              </tr>
-            </thead>
-            <tbody id="table-body"> 
-
-            </tbody>
-          </table>
-        </div>
+        <div class="item">Productos de una venta</div>
+          <div class="item wrapper" id="wrapper">           
+          </div>
+          <div class="loader" id="loader"></div>            
     </div>
-    <!-- JavaScript --> 
-    <script src="js/sweetAlert.js"></script> 
 </body>
 </html>

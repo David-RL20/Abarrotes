@@ -15,7 +15,7 @@
                     'subtotal'=>$a->subTotal,
                     'codeProduct'=>$a->codeProduct,
                     'nameProduct'=>$product->getName(),
-                    'namePrice'=>$product->getPrice(),
+                    'priceProduct'=>$product->getPrice(),
                     'quantity'=>$a->quantity,
 
                 ))));

@@ -44,11 +44,9 @@ class Client{
         x.open('POST','http://192.168.100.195/Abarrotes/api/AllSales_Credit.php')
         x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
         x.send('action=delete'+'&client='+this.id)
-        x.onreadystatechange = function(){
-            let a = x.responseText
-            let answer = JSON.parse(a) 
-            debugger
+        x.onreadystatechange = function(){            
             if(x.status == 200 && x.readyState == 4){
+                let answer = JSON.parse(x.responseText)   
                 if(answer.statusCode != 200){
                     swal({
                         position: 'top-end',
