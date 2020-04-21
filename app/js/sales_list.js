@@ -67,8 +67,32 @@ function addSaleToTable(sale){
     tdTotal.innerHTML = '$'+ sale.total
 
     //actions 
+    let option_delete = document.createElement('option')
+    let option_see_details = document.createElement('option')
+    let option_default = document.createElement('option')
 
+    option_default.innerHTML = 'Seleccione una opcion'
+    option_see_details.innerHTML = 'Ver detalles'
+    option_delete.innerHTML = 'Eliminar'
+    //values
+    option_default.value=0
+    option_see_details.value = 1
+    option_delete.value=2
 
+    selectAction.addEventListener('change',()=>{
+        let option = selectAction[selectAction.selectedIndex].value
+        console.log(option)
+         if(option == 1){
+            window.location = 'products_sale.html?sale='+sale.id
+         }else if(option == 2){
+             tableBody.removeChild(tr)
+         }
+    })
+    
+
+    selectAction.appendChild(option_default)
+    selectAction.appendChild(option_see_details)
+    selectAction.appendChild(option_delete)
     tdAction.appendChild(selectAction)
     tr.appendChild(tdNumber)
     tr.appendChild(tdClient)
@@ -83,7 +107,11 @@ function addListeners(){
     let input = document.getElementById('input_sale_number')
 
     select.addEventListener('change',function(){ 
-            searchByClient(select[select.selectedIndex].value) 
+            if(select[select.selectedIndex].value != 0){
+                searchByClient(select[select.selectedIndex].value) 
+            }else{
+                showAll()
+            }
     }) 
     input.addEventListener('keypress',function(){ 
         searchByNumber(input.value)  
@@ -124,4 +152,12 @@ function searchByNumber(number){
             tr[i].style.display = "none";
         }
     } 
+}
+function showAll(){ 
+    var  table, tr, i
+    table = document.getElementById("table-body");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) { 
+        tr[i].style.display = ""; 
+    }
 }

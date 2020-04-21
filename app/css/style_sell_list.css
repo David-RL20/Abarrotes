@@ -399,10 +399,12 @@ th, td {
 } 
 
 td select {
+    background-color: #ffffff;
+    color: #707070;
+    border-radius: 5px;
+    height: 35px; 
     width: 70%;
-    margin: 0;
-    height: 20px;
-    box-shadow: #20212246 0px 0px 3px 1px;
+    font-size: 10pt;
  } 
  
 #select-client {

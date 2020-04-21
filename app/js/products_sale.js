@@ -31,7 +31,7 @@ function addProduct(product){
     let div_card = document.createElement('div'),
     div_card_header = document.createElement('div'),
     div_card_body = document.createElement('div'),
-    h4 = document.createElement('h4'),
+    h4 = document.createElement('h5'),
     wrapper = document.getElementById('wrapper'),
     price = document.createElement('h6'),
     quantity = document.createElement('h6'),
@@ -39,7 +39,7 @@ function addProduct(product){
     //classes
     div_card.classList.add('card')
     div_card_header.classList.add('card-header')
-    div_card_body.classList.add('card-body')   
+    div_card_body.classList.add('card-body')    
     //data
     h4.innerHTML = product.nameProduct 
     price.innerHTML='<strong>'+'Precio : </strong> $'+product.priceProduct 

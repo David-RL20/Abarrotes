@@ -197,8 +197,8 @@ table tbody{
 }
 .wrapper{
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-auto-rows:  200px;
+    grid-template-columns: 25% 25% 25% 25%  ;
+    grid-auto-rows: 160px;
     flex-wrap: wrap;
     grid-gap: 10px;
     font-family: 'Quicksand';
@@ -250,4 +250,21 @@ table tbody{
 }
 .collapse{
     padding: 4px;
+}
+h6{
+    width: 100%;
+}
+.card-body{
+    padding: 0.55rem;
+}
+.card-header{
+    padding: .46rem .75rem;
+    background-color: #fcd434ab;
+} 
+h5{
+    margin: 0px;
+    font-size: 18px;
+    font-weight: 800;
+    text-align: center;
+    
 }

@@ -68,75 +68,63 @@ class Product{
         this.addCancelationListener()
     }
     verification(){
-        let infoInput = document.getElementById(idInputCode);
-        let products = this.products
-        var found = false;
-        products.forEach(product => {
-            if(product.code == this.code){
-                found=true;
-                var existing = this.verifyIsInCar();
-                if(!existing){
-                   
-                    //add to cart
-                    this.price = product.price
-                    this.name = product.name
-                    //#region confirmation for quantity
-            
-                    if(product.bulk == 'si' && typeof this.quantity == 'undefined'){
-                        //metodo que muestra un popup y regresa el valor del input
-                        //vere si lo puedo hacer con una promesa
-                        this.setPopUpListener()
-                        this.showQuantityPopUp();    
-                        this.verifyQuantityBulk();
 
-                    }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
-                        this.quantity=1;
-                        this.subtotal = this.quantity * this.price 
-                        this.addToCar();
-                        this.updateTotal();
-                        this.addToTable(); 
-                        this.resetProduct();
-                    }else if(product.bulk == 'no' && typeof this.quantity !=='undefined'){
-                        this.subtotal = this.quantity * this.price 
-                        this.addToCar();
-                        this.updateTotal();
-                        this.addToTable(); 
-                        this.resetProduct();
-                    }
-                    //#endregion
-
-                   
-                    infoInput.value=''
-                    infoInput.focus()  
-                    
-                }else{
-                    //#region confirmation for quantity
-                    if(product.bulk == 'si' && typeof this.quantity == 'undefined'){
-                        //metodo que muestra un popup y regresa el valor del input
-                        //vere si lo puedo hacer con una promesa
-                        this.showQuantityPopUp();    
-                        this.verifyQuantityBulk();  
-                        this.setPopUpListener()
-
-
-                    }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
-                        this.quantity=1;
-                        this.subtotal = this.quantity * this.price
-
-                        this.updateCart();
-                        this.updateTable();
-                        this.updateTotal(); 
-                        this.resetProduct();
-                        infoInput.value=''
-                        infoInput.focus() 
-                    }
-                    //#endregion
-                   
+        let infoInput = document.getElementById(idInputCode); 
+        //Verify if the product exist 
+        const product = this.existProduct();
+        console.log(product);
+        debugger;
+        if(product){
+            var existing = this.verifyIsInCar();
+            if(!existing){
+                //add to cart
+                this.price = product.price
+                this.name = product.name
+                //#region confirmation for quantity
+                if(product.bulk == 'si' && typeof this.quantity == 'undefined'){
+                    //metodo que muestra un popup y regresa el valor del input
+                    //vere si lo puedo hacer con una promesa
+                    this.setPopUpListener()
+                    this.showQuantityPopUp();    
+                    this.verifyQuantityBulk();
+                }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
+                    this.quantity=1;
+                    this.subtotal = this.quantity * this.price 
+                    this.addToCar();
+                    this.updateTotal();
+                    this.addToTable(); 
+                    this.resetProduct();
+                }else if(product.bulk == 'no' && typeof this.quantity !=='undefined'){
+                    this.subtotal = this.quantity * this.price 
+                    this.addToCar();
+                    this.updateTotal();
+                    this.addToTable(); 
+                    this.resetProduct();
                 }
+                //#endregion
+                infoInput.value=''
+                infoInput.focus()  
+            }else{
+                //#region confirmation for quantity
+                if(product.bulk == 'si' && typeof this.quantity == 'undefined'){
+                    //metodo que muestra un popup y regresa el valor del input
+                    //vere si lo puedo hacer con una promesa
+                    this.showQuantityPopUp();    
+                    this.verifyQuantityBulk();  
+                    this.setPopUpListener() 
+                }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
+                    this.quantity=1;
+                    this.subtotal = this.quantity * this.price 
+                    this.updateCart();
+                    this.updateTable();
+                    this.updateTotal(); 
+                    this.resetProduct();
+                    infoInput.value=''
+                    infoInput.focus() 
+                }
+                //#endregion 
             }
-        });
-    
-        if(!found){
+        }else{
             swal({
                 position: 'top-end',
                 icon: 'error',
@@ -146,7 +134,17 @@ class Product{
               })
             infoInput.value='';
             infoInput.focus();
-            
+        }  
+    }
+
+    async existProduct(){
+        try{
+            const answer = await fetch(`${AllProductsURL}?code=${this.code}`);
+            let product = await answer.json();
+            return product;
+        }
+        catch(error){
+            return null;
         }
     }
     moreProducts(text){
