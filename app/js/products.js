@@ -1,7 +1,10 @@
+const API_PRODUCTS = 'http://192.168.100.195/Abarrotes/api/AllProducts.php';
+const API_DEPARTMENTS = 'http://192.168.100.195/Abarrotes/api/AllDepartments.php';
+
 function init(){
     console.log('Initializing document');
     getProducts();
-    setTimeout(getDepartments,10000) 
+    setTimeout(getDepartments,1000) 
     setSearchListener()  
     
  
@@ -9,34 +12,37 @@ function init(){
 }
 
 //Get all the products from the data base
-function getProducts(){
-    // Ask for all the products
-    x= new XMLHttpRequest();
-    x.open('GET','http://192.168.100.195/Abarrotes/api/AllProducts.php')
-    x.send()
-    x.onreadystatechange = function(){
-        if(x.status == 200 && x.readyState == 4){
-            let products = JSON.parse(x.responseText);
-            let loader = document.getElementById('loader') 
-            insertProductsToTable(products)
-            loader.style.display= 'none' 
-            
-        }
-        
+async function getProducts(){ 
+    try {
+        const answer = await fetch(API_PRODUCTS)
+        const products = await answer.json();
+        insertProductsToTable(products) 
+        stopLoader()
+    } catch (error) {
+        swal({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error'+ error.message,
+            showConfirmButton: true, 
+        });
     }
 
 }
 
-function getDepartments(){ 
+async function getDepartments(){ 
     // Ask for all the products
-    x= new XMLHttpRequest();
-    x.open('GET','http://192.168.100.195/Abarrotes/api/AllDepartments.php')
-    x.send()
-    x.onreadystatechange = function(){
-        if(x.status == 200 && x.readyState == 4){ 
-              sessionStorage.departments = (x.responseText);  
-        }   
-    } 
+    try {
+        let response = await fetch(API_DEPARTMENTS); 
+        sessionStorage.departments = await response.text() 
+        
+    } catch (error) {
+        swal({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error'+ error.message,
+            showConfirmButton: true, 
+        });
+    }
 }
 
 function insertProductsToTable(products){
@@ -90,9 +96,7 @@ function insertProductsToTable(products){
                 
                 //We click and begin editing
                 if(!editing){   
-                    //Cuando da click y comienza a edita pasa lo siguiente 
-                    imageButton.src='images/edit.png'
-                    console.log(imageButton) 
+                    //Cuando da click y comienza a edita pasa lo siguiente  
                     var inputName = document.createElement('input')
                     var inputPrice = document.createElement('input') 
                     var selectBulk = document.createElement('select')
@@ -318,15 +322,14 @@ function insertProductsToTable(products){
 
 function setSearchListener(){
     inputSearch = document.getElementById('input-search')
-    inputSearch.addEventListener('keypress',()=>{
-        if(event.keyCode == 13){
+    inputSearch.addEventListener('keydown',()=>{ 
             search();
-        }
     })
 }
 
 function search(){ 
     var input, filter, found, table, tr, td, i, j;
+    startLoader()
     input = document.getElementById('input-search');
     filter = input.value.toUpperCase();
     table = document.getElementById("tableBody");
@@ -336,13 +339,23 @@ function search(){
         for (j = 0; j < td.length; j++) {
             if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
                 found = true;
+                stopLoader()
             }
         }
         if (found) {
             tr[i].style.display = "";
-            found = false;
+            found = false; 
+
         } else {
             tr[i].style.display = "none";
+            stopLoader();
         }
     }
+}
+
+function stopLoader(){
+    document.getElementById("loader").classList.remove('loader')
+}
+function startLoader(){
+    document.getElementById("loader").classList.add('loader')
 }

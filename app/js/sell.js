@@ -65,87 +65,64 @@ class Product{
                 }
             }
         });
-        this.addCancelationListener()
+        this.addCancelListener()
     }
     async verification(){
 
-        let infoInput = document.getElementById(idInputCode);
-        let products = this.products
-        var found = false;
+        let infoInput = document.getElementById(idInputCode); 
         //Verify if the product exist 
-        try {
-            const answer = await fetch(`${AllProductsURL}?code=${this.code}`);
-            const data = await answer.json();
-
-            console.log(data)
-            
-        } catch (error) {
-            
-            console.log(error) 
-        }
-        debugger  
-                found=true;
-        //         var existing = this.verifyIsInCar();
-        //         if(!existing){
-                   
-        //             //add to cart
-        //             this.price = product.price
-        //             this.name = product.name
-        //             //#region confirmation for quantity
-            
-        //             if(product.bulk == 'si' && typeof this.quantity == 'undefined'){
-        //                 //metodo que muestra un popup y regresa el valor del input
-        //                 //vere si lo puedo hacer con una promesa
-        //                 this.setPopUpListener()
-        //                 this.showQuantityPopUp();    
-        //                 this.verifyQuantityBulk();
-
-        //             }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
-        //                 this.quantity=1;
-        //                 this.subtotal = this.quantity * this.price 
-        //                 this.addToCar();
-        //                 this.updateTotal();
-        //                 this.addToTable(); 
-        //                 this.resetProduct();
-        //             }else if(product.bulk == 'no' && typeof this.quantity !=='undefined'){
-        //                 this.subtotal = this.quantity * this.price 
-        //                 this.addToCar();
-        //                 this.updateTotal();
-        //                 this.addToTable(); 
-        //                 this.resetProduct();
-        //             }
-        //             //#endregion
-
-                   
-        //             infoInput.value=''
-        //             infoInput.focus()  
-                    
-        //         }else{
-        //             //#region confirmation for quantity
-        //             if(product.bulk == 'si' && typeof this.quantity == 'undefined'){
-        //                 //metodo que muestra un popup y regresa el valor del input
-        //                 //vere si lo puedo hacer con una promesa
-        //                 this.showQuantityPopUp();    
-        //                 this.verifyQuantityBulk();  
-        //                 this.setPopUpListener()
-
-
-        //             }else if (product.bulk == 'no' && typeof this.quantity == 'undefined'){
-        //                 this.quantity=1;
-        //                 this.subtotal = this.quantity * this.price
-
-        //                 this.updateCart();
-        //                 this.updateTable();
-        //                 this.updateTotal(); 
-        //                 this.resetProduct();
-        //                 infoInput.value=''
-        //                 infoInput.focus() 
-        //             }
-        //             //#endregion
-                   
-        //         } 
-    
-        if(!found){
+        const p = await this.existProduct(); 
+        if(p){ 
+            var existing = this.verifyIsInCar();
+            if(!existing){
+                //add to cart
+                this.price = p.price
+                this.name = p.name
+                //#region confirmation for quantity
+                if(p.bulkSale == 'si' && typeof this.quantity == 'undefined'){
+                    //metodo que muestra un popup y regresa el valor del input
+                    //vere si lo puedo hacer con una promesa
+                    this.setPopUpListener()
+                    this.showQuantityPopUp();    
+                    this.verifyQuantityBulk();
+                }else if (p.bulkSale == 'no' && typeof this.quantity == 'undefined'){
+                    this.quantity=1;
+                    this.subtotal = this.quantity * this.price 
+                    this.addToCar();
+                    this.updateTotal();
+                    this.addToTable(); 
+                    this.resetProduct();
+                }else if(p.bulkSale == 'no' && typeof this.quantity !=='undefined'){
+                    this.subtotal = this.quantity * this.price 
+                    this.addToCar();
+                    this.updateTotal();
+                    this.addToTable(); 
+                    this.resetProduct();
+                }
+                //#endregion
+                infoInput.value=''
+                infoInput.focus()  
+            }else{
+                //#region confirmation for quantity
+                if(p.bulkSale == 'si' && typeof this.quantity == 'undefined'){
+                    //metodo que muestra un popup y regresa el valor del input
+                    //vere si lo puedo hacer con una promesa
+                    this.showQuantityPopUp();    
+                    this.verifyQuantityBulk();  
+                    this.setPopUpListener() 
+                }else if (p.bulkSale == 'no' && typeof this.quantity == 'undefined'){
+                    this.quantity=1;
+                    this.subtotal = this.quantity * this.price 
+                    this.updateCart();
+                    this.updateTable();
+                    this.updateTotal(); 
+                    this.resetProduct();
+                    infoInput.value=''
+                    infoInput.focus() 
+                }
+                //#endregion 
+            }
+        }else{
             swal({
                 position: 'top-end',
                 icon: 'error',
@@ -155,7 +132,17 @@ class Product{
               })
             infoInput.value='';
             infoInput.focus();
-            
+        }  
+    }
+
+    async existProduct(){
+        try{
+            const answer = await fetch(`${AllProductsURL}?code=${this.code}`);
+            const data = await answer.json();
+            return data;
+        }
+        catch(error){
+            return null;
         }
     }
     moreProducts(text){
@@ -344,7 +331,7 @@ class Product{
         let infoInput = document.getElementById(idInputCode);
 
         //asignar para poder cerrar la ventana
-        button.addEventListener('click',this.hiddeQuantityPopUp)
+        button.addEventListener('click',this.hidQuantityPopUp)
         
         input.addEventListener('keydown',()=>{
             if(event.keyCode == 13){
@@ -362,7 +349,7 @@ class Product{
                         this.addToTable(); 
                         this.resetProduct();
                     } 
-                    this.hiddeQuantityPopUp()
+                    this.hidQuantityPopUp()
                     infoInput.value='' 
                     input.value=''
                 }else{
@@ -382,7 +369,7 @@ class Product{
                     
                 }
             }else if(event.keyCode == 27){
-                this.hiddeQuantityPopUp();
+                this.hidQuantityPopUp();
                 
             }
         });
@@ -399,14 +386,14 @@ class Product{
         setTimeout(() => {input.focus()}, 100);
 
     }
-    hiddeQuantityPopUp(){
+    hidQuantityPopUp(){
         let overlay = document.getElementById('overlay-quantity');
         let div = document.getElementById('div-quantity');
         overlay.classList.remove('active');
         div.classList.remove('active');
         this.focusInputProduct();
     }
-    addCancelationListener(){
+    addCancelListener(){
         let btnCancel = document.getElementById("btn-cancel-sell");
         btnCancel.addEventListener("click",()=>{
             swal({
@@ -534,7 +521,8 @@ class Product{
     focusInputProduct(){
         setTimeout(() => {
             let input = document.getElementById(idInputCode)
-            input.focus() 
+            input.focus()  
+            input.value ='';
         }, 200);
     }
     verifyQuantityBulk(){
@@ -815,6 +803,6 @@ class Product{
     }
 }
  
-function init(){
-     product = new Product();   
+function init(){ 
+    product = new Product();   
 } 
