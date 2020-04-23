@@ -791,4 +791,7 @@ class Product {
 
 function init() {
     product = new Product();
+    for (let i = 21; i <= 200; i++) {
+        console.log(`insert into productos (codigoBarras,nombre,precio,ventaGranel) values (00${i},'Producto mixto de ${i} pesos',${i},'no');`)
+    }
 }
