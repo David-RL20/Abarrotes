@@ -3,12 +3,13 @@ const ID_DATALIST = 'dataListProducts'
 const ID_TABLE_BODY = "tableBody";
 const ID_TOTAL_LABEL = "totalCurrently";
 const ID_TOTAL_LABEL_WINDOW = "label-total-window";
+const BTN_FINISH_SALE = 'btn-finish-sale'
+const ID_LABEL_CHANGE_MISSING = 'lab-change-missing'
 const PRODUCTS_API = "http://localhost/Abarrotes/api/AllProducts.php"
 const CLIENTS_API = "http://localhost/Abarrotes/api/AllClients.php"
 const URL_SALES_API = 'http://localhost/Abarrotes/api/AllSales.php';
 const URL_PROD_SALE_API = 'http://localhost/Abarrotes/api/AllProducts_Sell.php';
 const URL_SALE_CREDIT_API = 'http://localhost/Abarrotes/api/AllSales_Credit.php';
-const BTN_FINISH_SALE = 'btn-finish-sale'
 
 class Product {
     constructor() {
@@ -85,6 +86,7 @@ class Product {
                     this.updateTotal();
                     this.addToTable();
                     this.resetProduct();
+                    this.resetInput();
                     return;
                 }
                 if (p.bulkSale == 'no' && typeof this.quantity !== 'undefined') {
@@ -197,7 +199,7 @@ class Product {
         setTimeout(() => {
             input.value = ''
             input.focus();
-        }, 100);
+        }, 10);
 
     }
     verifyIsInCar() {
@@ -405,20 +407,19 @@ class Product {
                     cancel: 'cancelar'
                 })
                 .then((result) => {
-                    if (result.value) {
+                    if (result) {
+                        //cancelar la transaccion
                         swal(
-                            'Eliminada!',
-                            'Compra eliminada de manera exitosa',
+                            'Cancelada!',
+                            'Compra Cancelada',
                             'success'
                         )
+                        this.cancelTransaction()
+                        this.resetInput();
+                    } else {
+                        //no cancelar la transaccion
+                        this.resetInput();
                     }
-                    this.cancelTransaction()
-                    this.resetInput();
-                })
-                .catch(() => {
-                    console.log("Operation just got canceled")
-                    this.cancelTransaction()
-                    this.resetInput();
 
                 })
         })
@@ -427,7 +428,7 @@ class Product {
         if (this.car != '' && typeof this.car !== 'undefined') {
             this.car.forEach(ele => {
                 let tr = document.getElementById(ele.code)
-                let body = document.getElementById(ID_TOTAL_LABEL)
+                let body = document.getElementById(ID_TABLE_BODY)
                 body.removeChild(tr);
             });
             this.total = 0
@@ -476,11 +477,12 @@ class Product {
     }
     checkChange() {
         let input = document.getElementById('inputAmount');
-        console.log(event.keyCode)
+        let changeLabel = document.getElementById('change-label')
+        let label_change_missing = document.getElementById(ID_LABEL_CHANGE_MISSING);
         if (event.keyCode == '13') {
             if (input.value >= this.total) {
+                label_change_missing.textContent = "Cambio :"
                 //vamos bien
-                let changeLabel = document.getElementById('change-label')
                 changeLabel.innerHTML = (input.value - this.total)
                 if (input.value == this.total) {
                     this.finishedSell()
@@ -489,18 +491,13 @@ class Product {
                 setTimeout(() => {
                     let btnFinishSale = document.getElementById(BTN_FINISH_SALE)
                     btnFinishSale.addEventListener('click', this.finishedSell.bind(this))
-                }, 100);
+                }, 10);
 
             } else {
                 let missing = this.total - input.value;
-                swal({
-                        icon: 'warning',
-                        title: 'Faltante',
-                        text: 'faltan :  $' + missing
-                    })
-                    .then(() => {
-                        input.focus();
-                    })
+                label_change_missing.textContent = "Faltante : ";
+                changeLabel.innerHTML = missing;
+
             }
         }
         if (event.keyCode == 27) {
