@@ -5,11 +5,11 @@ const ID_TOTAL_LABEL = "totalCurrently";
 const ID_TOTAL_LABEL_WINDOW = "label-total-window";
 const BTN_FINISH_SALE = 'btn-finish-sale'
 const ID_LABEL_CHANGE_MISSING = 'lab-change-missing'
-const PRODUCTS_API = "http://localhost/Abarrotes/api/AllProducts.php"
-const CLIENTS_API = "http://localhost/Abarrotes/api/AllClients.php"
-const URL_SALES_API = 'http://localhost/Abarrotes/api/AllSales.php';
-const URL_PROD_SALE_API = 'http://localhost/Abarrotes/api/AllProducts_Sell.php';
-const URL_SALE_CREDIT_API = 'http://localhost/Abarrotes/api/AllSales_Credit.php';
+const PRODUCTS_API = "http://127.0.0.1.8080/Abarrotes/api/AllProducts.php"
+const CLIENTS_API = "http://127.0.0.1.8080/Abarrotes/api/AllClients.php"
+const URL_SALES_API = 'http://l127.0.0.1.8080Abarrotes/api/AllSales.php';
+const URL_PROD_SALE_API = 'http://127.0.0.1.8080/Abarrotes/api/AllProducts_Sell.php';
+const URL_SALE_CREDIT_API = 'http://127.0.0.1.8080/Abarrotes/api/AllSales_Credit.php';
 
 class Product {
     constructor() {
