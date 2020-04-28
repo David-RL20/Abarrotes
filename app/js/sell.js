@@ -21,7 +21,7 @@ class Product {
         this.getClients()
         this.addInputListener()
         this.addChargeSellListener()
-        this.resetProduct() 
+        this.resetProduct()
         this.addSearchProductListener()
     }
 
@@ -544,102 +544,85 @@ class Product {
         }
         return position;
     }
-    finishedSell() {
-        //send a request to register sale  
-        let x = new XMLHttpRequest();
-        x.open('POST', URL_SALES_API, true);
-        x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        //if client is different to 1 which is the default 
-        if (typeof this.client !== 'undefined' && this.client != 1) {
-            x.send('total=' + this.total + '&client=' + this.client + '&type=credito');
-        } else {
-            x.send('total=' + this.total);
-        }
-        x.onreadystatechange = () => {
-            if (x.status == 200 && x.readyState == 4) {
-                let sell = JSON.parse(x.responseText)
-                this.idSale = sell.idSale
-                if (typeof this.car !== 'undefined') {
-                    this.car.forEach(e => {
-                        setTimeout(() => {
-                            this.sendAProduct(sell.idSale, e.code, e.quantity, e.subtotal);
-                        }, 200);
+    async finishedSell() {
+        // //send a request to register sale  
+        // let x = new XMLHttpRequest();
+        // x.open('POST', URL_SALES_API, true);
+        // x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        // //if client is different to 1 which is the default 
+        // if (typeof this.client !== 'undefined' && this.client != 1) {
+        //     x.send('total=' + this.total + '&client=' + this.client + '&type=credito');
+        // } else {
+        //     x.send('total=' + this.total);
+        // }
+        // x.onreadystatechange = () => {
+        //     if (x.status == 200 && x.readyState == 4) {
+        //         let sell = JSON.parse(x.responseText)
+        //         this.idSale = sell.idSale
+        //         if (typeof this.car !== 'undefined') {
+        //             this.car.forEach(e => {
+        //                 setTimeout(() => {
+        //                     this.sendAProduct(sell.idSale, e.code, e.quantity, e.subtotal);
+        //                 }, 200);
 
-                    });
-                    swal({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Compra exitosa',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                    setTimeout(function () {
-                        window.location.reload(true)
-                    }, 2000)
-                } else {
-                    console.log('Empty car somehow')
-                    swal({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'El carrito esta vacio !',
-                        footer: '<a href>Ingresa algun producto para poder continuar</a>'
-                    })
-                }
+        //             });
+        //             
+
+        //         } else {
+        //             console.log('Empty car somehow')
+        //             
+        //         }
+        //     }
+        // } 
+        try {
+            //send all car to be processed in the backend
+            const request = await fetch(URL_SALES_API, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `total=${this.total}&products=${JSON.stringify(this.car)}&client=${this.client}`
+            });
+
+            const response = await request.json();
+            if (response.status == 200) {
+                swal({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Compra exitosa',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+                //reload if successfully sale
+                setTimeout(function () {
+                    window.location.reload(true)
+                }, 2000);
+            } else {
+                swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: response.message,
+                    footer: '<a href>Ingresa algun producto para poder continuar</a>'
+                })
             }
+
+        } catch (err) {
+            console.log(err)
         }
     }
-    sendAProduct(saleID, code, quantity, subtotal) {
-        if (typeof saleID !== 'undefined' && saleID != '' &&
-            typeof code !== 'undefined' && code != '' &&
-            typeof quantity !== 'undefined' && quantity != '' &&
-            typeof subtotal !== 'undefined' && subtotal != '') {
-            //send request with not answer spectated
-            var x = new XMLHttpRequest();
-            x.open('POST', URL_PROD_SALE_API, true);
-            x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            x.send('idSell=' + saleID + '&codeProduct=' + code + '&quantity=' + quantity + '&subTotal=' + subtotal);
-            x.onreadystatechange = function () {
-                if (x.status == 200 && x.readyState == 4) {
-                    let answer = JSON.parse(x.responseText)
-                    if (answer.statusCode == 404) {
-                        //if logical error
-                        swal({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Error' + answer.message,
-                            showConfirmButton: true,
-                        })
-                    }
-                }
-            }
-
-        }
-    } 
     addProduct(code) {
         this.code = code
         this.verification()
     }
     getClients() {
-        setTimeout(() => {
-            let x = new XMLHttpRequest();
-            x.open('GET', CLIENTS_API)
-            x.send()
-            x.onreadystatechange = () => {
-                let select = document.getElementById('select-client')
-                if (x.status == 200 && x.readyState == 4) {
-                    let clients = JSON.parse(x.responseText)
-                    clients.forEach(client => {
-                        //add to list
-                        let option = document.createElement('option')
-                        option.innerHTML = client.name
-                        option.value = client.number
-                        option.dataset.limit = client.limit
-                        option.dataset.used = client.total_used
-                        select.appendChild(option)
-                    });
-                }
-
-            }
+        setTimeout(async () => {
+            let answer = await fetch(CLIENTS_API);
+            let json = await answer.json()
+            let select = document.getElementById('select-client')
+            json.forEach(client => {
+                select.insertAdjacentHTML('afterbegin', `<option value=${client.number} data-limit=${client.limit} data-used=${client.total_used} >
+                    ${client.name}</option>`)
+            });
         }, 200);
     }
     saleToCredit() {
@@ -755,25 +738,25 @@ class Product {
         }, 200);
 
     }
-    addSearchProductListener(){
+    addSearchProductListener() {
         //Variables
         let in_search = document.querySelector(`#${ID_IN_CODE_SEARCHPRODUCT}`);
-        in_search.addEventListener('keydown',async ()=>{ 
-            if(event.keyCode === 13){
+        in_search.addEventListener('keydown', async () => {
+            if (event.keyCode === 13) {
                 this.code = in_search.value
                 let product = await this.existProduct();
-                if(product){
+                if (product) {
                     //insert info into mini table
                     this.addProductToTableSearch(product)
                     //reset input
-                    in_search.value =``; 
+                    in_search.value = ``;
                     //reset code
                     this.code = null
                 }
             }
         });
     }
-    addProductToTableSearch(product){
+    addProductToTableSearch(product) {
         //variables
         let tb_search = document.querySelector(`#${ID_TABLEBODY_SEARCH_PRODUCT}`);
         tb_search.innerHTML = `<tr> 
