@@ -60,9 +60,7 @@ create table ventas_credito(
     status bit default 0
 );
 
-alter table ventas 
-add constraint ck_type_Sell
-check  (tipoVenta='efectivo' or tipoVenta = 'credito') ;
+ 
 
 /*verificar si el producto se vende a granel */
 alter table productos 
