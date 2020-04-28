@@ -1,0 +1,508 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1043" viewBox="0 0 1280 1043">
+    <defs>
+        <filter id="prefix__Frutas_div" width="340" height="340" x="120" y="57" filterUnits="userSpaceOnUse">
+            <feOffset dx="20" dy="40"/>
+            <feGaussianBlur result="blur" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Path_1" width="340" height="340" x="230" y="57" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-2" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-2" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Rectangle_5" width="340" height="340" x="360" y="57" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-3" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-3" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Refresco_div" width="340" height="340" x="490" y="57" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-4" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-4" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Pan_div" width="340" height="340" x="620" y="57" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-5" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-5" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Carnes_div" width="340" height="340" x="750" y="57" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-6" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-6" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Sabritas_div" width="340" height="340" x="880" y="57" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-7" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-7" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Enlatados_div" width="340" height="340" x="1010" y="57" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-8" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-8" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Rectangle_45" width="955" height="290" x="150" y="252" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-9" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-9" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Rectangle_42" width="400" height="290" x="900" y="337" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-10" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-10" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Rectangle_42-2" width="400" height="290" x="900" y="252" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-11" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-11" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Rectangle_43" width="955" height="620" x="150" y="332" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-12" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-12" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Rectangle_46" width="400" height="460" x="917" y="422" filterUnits="userSpaceOnUse">
+            <feOffset dx="20" dy="40"/>
+            <feGaussianBlur result="blur-13" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-13" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Rectangle_42-3" width="400" height="285" x="897" y="597" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-14" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-14" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__Rectangle_40" width="295" height="285" x="1002" y="597" filterUnits="userSpaceOnUse">
+            <feOffset dy="40"/>
+            <feGaussianBlur result="blur-15" stdDeviation="40"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-15" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <clipPath id="prefix__clip-path">
+            <path id="prefix__Rectangle_17" d="M0 0H45V45H0z" data-name="Rectangle 17" style="stroke:#707070;fill:#707070"/>
+        </clipPath>
+        <clipPath id="prefix__clip-path-2">
+            <path id="prefix__Rectangle_17-2" d="M0 0H45V45H0z" class="prefix__cls-2" data-name="Rectangle 17" transform="translate(483 875)"/>
+        </clipPath>
+        <clipPath id="prefix__clip-path-3">
+            <path id="prefix__Rectangle_17-3" d="M0 0H45V45H0z" class="prefix__cls-2" data-name="Rectangle 17"/>
+        </clipPath>
+        <clipPath id="prefix__clip-Resized-webpage">
+            <path d="M0 0H1280V1043H0z"/>
+        </clipPath>
+        <style>
+            .prefix__cls-14,.prefix__cls-2{fill:#707070}.prefix__cls-5{fill:#fd5052}.prefix__cls-19,.prefix__cls-21,.prefix__cls-6{fill:#fff}.prefix__cls-6{font-size:25px}.prefix__cls-14,.prefix__cls-21,.prefix__cls-6{font-family:SegoeUI-Semibold,Segoe UI;font-weight:600}.prefix__cls-7{fill:#47e69c}.prefix__cls-8{fill:#5084fd}.prefix__cls-9{fill:#e6c647}.prefix__cls-12{fill:#f5f8fb}.prefix__cls-14{font-size:18px}.prefix__cls-17{clip-path:url(#prefix__clip-path-3)}.prefix__cls-21{font-size:20px}.prefix__cls-22{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px}
+        </style>
+    </defs>
+    <g id="prefix__Resized-webpage">
+        <path d="M0 0H1280V1043H0z" class="prefix__cls-19"/>
+        <path id="prefix__Nav_bar_menu" d="M0 0h150a40 40 0 0140 40v720a40 40 0 01-40 40H0V0z" data-name="Nav bar menu" style="fill:#595f71"/>
+        <g id="prefix__Group_130" data-name="Group 130" transform="translate(-6)">
+            <g id="prefix__Group_125" data-name="Group 125" transform="translate(-10)">
+                <path id="prefix__Ventas_nav_bar" d="M0 0H30V30H0z" class="prefix__cls-5" data-name="Ventas nav bar" transform="translate(29 209)"/>
+                <text id="prefix__Ventas" class="prefix__cls-6" transform="translate(29 276)">
+                    <tspan x="0" y="0">Ventas</tspan>
+                </text>
+            </g>
+            <g id="prefix__Group_126" data-name="Group 126" transform="translate(-10 1)">
+                <path id="prefix__Productos_nav_bar" d="M0 0H30V30H0z" class="prefix__cls-7" data-name="Productos nav bar" transform="translate(29 306)"/>
+                <text id="prefix__Productos" class="prefix__cls-6" transform="translate(29 373)">
+                    <tspan x="0" y="0">Productos</tspan>
+                </text>
+            </g>
+            <g id="prefix__Group_127" data-name="Group 127" transform="translate(-10 -1)">
+                <path id="prefix__Clientes_nav_bar" d="M0 0H30V30H0z" class="prefix__cls-8" data-name="Clientes nav bar" transform="translate(29 406)"/>
+                <text id="prefix__Clientes" class="prefix__cls-6" transform="translate(29 473)">
+                    <tspan x="0" y="0">Clientes</tspan>
+                </text>
+            </g>
+            <g id="prefix__Group_128" data-name="Group 128" transform="translate(-10 -3)">
+                <path id="prefix__Provedores_nav_bar" d="M0 0H30V30H0z" class="prefix__cls-9" data-name="Provedores nav bar" transform="translate(29 506)"/>
+                <text id="prefix__Provedores" class="prefix__cls-6" transform="translate(29 573)">
+                    <tspan x="0" y="0">Provedores</tspan>
+                </text>
+            </g>
+            <g id="prefix__Group_129" data-name="Group 129" transform="translate(-10 -5)">
+                <path id="prefix__Departamento_nav_bar" d="M0 0H30V30H0z" data-name="Departamento nav bar" transform="translate(29 606)" style="fill:#e66b47"/>
+                <text id="prefix__Departamento" class="prefix__cls-6" transform="translate(29 673)">
+                    <tspan x="0" y="0">Departamento</tspan>
+                </text>
+            </g>
+        </g>
+        <path id="prefix__Logo_nav_bar" d="M0 0H110V80H0z" data-name="Logo nav bar" transform="translate(40 49)" style="fill:rgba(217,216,216,.82)"/>
+        <g>
+            <rect id="prefix__Frutas_div-2" width="100" height="100" class="prefix__cls-12" data-name="Frutas div" rx="10" transform="translate(220 137)"/>
+        </g>
+        <g id="prefix__Mask_Group_6" data-name="Mask Group 6" transform="translate(250 137)">
+            <g id="prefix__manzana" transform="translate(4.037 .265)">
+                <path id="prefix__Path_33" d="M32.272 13.555c-3.313-2.55-8-1.844-11.722-.944a9.435 9.435 0 01-1.826.242 14.709 14.709 0 00-.368-1.44l2.873-.419A8.262 8.262 0 0028.3 4.08l.424-2.786a.733.733 0 00.046-.3L28.918 0l-4.17.607a8.263 8.263 0 00-7.069 6.915l-.25 1.643a9.07 9.07 0 00-3.771-3.884.778.778 0 00-1.042.31.745.745 0 00.317 1.019 8.965 8.965 0 014.21 6.194 9.3 9.3 0 01-1.067-.192c-3.717-.9-8.411-1.607-11.722.944C1.389 15.84-.037 20.361 0 27.377a19.917 19.917 0 007.42 14.541c2.867 2.232 5.951 3.068 8.912 2.414a9.246 9.246 0 013.961 0 9.171 9.171 0 001.978.216 11.315 11.315 0 006.934-2.63 19.922 19.922 0 007.42-14.541c.038-7.017-1.387-11.537-4.354-13.821zM21 9.506l-.675.1L26.876 3.2l-.1.66A6.745 6.745 0 0121 9.506zM24.974 2.1l1-.146-6.922 6.769.149-.98A6.747 6.747 0 0124.974 2.1zm3.275 38.64a9.244 9.244 0 01-7.616 2.122 10.86 10.86 0 00-4.638 0 9.256 9.256 0 01-7.616-2.122c-3.938-3.066-6.814-8.688-6.839-13.372-.035-6.521 1.2-10.653 3.767-12.63 2.176-1.675 5.385-1.879 10.4-.665a10.988 10.988 0 001.7.256c.044.385.073.765.085 1.134a.761.761 0 00.768.728h.025a.76.76 0 00.745-.776c-.011-.348-.039-.708-.077-1.07a11.061 11.061 0 001.968-.272c5.017-1.213 8.226-1.008 10.4.665 2.57 1.978 3.8 6.11 3.767 12.631-.024 4.681-2.9 10.3-6.84 13.37zm0 0" class="prefix__cls-2" data-name="Path 33"/>
+                <path id="prefix__Path_34" d="M12.415 22.169c-3.818 0-6.924 3.376-6.924 7.526a.77.77 0 001.539 0c0-3.32 2.416-6.021 5.385-6.021a.753.753 0 100-1.5zm0 0" class="prefix__cls-2" data-name="Path 34" transform="translate(-1.644 -6.976)"/>
+                <path id="prefix__Path_35" d="M26.741 22.39a3.352 3.352 0 01-4.671 0 .78.78 0 00-1.088 0 .74.74 0 000 1.064 4.914 4.914 0 006.846 0 .74.74 0 000-1.064.78.78 0 00-1.087 0zm0 0" class="prefix__cls-2" data-name="Path 35" transform="translate(-6.215 -6.975)"/>
+            </g>
+        </g>
+        <text id="prefix__Frutas" class="prefix__cls-14" transform="translate(272 217)">
+            <tspan x="-24.935" y="0">Frutas</tspan>
+        </text>
+        <text id="prefix__Productos_principales" data-name="Productos principales" transform="translate(220 84)" style="font-family:SegoeUI-Bold,Segoe UI;font-weight:700;font-size:50px;fill:#707070">
+            <tspan x="0" y="0">Productos principales</tspan>
+        </text>
+        <g id="prefix__Group_132" data-name="Group 132" transform="translate(-267 -23)">
+            <g transform="translate(267 23)">
+                <path id="prefix__Path_1-2" d="M6.667 0h86.666A6.667 6.667 0 01100 6.667v86.666A6.667 6.667 0 0193.333 100H6.667A6.667 6.667 0 010 93.333V6.667A6.667 6.667 0 016.667 0z" class="prefix__cls-12" data-name="Path 1" transform="translate(350 137)"/>
+            </g>
+            <g id="prefix__Mask_Group_1" data-name="Mask Group 1" transform="translate(162 -705)">
+                <g id="prefix__brocoli" transform="translate(483 875.001)">
+                    <g id="prefix__Group_11" data-name="Group 11">
+                        <g id="prefix__Group_10" data-name="Group 10">
+                            <path id="prefix__Path_2" d="M44.919 14.6a8.245 8.245 0 00-7.451-7.065A8.245 8.245 0 0022.5 3.518 8.245 8.245 0 007.531 7.532 8.245 8.245 0 007.1 23.91c1.015 1.044 7.9 8.3 7.9 12.84v3A5.256 5.256 0 0020.25 45h4.5A5.256 5.256 0 0030 39.75v-3c0-4.542 6.889-11.8 7.9-12.84a8.245 8.245 0 007.019-9.31zM28.5 36.75v3a3.754 3.754 0 01-3.75 3.75h-4.5a3.754 3.754 0 01-3.75-3.75v-3c0-4.306-4.984-10.262-7.31-12.807a8.237 8.237 0 002.431-.672l3.909 5.684a2.944 2.944 0 002.443 1.308 3.092 3.092 0 00.918-.141 2.936 2.936 0 002.082-2.516 8.131 8.131 0 003.054 0 2.936 2.936 0 002.082 2.516 3.092 3.092 0 00.918.141 2.944 2.944 0 002.443-1.308l3.909-5.684a8.236 8.236 0 002.431.672c-2.327 2.545-7.31 8.501-7.31 12.807zM12.927 22.525a8.318 8.318 0 001.5-1.314A8.277 8.277 0 0019.5 27.18v.076a1.5 1.5 0 01-2.735.85zm12.573 4.73v-.075a8.276 8.276 0 005.071-5.968 8.315 8.315 0 001.5 1.314l-3.838 5.58a1.5 1.5 0 01-2.734-.85zM36.749 22.5a6.792 6.792 0 01-6.1-3.848.789.789 0 00-1.237-.191.75.75 0 00-.194.572c.013.151.027.309.027.467a6.75 6.75 0 01-13.5 0c0-.158.014-.316.027-.467a.75.75 0 00-.681-.812h-.066a.763.763 0 00-.684.434A6.75 6.75 0 118.25 9 .75.75 0 009 8.252a6.748 6.748 0 0112.825-2.936.781.781 0 001.35 0A6.748 6.748 0 0136 8.251a.75.75 0 00.75.75 6.75 6.75 0 010 13.5z" class="prefix__cls-2" data-name="Path 2" transform="translate(0 -.001)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_13" data-name="Group 13" transform="translate(12.806 9.7)">
+                        <g id="prefix__Group_12" data-name="Group 12">
+                            <path id="prefix__Path_3" d="M19.776 14.228a.75.75 0 00-1.061 1.061 6.724 6.724 0 011.977 4.773.75.75 0 001.5 0 8.226 8.226 0 00-2.416-5.834z" class="prefix__cls-2" data-name="Path 3" transform="translate(-18.498 -14.012)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_15" data-name="Group 15" transform="translate(28.499 9.7)">
+                        <g id="prefix__Group_14" data-name="Group 14">
+                            <path id="prefix__Path_4" d="M44.637 14.228a.75.75 0 00-1.055 0 8.228 8.228 0 00-2.416 5.834.75.75 0 101.5 0 6.723 6.723 0 011.977-4.773.75.75 0 00-.006-1.061z" class="prefix__cls-2" data-name="Path 4" transform="translate(-41.166 -14.011)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <text id="prefix__Veduras" class="prefix__cls-14" transform="translate(667 240)">
+                <tspan x="-32.563" y="0">Veduras</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_133" data-name="Group 133" transform="translate(-314 -23)">
+            <g transform="translate(314 23)">
+                <rect id="prefix__Rectangle_5-2" width="100" height="100" class="prefix__cls-12" data-name="Rectangle 5" rx="10" transform="translate(480 137)"/>
+            </g>
+            <g id="prefix__Mask_Group_2" class="prefix__cls-17" data-name="Mask Group 2" transform="translate(822 170)">
+                <g id="prefix__zumo-de-naranja" transform="translate(6.656 -.075)">
+                    <g id="prefix__Group_17" data-name="Group 17">
+                        <g id="prefix__Group_16" data-name="Group 16">
+                            <path id="prefix__Path_5" d="M41.59 14.3a.754.754 0 00-.051-.253c-.008-.022-.016-.042-.026-.063s-.012-.036-.022-.053L35.567 3.566V2.259A2.262 2.262 0 0033.307 0H17.492a2.262 2.262 0 00-2.259 2.259v1.307L9.308 13.935c-.008.013-.007.028-.014.041a1.239 1.239 0 00-.077.29c0 .015-.009.027-.009.043v30.123a.753.753 0 00.753.753h30.877a.753.753 0 00.753-.753V14.3zm-6.023-7.7l3.974 6.954h-3.974zm4.264 8.46l-2.818 3.17a3.79 3.79 0 01-5.075.511l-2.4-1.8v-1.879zm-9.744-1.506L34.06 6.6v6.954zM16.739 2.259a.754.754 0 01.753-.753h15.815a.754.754 0 01.753.753v.753H16.739zm11.3 41.42H10.715V27.453l2.356-2.061a3.585 3.585 0 015.059.338q.052.059.1.12a5.091 5.091 0 007.76.225l2.046-2.275zm0-22.128l-3.169 3.517a3.585 3.585 0 01-5.464-.159 5.091 5.091 0 00-7.156-.8q-.088.07-.172.144l-1.364 1.194v-2.513l2.356-2.061a3.585 3.585 0 015.059.338q.052.059.1.12a5.091 5.091 0 007.76.225l2.046-2.273zm0-4.519l-3.169 3.517a3.585 3.585 0 01-5.464-.159 5.091 5.091 0 00-7.156-.8q-.088.07-.172.144l-1.364 1.194v-5.866h17.322zm-16.78-3.476l5.164-9.037h17.093l-5.164 9.037zm28.826 30.123H29.542V23.346l1.494 1.12a5.3 5.3 0 007.1-.715l1.947-2.19v22.118zm0-24.385l-3.072 3.456a3.789 3.789 0 01-5.075.511l-2.4-1.8v-2.634l1.494 1.12a5.3 5.3 0 007.1-.715l1.947-2.19z" class="prefix__cls-2" data-name="Path 5" transform="translate(-9.208)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_19" data-name="Group 19" transform="translate(21.84 30.877)">
+                        <g id="prefix__Group_18" data-name="Group 18">
+                            <path id="prefix__Path_6" d="M47.4 44.417h-6.022a.753.753 0 000 1.506H47.4a.753.753 0 000-1.506z" class="prefix__cls-2" data-name="Path 6" transform="translate(-40.625 -44.417)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_21" data-name="Group 21" transform="translate(21.84 33.889)">
+                        <g id="prefix__Group_20" data-name="Group 20">
+                            <path id="prefix__Path_7" d="M47.4 48.75h-6.022a.753.753 0 100 1.506H47.4a.753.753 0 000-1.506z" class="prefix__cls-2" data-name="Path 7" transform="translate(-40.625 -48.75)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_23" data-name="Group 23" transform="translate(21.84 36.902)">
+                        <g id="prefix__Group_22" data-name="Group 22">
+                            <path id="prefix__Path_8" d="M47.4 53.083h-6.022a.753.753 0 000 1.506H47.4a.753.753 0 000-1.506z" class="prefix__cls-2" data-name="Path 8" transform="translate(-40.625 -53.083)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_25" data-name="Group 25" transform="translate(21.84 39.914)">
+                        <g id="prefix__Group_24" data-name="Group 24">
+                            <path id="prefix__Path_9" d="M47.4 57.417h-6.022a.753.753 0 100 1.506H47.4a.753.753 0 000-1.506z" class="prefix__cls-2" data-name="Path 9" transform="translate(-40.625 -57.417)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_27" data-name="Group 27" transform="translate(9.429 5.412)">
+                        <g id="prefix__Group_26" data-name="Group 26">
+                            <path id="prefix__Path_10" d="M28.738 8.638a3.422 3.422 0 00-4.809.288 3.839 3.839 0 00-1.138 2.406 2.944 2.944 0 002.99 3.26 3.81 3.81 0 002.67-1.144 3.423 3.423 0 00.287-4.81zm-1.352 3.744a1.932 1.932 0 01-2.68.288 1.526 1.526 0 01-.413-1.222 2.332 2.332 0 01.7-1.457 2.313 2.313 0 011.6-.709 1.5 1.5 0 011.077.421 1.93 1.93 0 01-.285 2.679z" class="prefix__cls-2" data-name="Path 10" transform="translate(-22.773 -7.786)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_29" data-name="Group 29" transform="translate(4.518 27.864)">
+                        <g id="prefix__Group_28" data-name="Group 28">
+                            <path id="prefix__Path_11" d="M17.968 40.083a2.259 2.259 0 102.259 2.259 2.259 2.259 0 00-2.259-2.259zm0 3.012a.753.753 0 11.753-.753.754.754 0 01-.753.758z" class="prefix__cls-2" data-name="Path 11" transform="translate(-15.708 -40.083)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_31" data-name="Group 31" transform="translate(6.778 35.395)">
+                        <g id="prefix__Group_30" data-name="Group 30">
+                            <path id="prefix__Path_12" d="M21.971 50.917a3.012 3.012 0 103.012 3.012 3.012 3.012 0 00-3.012-3.012zm0 4.519a1.506 1.506 0 111.506-1.506 1.506 1.506 0 01-1.506 1.505z" class="prefix__cls-2" data-name="Path 12" transform="translate(-18.958 -50.917)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_33" data-name="Group 33" transform="translate(12.049 30.124)">
+                        <g id="prefix__Group_32" data-name="Group 32">
+                            <path id="prefix__Path_13" d="M29.177 43.333a2.636 2.636 0 102.636 2.636 2.636 2.636 0 00-2.636-2.636zm0 3.765a1.13 1.13 0 111.13-1.13 1.13 1.13 0 01-1.13 1.132z" class="prefix__cls-2" data-name="Path 13" transform="translate(-26.542 -43.333)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <text id="prefix__Lácteos" class="prefix__cls-14" transform="translate(844 240)">
+                <tspan x="-30.564" y="0">Lácteos</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_134" data-name="Group 134" transform="translate(-361 -23)">
+            <g transform="translate(361 23)">
+                <rect id="prefix__Refresco_div-2" width="100" height="100" class="prefix__cls-12" data-name="Refresco div" rx="10" transform="translate(610 137)"/>
+            </g>
+            <g id="prefix__Mask_Group_3" class="prefix__cls-17" data-name="Mask Group 3" transform="translate(999 170)">
+                <g id="prefix__soda" transform="translate(11.254)">
+                    <g id="prefix__Group_35" data-name="Group 35">
+                        <g id="prefix__Group_34" data-name="Group 34">
+                            <path id="prefix__Path_14" d="M35.458 10.218a11.221 11.221 0 00-2.3-1.8A2.344 2.344 0 0132 6.41v-1.1a1.5 1.5 0 001.5-1.5V1.5A1.5 1.5 0 0032 0h-9a1.5 1.5 0 00-1.5 1.5v2.314a1.5 1.5 0 001.5 1.5v1.1a2.288 2.288 0 01-1.109 1.978 11.494 11.494 0 00-5.638 9.9v22.747a3.9 3.9 0 003.374 3.923q.193.019.385.019a3.673 3.673 0 002.484-.962 3.831 3.831 0 001.254-2.838 3.749 3.749 0 007.5.141v-.141a3.831 3.831 0 001.25 2.838 3.684 3.684 0 002.869.943 3.9 3.9 0 003.374-3.923V18.3a11.478 11.478 0 00-3.285-8.082zM23 1.5h2.249v.776a.75.75 0 001.5 0V1.5h1.5v.776a.75.75 0 001.5 0V1.5H32v2.314h-9zm-.352 8.188A3.793 3.793 0 0024.5 6.415v-1.1h6v1.1a3.849 3.849 0 001.894 3.3 9.733 9.733 0 011.994 1.56 10.036 10.036 0 011.427 1.864l-2.333-.89a4.408 4.408 0 00-4.345.7 2.886 2.886 0 01-3.462.153l-.747-.507a4.419 4.419 0 00-3.879-.528l-1.5.508a9.805 9.805 0 013.103-2.887zm-4.9 8.607a10.048 10.048 0 01.764-3.838.729.729 0 00.227-.029l2.784-.944a2.873 2.873 0 012.555.349l.747.507a4.376 4.376 0 005.251-.231 2.909 2.909 0 012.864-.466l3.767 1.437a10.082 10.082 0 01.533 3.215v.013H17.756zm0 1.513h19.5v5.366h-5.314a4.482 4.482 0 00-8.864 0h-5.314v-5.366zM30.5 25.924a3 3 0 11-3-3.065 3.035 3.035 0 013 3.065zm-12.745.75h5.315a4.482 4.482 0 008.864 0h5.314v5.366H17.756zm17.467 16.8a2.186 2.186 0 01-1.713-.563 2.329 2.329 0 01-.761-1.726 1.5 1.5 0 00-3-.1 2.492 2.492 0 01-1.178 2.152 2.276 2.276 0 01-3.321-2.05 1.5 1.5 0 10-3-.027v.027a2.329 2.329 0 01-.761 1.726 2.2 2.2 0 01-1.713.563 2.385 2.385 0 01-2.024-2.431v-7.5h19.497v7.5a2.385 2.385 0 01-2.025 2.425z" class="prefix__cls-2" data-name="Path 14" transform="translate(-16.256)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_37" data-name="Group 37" transform="translate(3.749 35.853)">
+                        <g id="prefix__Group_36" data-name="Group 36">
+                            <path id="prefix__Path_15" d="M22.95 52.006a.75.75 0 00-.814-.161.683.683 0 00-.247.165.743.743 0 00-.158.24.757.757 0 00-.06.292.781.781 0 00.06.285.741.741 0 00.158.24.682.682 0 00.247.165.749.749 0 00.285.06.763.763 0 00.532-.225.75.75 0 00-.003-1.061z" class="prefix__cls-2" data-name="Path 15" transform="translate(-21.671 -51.788)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_39" data-name="Group 39" transform="translate(3.749 15.271)">
+                        <g id="prefix__Group_38" data-name="Group 38">
+                            <path id="prefix__Path_16" d="M22.405 22.059a.742.742 0 00-.517 1.267.789.789 0 00.532.217.742.742 0 10-.016-1.484z" class="prefix__cls-2" data-name="Path 16" transform="translate(-21.671 -22.059)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_41" data-name="Group 41" transform="translate(15.744 15.259)">
+                        <g id="prefix__Group_40" data-name="Group 40">
+                            <path id="prefix__Path_17" d="M40.279 22.255a.871.871 0 00-.247-.157.75.75 0 00-.57 0 .871.871 0 00-.247.157.761.761 0 000 1.065.87.87 0 00.247.157.71.71 0 00.57 0 .873.873 0 00.247-.157l.09-.113a.57.57 0 00.068-.135.489.489 0 00.045-.135 1.05 1.05 0 00.015-.15.789.789 0 00-.218-.532z" class="prefix__cls-2" data-name="Path 17" transform="translate(-38.997 -22.041)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_43" data-name="Group 43" transform="translate(6.748 34.332)">
+                        <g id="prefix__Group_42" data-name="Group 42">
+                            <path id="prefix__Path_18" d="M27.442 50.051a.782.782 0 00-.157-.247.871.871 0 00-.247-.157.753.753 0 00-.57 0 .678.678 0 00-.4.4.749.749 0 00-.06.285.788.788 0 00.217.532.774.774 0 00.247.157.706.706 0 00.57 0 .873.873 0 00.247-.157.79.79 0 00.217-.532.631.631 0 00-.064-.281z" class="prefix__cls-2" data-name="Path 18" transform="translate(-26.003 -49.59)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_45" data-name="Group 45" transform="translate(9.746 37.389)">
+                        <g id="prefix__Group_44" data-name="Group 44">
+                            <path id="prefix__Path_19" d="M31.616 54.214a.787.787 0 00-1.065 0 .75.75 0 101.065 0z" class="prefix__cls-2" data-name="Path 19" transform="translate(-30.334 -54.007)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_47" data-name="Group 47" transform="translate(14.244 34.326)">
+                        <g id="prefix__Group_46" data-name="Group 46">
+                            <path id="prefix__Path_20" d="M38.271 50.048a.782.782 0 00-.157-.247 1.27 1.27 0 00-.112-.09.571.571 0 00-.135-.068.473.473 0 00-.135-.045.669.669 0 00-.3 0 .477.477 0 00-.135.045.424.424 0 00-.127.068.718.718 0 00-.12.09.776.776 0 00-.158.247.749.749 0 00-.06.285.788.788 0 00.217.532.694.694 0 00.12.09.423.423 0 00.127.068.489.489 0 00.135.045 1.161 1.161 0 00.15.015.743.743 0 00.75-.735v-.014a.751.751 0 00-.06-.286z" class="prefix__cls-2" data-name="Path 20" transform="translate(-36.831 -49.582)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_49" data-name="Group 49" transform="translate(17.243 37.377)">
+                        <g id="prefix__Group_48" data-name="Group 48">
+                            <path id="prefix__Path_21" d="M42.445 54.208a.775.775 0 00-.247-.157.685.685 0 00-.57 0 .771.771 0 00-.247.157.76.76 0 000 1.065.865.865 0 00.247.157.706.706 0 00.57 0 .777.777 0 00.247-.157.76.76 0 000-1.065z" class="prefix__cls-2" data-name="Path 21" transform="translate(-41.163 -53.989)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <text id="prefix__Refrescos" class="prefix__cls-14" transform="translate(1021 240)">
+                <tspan x="-38.65" y="0">Refrescos</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_135" data-name="Group 135" transform="translate(-409 -23)">
+            <g transform="translate(409 23)">
+                <rect id="prefix__Pan_div-2" width="100" height="100" class="prefix__cls-12" data-name="Pan div" rx="10" transform="translate(740 137)"/>
+            </g>
+            <g id="prefix__Mask_Group_4" class="prefix__cls-17" data-name="Mask Group 4" transform="translate(1177 170)">
+                <g id="prefix__pan" transform="translate(0 7.148)">
+                    <g id="prefix__Group_50" data-name="Group 50">
+                        <path id="prefix__Path_22" d="M39.725 16.679a.763.763 0 00-.155-.1.778.778 0 00-.1-.061.7.7 0 00-.079-.012.751.751 0 00-.207-.031q-.141.03-.28.066a.746.746 0 00-.184.13c-.016.015-.037.021-.052.037a.78.78 0 00-.074.118.763.763 0 00-.084.137l-.042.115a21.579 21.579 0 00-2.554-1.757l.239-.658a.693.693 0 00.012-.078.721.721 0 00.023-.149.713.713 0 00-.008-.141.731.731 0 00-.034-.137.763.763 0 00-.146-.237l-.171-.155a23.246 23.246 0 00-3.48-1.682H32.336a.71.71 0 00-.158-.024.778.778 0 00-.127-.019.735.735 0 00-.174.04.37.37 0 00-.236.117.724.724 0 00-.1.075.766.766 0 00-.086.135.707.707 0 00-.071.111v.014l-.229.629a25.514 25.514 0 00-2.9-.781l.214-.586a.7.7 0 00.019-.127.723.723 0 00.026-.13v-.02a.716.716 0 00-.018-.1.75.75 0 00-.042-.168 1.256 1.256 0 00-.15-.225.849.849 0 00-.229-.16c-.019-.009-.032-.025-.053-.032s-.034 0-.051-.008-.039-.019-.061-.024a26.9 26.9 0 00-3.9-.471c-.012 0-.022.006-.034.006a.73.73 0 00-.2.034c-.023.007-.047.008-.069.017a.739.739 0 00-.2.121c-.013.011-.028.018-.041.03a.731.731 0 00-.117.153.7.7 0 00-.058.095c-.006.014-.017.023-.022.037l-.355.974a30.135 30.135 0 00-3.246.135l.157-.43v-.024a2.052 2.052 0 00.035-.3v-.026a.728.728 0 00-.035-.105.739.739 0 00-.048-.146 1.688 1.688 0 00-.176-.223.733.733 0 00-.143-.087.712.712 0 00-.086-.052h-.024a.754.754 0 00-.148-.023.74.74 0 00-.149-.012h-.026a26.2 26.2 0 00-4.417.927c-.017.005-.029.018-.046.025a.809.809 0 00-.415.393c-.007.016-.021.027-.027.044l-.494 1.359A24.5 24.5 0 009.8 14.923v-.013a.843.843 0 00-.059-.569c-.007-.013-.007-.027-.015-.039a.694.694 0 00-.063-.068 1.47 1.47 0 00-.319-.243c-.014-.005-.028 0-.042-.006a.851.851 0 00-.565.057c-.014.007-.029.007-.043.016C3.17 17.47 0 22.637 0 28.234c0 .271.008.535.024.784C.474 37.1 7.826 41.029 22.5 41.029S44.526 37.1 44.976 28.968V28.923c.014-.227.023-.454.023-.689a15.934 15.934 0 00-5.274-11.555zm-1.807 1.907l-1.256 3.457a1.5 1.5 0 01-2.822-1.029l1.549-4.254a19.718 19.718 0 012.529 1.826zm-7.287-4.02l-2.723 7.481a1.5 1.5 0 11-2.813-1.033l2.626-7.214a24.075 24.075 0 012.91.765zm-11.557-1.058a26.481 26.481 0 013.277-.22l-3.188 8.755a1.5 1.5 0 11-2.822-1.029zm-11.485 7.5l1.4-3.86a22.021 22.021 0 013.95-2.071l-2.533 6.961a1.5 1.5 0 01-2.823-1.026zm-.016-4.341L6.179 20.5a3 3 0 005.641 2.054l3.565-9.8a24.7 24.7 0 012.581-.591L14.933 20.5a3 3 0 005.64 2.059l3.892-10.69c.757.052 1.514.14 2.27.261l-3.05 8.37a3 3 0 105.632 2.059L32.3 14.37v-.011l.207-.57a21.681 21.681 0 012.008.976L32.428 20.5a3 3 0 005.641 2.054l1.431-3.947a14.613 14.613 0 013.806 7.546C42.174 32.375 35.37 35.4 22.5 35.4c-12.9 0-19.709-3.039-20.821-9.29a15.247 15.247 0 015.894-9.439zM22.5 39.529c-12.919 0-19.753-3.076-20.839-9.392C4.6 34.677 11.463 36.9 22.5 36.9s17.905-2.227 20.839-6.768c-1.082 6.319-7.916 9.397-20.839 9.397z" class="prefix__cls-2" data-name="Path 22" transform="translate(0 -10.324)"/>
+                    </g>
+                </g>
+            </g>
+            <text id="prefix__Pan-2" class="prefix__cls-14" data-name="Pan" transform="translate(1199 240)">
+                <tspan x="-14.95" y="0">Pan</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_136" data-name="Group 136" transform="translate(-456 -23)">
+            <g transform="translate(456 23)">
+                <rect id="prefix__Carnes_div-2" width="100" height="100" class="prefix__cls-12" data-name="Carnes div" rx="10" transform="translate(870 137)"/>
+            </g>
+            <g id="prefix__Mask_Group_5" class="prefix__cls-17" data-name="Mask Group 5" transform="translate(1354 170)">
+                <g id="prefix__pierna-de-pollo" transform="translate(0 .146)">
+                    <g id="prefix__Group_52" data-name="Group 52">
+                        <g id="prefix__Group_51" data-name="Group 51">
+                            <path id="prefix__Path_23" d="M41.981 34.649a3.363 3.363 0 00-2.46.722l-4.814-4.836c.819-3.522-.559-8.331-2.106-12.192C30.385 12.811 26.767 6.776 24 3.994A13.078 13.078 0 0014.248.155a14.83 14.83 0 00-14.24 14.3 13.222 13.222 0 003.822 9.797c3.67 3.689 16.144 10.982 24.139 10.982a9.809 9.809 0 002.6-.325l4.706 4.727a3.41 3.41 0 00.251 4.517 3.366 3.366 0 004.775 0 3.4 3.4 0 00.97-2.764 3.389 3.389 0 00.711-6.741zm-11.429-1.3a.712.712 0 00-.091.038c-6.241 2.136-20.952-5.566-25.57-10.2A11.727 11.727 0 011.509 14.5a13.326 13.326 0 0112.78-12.838h.343a11.591 11.591 0 018.3 3.4c2.267 2.278 5.837 7.765 8.272 13.845 2.613 6.523 2.94 11.441.9 13.492a4.162 4.162 0 01-1.552.953zm12.4 6a1.883 1.883 0 01-2.474.156 1.362 1.362 0 01-.18-.156.748.748 0 00-1.061 0 .756.756 0 000 1.066 1.413 1.413 0 01.14.163l.035.045a1.889 1.889 0 01-.383 2.636 1.869 1.869 0 01-2.624-.385 1.89 1.89 0 01.179-2.458 1.284 1.284 0 01.178-.155.755.755 0 00.108-1.156l-4.79-4.812a5.2 5.2 0 001.088-.83 5.407 5.407 0 00.979-1.359L39 36.976a.748.748 0 001.151-.109 1.276 1.276 0 01.154-.179 1.916 1.916 0 012.654 0 1.894 1.894 0 01-.003 2.666z" class="prefix__cls-2" data-name="Path 23" transform="translate(0 -.146)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_54" data-name="Group 54" transform="translate(25.795 30.215)">
+                        <g id="prefix__Group_53" data-name="Group 53">
+                            <path id="prefix__Path_24" d="M40.9 44.264h-1.529a1.084 1.084 0 100 2.168H40.9a1.084 1.084 0 000-2.168z" class="prefix__cls-2" data-name="Path 24" transform="translate(-38.287 -44.264)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_56" data-name="Group 56" transform="translate(18.048 27.591)">
+                        <g id="prefix__Group_55" data-name="Group 55">
+                            <path id="prefix__Path_25" d="M29.406 40.432h-1.533a1.084 1.084 0 100 2.168h1.533a1.084 1.084 0 100-2.168z" class="prefix__cls-2" data-name="Path 25" transform="translate(-26.789 -40.432)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_58" data-name="Group 58" transform="translate(21.147 24.44)">
+                        <g id="prefix__Group_57" data-name="Group 57">
+                            <path id="prefix__Path_26" d="M34.005 35.832h-1.533a1.084 1.084 0 100 2.168h1.533a1.084 1.084 0 100-2.168z" class="prefix__cls-2" data-name="Path 26" transform="translate(-31.388 -35.832)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_60" data-name="Group 60" transform="translate(24.246 21.29)">
+                        <g id="prefix__Group_59" data-name="Group 59">
+                            <path id="prefix__Path_27" d="M38.605 31.233h-1.533a1.084 1.084 0 000 2.168H38.6a1.084 1.084 0 001.084-1.084 1.084 1.084 0 00-1.079-1.084z" class="prefix__cls-2" data-name="Path 27" transform="translate(-35.988 -31.233)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_62" data-name="Group 62" transform="translate(26.828 18.666)">
+                        <g id="prefix__Group_61" data-name="Group 61">
+                            <path id="prefix__Path_28" d="M42.438 27.4H40.9a1.084 1.084 0 000 2.168h1.533a1.084 1.084 0 001.084-1.084 1.084 1.084 0 00-1.079-1.084z" class="prefix__cls-2" data-name="Path 28" transform="translate(-39.821 -27.4)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_64" data-name="Group 64" transform="translate(30.28 25.715)">
+                        <g id="prefix__Group_63" data-name="Group 63">
+                            <path id="prefix__Path_29" d="M45.5 38.132a1.084 1.084 0 00-1.084 1.084v1.533a1.084 1.084 0 102.168 0v-1.533a1.084 1.084 0 00-1.084-1.084z" class="prefix__cls-2" data-name="Path 29" transform="translate(-44.42 -38.132)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_66" data-name="Group 66" transform="translate(22.442 28.309)">
+                        <g id="prefix__Group_65" data-name="Group 65">
+                            <path id="prefix__Path_30" d="M34.006 41.965a1.084 1.084 0 00-1.084 1.084v1.533a1.084 1.084 0 102.168 0v-1.533a1.084 1.084 0 00-1.084-1.084z" class="prefix__cls-2" data-name="Path 30" transform="translate(-32.921 -41.965)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_68" data-name="Group 68" transform="translate(26.1 24.676)">
+                        <g id="prefix__Group_67" data-name="Group 67">
+                            <path id="prefix__Path_31" d="M39.371 36.6a1.084 1.084 0 00-1.084 1.084v1.534a1.084 1.084 0 102.168 0v-1.536a1.084 1.084 0 00-1.084-1.082z" class="prefix__cls-2" data-name="Path 31" transform="translate(-38.287 -36.598)"/>
+                        </g>
+                    </g>
+                    <g id="prefix__Group_70" data-name="Group 70" transform="translate(29.235 21.563)">
+                        <g id="prefix__Group_69" data-name="Group 69">
+                            <path id="prefix__Path_32" d="M43.971 32a1.084 1.084 0 00-1.084 1.084v1.533a1.084 1.084 0 102.168 0v-1.534A1.084 1.084 0 0043.971 32z" class="prefix__cls-2" data-name="Path 32" transform="translate(-42.887 -31.999)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <text id="prefix__Carnes" class="prefix__cls-14" transform="translate(1376 240)">
+                <tspan x="-27.532" y="0">Carnes</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_137" data-name="Group 137" transform="translate(-503 -23)">
+            <g transform="translate(503 23)">
+                <rect id="prefix__Sabritas_div-2" width="100" height="100" class="prefix__cls-12" data-name="Sabritas div" rx="10" transform="translate(1000 137)"/>
+            </g>
+            <g id="prefix__Mask_Group_7" class="prefix__cls-17" data-name="Mask Group 7" transform="translate(1531 170)">
+                <g id="prefix__patatas" transform="translate(3.169)">
+                    <path id="prefix__Path_36" d="M37.666 40.887c.091-1.028.995-11.456.995-18.387s-.9-17.359-.995-18.387l.379-2.407A1.011 1.011 0 0037 .539h-.1a1.465 1.465 0 01-.791-.2 2.969 2.969 0 00-2.758 0 1.465 1.465 0 01-.791.2 1.463 1.463 0 01-.79-.2 2.969 2.969 0 00-2.758 0 1.463 1.463 0 01-.79.2 1.463 1.463 0 01-.79-.2 2.968 2.968 0 00-2.757 0 1.464 1.464 0 01-.79.2 1.463 1.463 0 01-.79-.2 2.968 2.968 0 00-2.757 0 1.462 1.462 0 01-.79.2 1.464 1.464 0 01-.79-.2A2.968 2.968 0 0016 .34a1.464 1.464 0 01-.79.2 1.464 1.464 0 01-.79-.2 2.968 2.968 0 00-2.757 0 1.464 1.464 0 01-.79.2 1.463 1.463 0 01-.79-.2A2.744 2.744 0 008.7 0a2.744 2.744 0 00-1.375.34 1.464 1.464 0 01-.79.2 1.464 1.464 0 01-.79-.2A2.743 2.743 0 004.366 0a2.743 2.743 0 00-1.379.34 1.464 1.464 0 01-.79.2 1.724 1.724 0 01-.369-.034A1.011 1.011 0 00.614 1.649L1 4.112C.9 5.136 0 15.567 0 22.5s.9 17.364 1 18.388l-.386 2.463a1.011 1.011 0 001.215 1.143 1.724 1.724 0 01.369-.035 1.462 1.462 0 01.79.2A2.744 2.744 0 004.366 45a2.744 2.744 0 001.379-.34 1.462 1.462 0 01.79-.2 1.465 1.465 0 01.79.2A2.74 2.74 0 008.7 45a2.74 2.74 0 001.378-.34 1.653 1.653 0 011.581 0 2.968 2.968 0 002.757 0 1.652 1.652 0 011.58 0 2.969 2.969 0 002.758 0 1.652 1.652 0 011.58 0 2.968 2.968 0 002.757 0 1.653 1.653 0 011.58 0 2.967 2.967 0 002.758 0 1.654 1.654 0 011.581 0 2.969 2.969 0 002.758 0 1.654 1.654 0 011.581 0 2.969 2.969 0 002.758 0 1.464 1.464 0 01.791-.2h.1a1.011 1.011 0 001.044-1.167zM2.2 1.859a2.739 2.739 0 001.378-.34 1.464 1.464 0 01.79-.2 1.463 1.463 0 01.79.2 2.741 2.741 0 001.379.34 2.74 2.74 0 001.378-.34 1.464 1.464 0 01.79-.2 1.464 1.464 0 01.79.2 2.739 2.739 0 001.378.34 2.741 2.741 0 001.379-.34 1.652 1.652 0 011.58 0 2.741 2.741 0 001.379.34 2.74 2.74 0 001.378-.34 1.653 1.653 0 011.581 0 2.741 2.741 0 001.379.34 2.74 2.74 0 001.378-.34 1.652 1.652 0 011.58 0 2.739 2.739 0 001.378.34 2.741 2.741 0 001.379-.34 1.653 1.653 0 011.581 0 2.74 2.74 0 001.378.34A2.741 2.741 0 0029.6 1.52a1.654 1.654 0 011.581 0 2.741 2.741 0 001.379.34 2.742 2.742 0 001.379-.34 1.654 1.654 0 011.581 0 2.713 2.713 0 001.166.333l-.249 1.579H2.224l-.245-1.579q.106.007.218.007zM35.521 43.48a1.654 1.654 0 01-1.581 0 2.969 2.969 0 00-2.758 0 1.653 1.653 0 01-1.581 0 2.969 2.969 0 00-2.758 0 1.653 1.653 0 01-1.581 0 2.968 2.968 0 00-2.757 0 1.652 1.652 0 01-1.58 0 2.968 2.968 0 00-2.757 0 1.653 1.653 0 01-1.581 0 2.968 2.968 0 00-2.757 0 1.652 1.652 0 01-1.58 0 2.741 2.741 0 00-1.379-.34 2.74 2.74 0 00-1.378.34 1.464 1.464 0 01-.79.2 1.466 1.466 0 01-.79-.2 2.74 2.74 0 00-1.378-.34 2.74 2.74 0 00-1.379.34 1.465 1.465 0 01-.79.2 1.462 1.462 0 01-.79-.2 2.741 2.741 0 00-1.379-.34c-.075 0-.147 0-.218.007l.245-1.579h34.215l.249 1.579a2.716 2.716 0 00-1.166.333zm.877-3.23H2.263c-.2-2.4-.945-11.515-.945-17.75s.74-15.346.945-17.75H36.4c.2 2.4.945 11.515.945 17.75S36.6 37.847 36.4 40.25zm0 0" class="prefix__cls-2" data-name="Path 36"/>
+                    <path id="prefix__Path_37" d="M30.318 19.422a10.936 10.936 0 00-18.044 6.71.659.659 0 001.306.181 9.617 9.617 0 0119.05 0 .659.659 0 00.652.569.63.63 0 00.091-.006.659.659 0 00.563-.743 10.923 10.923 0 00-3.618-6.711zm0 0" class="prefix__cls-2" data-name="Path 37" transform="translate(-3.775 -5.14)"/>
+                    <path id="prefix__Path_38" d="M33.369 33.938a.659.659 0 00-.756.546 9.618 9.618 0 01-18.986 0 .659.659 0 10-1.3.21 10.936 10.936 0 0021.589 0 .659.659 0 00-.546-.756zm0 0" class="prefix__cls-2" data-name="Path 38" transform="translate(-3.79 -10.44)"/>
+                    <path id="prefix__Path_39" d="M17.525 34.1a9.538 9.538 0 015.12.02 19.615 19.615 0 005.129.872 3.494 3.494 0 002.631-.751 3.378 3.378 0 002.061-3.512 5.344 5.344 0 00-4.742-4.638 9.215 9.215 0 00-5.555 1.119 6.962 6.962 0 00-6.081 5.63 1.139 1.139 0 001.437 1.26zm9.969-6.711c1.714.3 3.51 1.484 3.657 3.439a2.255 2.255 0 01-.594 1.769 6.863 6.863 0 00-5.011-5.17 5.723 5.723 0 011.949-.038zm-5 1.1l.112-.013.129-.013.118-.01.147.001h.346c3.2 0 5.819 2.2 5.989 4.962a2.125 2.125 0 01-.651.2c-.846.145-2.519.132-5.681-.754a10.974 10.974 0 00-2.964-.408 10.747 10.747 0 00-2.6.315A5.715 5.715 0 0122.5 28.5zm0 0" class="prefix__cls-2" data-name="Path 39" transform="translate(-4.947 -8.002)"/>
+                </g>
+            </g>
+            <text id="prefix__Sabritas" class="prefix__cls-14" transform="translate(1553 240)">
+                <tspan x="-32.533" y="0">Sabritas</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_138" data-name="Group 138" transform="translate(-550 -23)">
+            <g transform="translate(550 23)">
+                <rect id="prefix__Enlatados_div-2" width="100" height="100" class="prefix__cls-12" data-name="Enlatados div" rx="10" transform="translate(1130 137)"/>
+            </g>
+            <g id="prefix__Mask_Group_8" class="prefix__cls-17" data-name="Mask Group 8" transform="translate(1708 170)">
+                <g id="prefix__lata" transform="translate(9.88)">
+                    <path id="prefix__Path_40" d="M23.859 13.07a38.438 38.438 0 00-5.282-6.406 38.442 38.442 0 00-6.406-5.282C9.85-.067 8.322-.373 7.5.447c-.86.86-.475 2.508 1.177 5.038l.195.3 2.314.331-1.05 1.4.388.477c.849 1.046 1.8 2.094 2.81 3.125-.371-.015-.742-.033-1.111-.033C5.256 11.084 0 13.458 0 16.605v22.873C0 42.626 5.256 45 12.226 45s12.226-2.374 12.226-5.522v-21.5a1.377 1.377 0 00.343-.242c.82-.82.513-2.347-.936-4.667zm-11.633-.408a26.045 26.045 0 012.846.156l.172.156q.207.189.42.38c.129.115.256.23.387.345q.339.3.69.592c.107.09.215.177.323.266q.276.227.555.448l.256.2c.567.442 1.139.859 1.7 1.235l.156.1c.221.145.439.281.655.411.081.049.163.1.243.145.185.106.367.2.547.3.206.107.4.2.6.288.087.038.175.08.259.114.057.023.118.055.173.076-1.133 1.12-3.681 2.136-7.084 2.517-.146.016-.29.033-.439.047s-.3.025-.446.036c-.2.015-.409.028-.617.038-.121.006-.241.013-.364.018-.339.012-.683.021-1.036.021-6.275 0-10.648-2.078-10.648-3.944s4.374-3.945 10.649-3.945zM1.577 27.749c.582.2 2.234.638 2.234.638 5.251 1.231 5.926 1.39 6.449 5.627a1.589 1.589 0 01-.534 1.567c-.433.3-2.241 1.076-7.371-1.576-.27-.139-.528-.283-.778-.431v-5.826zm21.3 11.731c0 1.865-4.373 3.944-10.648 3.944S1.577 41.345 1.577 39.48v-.965c2.139 1.927 6.206 3.291 10.648 3.291s8.509-1.365 10.648-3.291zm0-3.944c0 1.89-4.472 4.691-10.648 4.691s-10.648-2.8-10.648-4.691v-.158l.054.029c3.048 1.574 5.179 2.1 6.667 2.1a3.977 3.977 0 002.329-.629 3.064 3.064 0 001.2-3.055c-.649-5.269-2.471-5.733-7.706-6.962 0 0-1.872-.54-2.541-.785V23.3c2.056 1.66 5.962 2.73 10.641 2.73s8.586-1.07 10.649-2.73zm0-15.028c0 1.866-4.373 3.944-10.648 3.944S1.577 22.374 1.577 20.509V19.4c.044.036.1.066.146.1q.27.206.577.4c.084.052.166.1.253.155.255.148.524.289.811.424.038.017.071.037.11.055.327.149.678.287 1.044.417.1.037.21.07.316.106q.423.141.876.265l.363.1c.386.1.782.187 1.2.265.03.005.058.013.089.019.442.082.9.149 1.374.208.136.017.274.031.412.046q.537.058 1.093.1c.148.01.294.021.443.028.506.026 1.018.044 1.544.044.505 0 1-.018 1.487-.043.151-.008.3-.016.448-.026.39-.027.774-.06 1.15-.1.256-.027.5-.062.753-.1.206-.029.411-.059.611-.093.263-.043.52-.09.772-.141l.119-.026c.583-.123 1.134-.264 1.658-.424l.072-.022a13.274 13.274 0 002.217-.9l.078-.04a8.317 8.317 0 001.283-.815zm.792-3.907l-.125-.007c-1.1-.064-3.938-1.689-7.582-5.106l-.188-.177c-.305-.29-.615-.59-.931-.906-.966-.966-1.869-1.951-2.693-2.933l1.9-2.543-4.24-.606c-1.143-1.818-1.185-2.561-1.17-2.75.838-.144 4.317 1.7 8.822 6.205s6.364 8.008 6.2 8.823zm0 0" class="prefix__cls-2" data-name="Path 40"/>
+                    <path id="prefix__Path_41" d="M9.513 19.518l.782 1.369-5.52 3.155-.782-1.369zm5.56 1.342l-7.1 4.732-.873-1.313 7.1-4.732zm3.192.764l-6.31 4.733-.946-1.257 6.31-4.733zm2.386 1.562l-3.944 3.155-.986-1.233 3.944-3.155zm0 0" class="prefix__cls-2" data-name="Path 41" transform="translate(-1.229 -6.005)"/>
+                </g>
+            </g>
+            <text id="prefix__Enlatados" class="prefix__cls-14" transform="translate(1730 240)">
+                <tspan x="-39.586" y="0">Enlatados</tspan>
+            </text>
+        </g>
+        <rect id="prefix__Rectangle_41" width="1010" height="565" data-name="Rectangle 41" rx="20" transform="translate(220 282)" style="fill:rgba(216,225,238,.25)"/>
+        <g>
+            <rect id="prefix__Rectangle_45-2" width="715" height="50" class="prefix__cls-19" data-name="Rectangle 45" rx="10" transform="translate(270 332)"/>
+        </g>
+        <text id="prefix__Código_de_barra_o_nombre_del_producto:" data-name="Código de barra o nombre del producto:" transform="translate(300 366)" style="font-family:SegoeUI,Segoe UI;font-size:20px;fill:#707070">
+            <tspan x="0" y="0">Código de barra o nombre del producto:</tspan>
+        </text>
+        <g id="prefix__Group_146" data-name="Group 146" transform="translate(-1129 -1327)">
+            <g transform="translate(1129 1327)">
+                <rect id="prefix__Rectangle_42-4" width="160" height="50" class="prefix__cls-9" data-name="Rectangle 42" rx="10" transform="translate(1020 417)"/>
+            </g>
+            <text id="prefix__Recargar" class="prefix__cls-21" transform="translate(2229 1777)">
+                <tspan x="-39.756" y="0">Recargar</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_157" data-name="Group 157" transform="translate(-1129 -1412)">
+            <g transform="translate(1129 1412)">
+                <rect id="prefix__Rectangle_42-5" width="160" height="50" class="prefix__cls-8" data-name="Rectangle 42" rx="10" transform="translate(1020 332)"/>
+            </g>
+            <text id="prefix__Buscar" class="prefix__cls-21" transform="translate(2229 1777)">
+                <tspan x="-29.81" y="0">Buscar</tspan>
+            </text>
+        </g>
+        <g>
+            <rect id="prefix__Rectangle_43-2" width="715" height="380" class="prefix__cls-19" data-name="Rectangle 43" rx="10" transform="translate(270 412)"/>
+        </g>
+        <g id="prefix__Group_156" data-name="Group 156" transform="translate(-327 -1462)">
+            <g id="prefix__Group_154" data-name="Group 154" transform="translate(1344 1964)">
+                <g transform="translate(-1017 -502)">
+                    <rect id="prefix__Rectangle_46-2" width="160" height="220" class="prefix__cls-19" data-name="Rectangle 46" rx="10" transform="translate(1017 502)"/>
+                </g>
+                <g id="prefix__Group_147" data-name="Group 147" transform="translate(0 175)">
+                    <g transform="translate(-1017 -677)">
+                        <path id="prefix__Rectangle_42-6" d="M0 0h150a10 10 0 0110 10v25a10 10 0 01-10 10H10A10 10 0 010 35V0z" class="prefix__cls-7" data-name="Rectangle 42" transform="translate(1017 677)"/>
+                    </g>
+                    <text id="prefix__Cobrar" class="prefix__cls-21" transform="translate(51 31.391)">
+                        <tspan x="-30.83" y="0">Cobrar</tspan>
+                    </text>
+                </g>
+                <g id="prefix__Group_148" data-name="Group 148" transform="translate(105 175)">
+                    <g transform="translate(-1122 -677)">
+                        <path id="prefix__Rectangle_40-2" d="M21 0h34v35a10 10 0 01-10 10H0V21A21 21 0 0121 0z" class="prefix__cls-5" data-name="Rectangle 40" transform="translate(1122 677)"/>
+                    </g>
+                    <g id="prefix__x" transform="translate(23 17)">
+                        <path id="prefix__Line_1" d="M12 0L0 12" class="prefix__cls-22" data-name="Line 1"/>
+                        <path id="prefix__Line_2" d="M0 0L12 12" class="prefix__cls-22" data-name="Line 2"/>
+                    </g>
+                </g>
+            </g>
+            <g id="prefix__Group_155" data-name="Group 155" transform="translate(1359 2028.5)">
+                <text id="prefix__Total" transform="translate(34 32)" style="font-size:30px;font-family:SegoeUI,Segoe UI;fill:#707070">
+                    <tspan x="0" y="0">Total</tspan>
+                </text>
+                <text id="prefix___125_00" data-name="$125.00" transform="translate(0 82)" style="font-size:35px;font-family:SegoeUI-Bold,Segoe UI;font-weight:700;fill:#707070">
+                    <tspan x="0" y="0">$125.00</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="prefix__Group_78" data-name="Group 78" transform="translate(-214 167)">
+            <path id="prefix__Rectangle_14" d="M10 0h191v70H0V10A10 10 0 0110 0z" class="prefix__cls-8" data-name="Rectangle 14" transform="translate(484 245)"/>
+            <text id="prefix__Código_de_barras" class="prefix__cls-21" data-name="Código de barras" transform="translate(585 289)">
+                <tspan x="-77.715" y="0">Código de barras</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_79" data-name="Group 79" transform="translate(-325 167)">
+            <path id="prefix__Rectangle_13" d="M0 0H180V70H0z" class="prefix__cls-8" data-name="Rectangle 13" transform="translate(796 245)"/>
+            <text id="prefix__Nombre" class="prefix__cls-21" transform="translate(886 289)">
+                <tspan x="-37.451" y="0">Nombre</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_80" data-name="Group 80" transform="translate(-381 167)">
+            <path id="prefix__Rectangle_12" d="M0 0H90V70H0z" class="prefix__cls-8" data-name="Rectangle 12" transform="translate(1032 245)"/>
+            <text id="prefix__Precio" class="prefix__cls-21" transform="translate(1077 289)">
+                <tspan x="-28.057" y="0">Precio</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_81" data-name="Group 81" transform="translate(-453 167)">
+            <path id="prefix__Rectangle_11" d="M0 0H95V70H0z" class="prefix__cls-8" data-name="Rectangle 11" transform="translate(1194 245)"/>
+            <text id="prefix__Cantidad" class="prefix__cls-21" transform="translate(1242 289)">
+                <tspan x="-40.762" y="0">Cantidad</tspan>
+            </text>
+        </g>
+        <g id="prefix__Group_158" data-name="Group 158" transform="translate(-358 167)">
+            <path id="prefix__Rectangle_11-2" d="M0 0h139a10 10 0 0110 10v60H0V0z" class="prefix__cls-8" data-name="Rectangle 11" transform="translate(1194 245)"/>
+            <text id="prefix__Total-2" class="prefix__cls-21" data-name="Total" transform="translate(1269.919 292)">
+                <tspan x="-21.963" y="0">Total</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

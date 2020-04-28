@@ -1,0 +1,233 @@
+body {
+
+    width: auto;
+    height: auto;
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+
+  }
+
+/* Principal container */
+.container-store{
+
+    display: grid;
+
+    grid-template-columns: 200px 930px;
+
+    grid-template-rows:     70px 570px;
+
+    grid-gap: 10px;
+
+    margin-right: 0px;
+
+}
+
+/* Nav bar section (Logo - ventas - clientes - proveedores - departamentos) */
+
+.item:nth-of-type(1){
+
+    grid-column-start: 1;
+
+    grid-column-end: 2;
+
+    grid-row-start: 1;
+
+    grid-row-end: 3;
+
+    height: auto;
+
+    background-color: #595f71;
+
+    border-top-right-radius: 20px;
+
+    border-bottom-right-radius: 20px;
+
+}
+
+/* Nav bar container */
+
+.nav-bar-container{
+
+    display: grid;
+
+    grid-template-columns: 180px;
+
+    grid-template-rows: 80px repeat(4, 40px);
+
+    grid-gap: 40px;
+
+    margin-top: 40px;
+
+    justify-content: center;
+
+}
+
+.logo-nav-bar{
+
+    width: 110px;
+
+    height: 80px;
+
+}
+
+.square-color-item{
+
+    width: 25px;
+
+    height: 25px;
+
+    margin-right: 5px;
+
+}
+
+.text-navbar{
+
+    font-family: 'Segoe UI';
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    line-height: 30px;
+
+    text-align: left;
+
+    color: #ffffff;
+
+}
+
+.item:nth-of-type(2){
+    /* margin-top: 30px; */
+    margin-left: 35px;
+    font-family: 'Segoe UI';
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 67px;
+    text-align: left;
+    color: #707070;
+}
+
+.item:nth-of-type(3){
+    /* margin-top: 30px; */
+    margin-left: 35px;
+    padding-top: 35px;
+    padding-left: 35px;
+}
+thead{
+    background-color: #5084fd;
+    color: #ffffff;
+}
+.container-product{
+    display: grid;
+    grid-template-columns: 700px 100px;
+    grid-template-rows: 50px 400px;
+    grid-gap: 25px;
+    border-radius: 20px;
+    background: #d8e1ee40;
+}
+.table{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.item-product{
+    background: #FFFF;
+}
+.item-product:nth-of-type(1){
+    border-radius: 10px;
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #ffffff;
+}
+.input-search{
+    width: 708px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #ffffff;
+    border: none;
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    line-height: 27px;
+    text-align: left;
+    color: #707070;
+}
+.item-product:nth-of-type(2){
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 40px 80px 0 #00000029;
+}
+.btn-search{
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 40px 80px 0 #00000029;
+    background-color: #5084fd;
+    border: none;
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 27px;
+    text-align: center;
+    color: #ffffff;
+}
+.btn-search:focus{
+    outline: none;
+}
+.btn-search:hover{
+    background-color: rgba(80, 132, 253, .7);
+    text-decoration: none;
+}
+.item-product:nth-of-type(3){
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-radius: 10px;
+    box-shadow: 0 40px 80px 0 #00000029;
+    overflow: scroll;
+}
+
+.image{
+    width: 25px;
+}
+td input{
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0 40px 80px 0 #00000029;
+    padding-left: 4px;
+}
+.table td{
+    padding: 10px;
+    
+}
+
+select{ 
+   border-radius: 10px;
+   width: 95%;
+}
+td button{
+    padding: 0px;
+    border:  1px solid transparent;
+    border-radius: .25rem;
+    padding: 2px;
+}
+.loader {
+    margin: auto;
+    margin-top: 100px;
+	display: block;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 1.3s linear infinite;
+}
+.loader.active {
+	display: block;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

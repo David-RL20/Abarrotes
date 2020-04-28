@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/icon.png">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquerry.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- Font awesome -->
+  <script src="js/fontAwesome.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- JS -->
+  <script src="js/sell.js"></script>
+
+  <title>Venta</title>
+</head>
+
+<body onload="init()">
+  <!-- Principal container -->
+  <div class="container-store">
+    <!-- Navbar section -->
+    <div class="item item-navbar">
+      <!-- Navbar grid container -->
+      <div class="nav-bar-container">
+        <!-- Logo section -->
+
+        <div class="item-nav-bar logo-nav-bar"><a href="sell.html"><img src="svg/logo.svg" class="" alt=""></a></div>
+        <!-- Ventas -->
+        <div class="item-nav-bar d-flex align-items-center justify-content-start">
+          <div class="square-color-item"> <img style="width: 100%;" src="images/sale.png" alt=""></div>
+          <div class="dropdown">
+            <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Ventas
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="sells_list.html">Ver lista de ventas</a>
+            </div>
+          </div>
+        </div>
+        <!-- Productos -->
+        <div class="item-nav-bar d-flex align-items-center justify-content-start">
+          <div class="square-color-item"> <img src="images/product.png" style="width: 100%;"></div>
+          <div class="dropdown">
+            <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Productos
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="product.html">Ver Productos</a>
+              <a class="dropdown-item" href="addProduct.html">Agregar Producto</a>
+
+            </div>
+          </div>
+        </div>
+        <!-- Clientes -->
+        <div class="item-nav-bar d-flex align-items-center justify-content-start">
+          <div class="square-color-item"> <img src="images/client.png" style="width: 100%;"></div>
+          <div class="dropdown">
+            <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Clientes
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="client.html">Ver Clientes</a>
+              <a class="dropdown-item" href="clientsCredit.html">Clientes deudores</a>
+              <!-- <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+          </div>
+        </div>
+        <!-- Departamentos -->
+        <div class="item-nav-bar d-flex align-items-center justify-content-start">
+          <div class="square-color-item"><img src="images/department.png" style="width: 100%;"></div>
+          <div class="dropdown">
+            <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Deptos
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="department.html">Ver Departamentos</a>
+              <!-- <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Title section -->
+    <div class="item">
+      <h1>Venta</h1>
+      <p>Productos principales</p>
+    </div>
+    <!-- Principal items (frutas - verduras - lacteos - etc) -->
+    <!-- Frutas -->
+    <div id="btnFrutas" class="item item-container d-flex flex-column">
+      <div class="icon-principal-products"><img src="svg/frutas.svg" alt=""></div>
+      <div class="text-principal-products">Frutas</div>
+    </div>
+    <!-- Verduras -->
+    <div id="btnVerduras" class="item item-container d-flex flex-column">
+      <div class="icon-principal-products"><img src="svg/verduras.svg" alt=""></div>
+      <div class="text-principal-products">Verduras</div>
+    </div>
+    <!-- Lacteos -->
+    <div id="btnLacteos" class="item item-container d-flex flex-column">
+      <div class="icon-principal-products"><img src="svg/lacteos.svg" alt=""></div>
+      <div class="text-principal-products">Lácteos</div>
+    </div>
+    <!-- Sodas -->
+    <div id="btnSodas" class="item item-container d-flex flex-column">
+      <div class="icon-principal-products"><img src="svg/sodas.svg" alt=""></div>
+      <div class="text-principal-products">Sodas</div>
+    </div>
+    <!-- Pan -->
+    <div id="btnPan" class="item item-container d-flex flex-column">
+      <div class="icon-principal-products"><img src="svg/panderia.svg" alt=""></div>
+      <div class="text-principal-products">Pan</div>
+    </div>
+    <!-- Carnes -->
+    <div id="btnCarnes" class="item item-container d-flex flex-column">
+      <div class="icon-principal-products"><img src="svg/carnes.svg" alt=""></div>
+      <div class="text-principal-products">Carnes</div>
+    </div>
+    <!-- Sabritas -->
+    <div id="btnSabritas" class="item item-container d-flex flex-column">
+      <div class="icon-principal-products"><img src="svg/sabritas.svg" alt=""></div>
+      <div class="text-principal-products">Sabritas</div>
+    </div>
+    <!-- Enlatados -->
+    <div id="btnEnlatados" class="item item-container d-flex flex-column">
+      <div class="icon-principal-products"><img src="svg/enlatados.svg" alt=""></div>
+      <div class="text-principal-products">Enlatados</div>
+    </div>
+    <!-- Table section -->
+    <div class="item item-table">
+      <!-- Table background and grid table section -->
+      <div class="table-bg">
+        <!-- Search product input -->
+        <div class="item-bg input-search">
+          <input class="input-search-text" type="text" name="" list="dataListProducts" id="inputCodeProduct"
+            placeholder="Código de barras o nombre del producto">
+        </div>
+        <datalist id="dataListProducts">
+        </datalist>
+        <!-- Recargas button link -->
+        <div class="item-bg recargas-button">
+          <!-- <button class="recargas-button recargas-button-text"></button> -->
+          <a class="recargas-button recargas-button-text" target="_blank" href="https://planetaemx.com/">Recargas</a>
+        </div>
+        <!-- List table section -->
+        <div class="item-bg table-form">
+          <table class="table">
+            <thead class="">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+          </table>
+          <table class="table scroll">
+            <tbody id="tableBody">
+            </tbody>
+          </table>
+        </div>
+        <!-- Payment section -->
+        <div class="item-bg payment">
+          <div class="payment-text-total ml-3" style="margin-top: 60px;">Total:</div>
+          <div class="payment-text-money-total ml-3">
+            <div>$</div>
+            <div id="totalCurrently">0.0</div>
+          </div>
+          <div class="d-flex justify-content-end text-center">
+            <button class="payment-btn-close" id="btn-cancel-sell"><i class="fas fa-times btn-close-icon"></i></button>
+          </div>
+        </div>
+        <!-- Payment button -->
+        <div class="item-bg cobrar-button">
+          <button id="abrir-popup" class="cobrar-button cobrar-button-btn">Cobrar</button>
+        </div>
+      </div>
+    </div>
+    <!-- Animated window pop-up -->
+    <div class="overlay" id="overlay">
+      <div class="popup" id="popup">
+        <div class="btn-cerrar-popup" id="btn-cerrar-popup"><i class="fas fa-times"></i></div>
+        <div class="total-payment-label">Total</div>
+        <div class="total-price-label" id="label-total-window">$0.00</div>
+        <input type="number" id="inputAmount" class="inputs-window-payment">
+        <div>
+          <h4 id="lab-change-missing" style="color: #707070;">Cambio:</h4>
+          <label class="inputs-window-payment" id="change-label"></label>
+        </div>
+        <button class="btn-credit" id="btn-to-credit" style="background-color: #707070;">Crédito</button>
+        <button class="btn-credit" id="btn-finish-sale" style="width: 150px;">Finalizar Compra</button>
+      </div>
+    </div>
+    <!-- Input quantity if is bulke sale -->
+    <div class="overlay" id="overlay-quantity">
+      <div class="popup" style="height: 250px;" id="div-quantity">
+        <div class="btn-cerrar-popup" id="cerrar-popup"><i class="fas fa-times"></i></div>
+        <div class="total-payment-label" style="margin-left: 100px; width: 200px;">Cantidad : </div>
+        <input type="number" style="margin: 30px 0;" id="popup-input-quantity" />
+        <div style=" font-size: 10pt;">Peso es en gramos</div>
+        <div style="color: #fd5052;font-size: 10pt;">** Este producto es en venta a granel</div>
+      </div>
+    </div>
+    <div class="overlay" id="overlay-popup-credit">
+      <div class="popup" style="height: 250px;" id="popup-credit">
+        <div class="btn-cerrar-popup" id="cerrar-credit-popup"><i class="fas fa-times"></i></div>
+        <div class="total-payment-label" style="margin-left: 100px; width: 200px;">Total : </div>
+        <div class="total-payment-label" id="label-total-credit" style="margin-left: 100px; width: 200px;">Cantidad :
+        </div>
+        <select name="" id="select-client"></select>
+        <button class="btn-credit" id="btn-to-cash" style="background-color: #707070;">Efectivo</button>
+        <button class="btn-credit" id="btn-finish-sale-credit" style="width: 150px;">Finalizar Compra</button>
+      </div>
+    </div>
+  </div>
+  <!-- JavaScript -->
+  <script src="js/sweetAlert.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <link rel="icon" href="images/icon.png">
+    <script src="js/jquerry.min.js" ></script>
+    <script src="js/popper.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Font awesome -->
+    <script src="js/fontAwesome.js"  ></script>
+    <!-- JS -->
+    <script src="js/department.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style-department.css">
+    <!-- Swal -->
+    <script src="js/sweetAlert.js"></script>
+    <title>Departamentos</title>
+</head>
+<body onload="init()">
+    <!-- Principal container -->
+    <div class="container-store">
+        <!-- Navbar section -->
+        <div class="item item-navbar">
+          <!-- Navbar grid container --> 
+          <div class="nav-bar-container">
+              <!-- Logo section -->
+              
+              <div class="item-nav-bar logo-nav-bar"><a href="sell.html"><img src="svg/logo.svg" class="" alt=""></a></div>
+              <!-- Ventas -->
+              <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                  <div class="square-color-item" > <img style="width: 100%;" src="images/sale.png" alt=""></div>
+                  <div class="dropdown">
+                      <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ventas
+                      </a>
+                    
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="sells_list.html">Ver lista de ventas</a> 
+                      </div>
+                    </div>
+              </div>
+              <!-- Productos -->
+              <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                  <div class="square-color-item" > <img src="images/product.png" style="width: 100%;"></div>
+                  <div class="dropdown">
+                      <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Productos
+                      </a>
+                    
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="product.html">Ver Productos</a>
+                        <a class="dropdown-item" href="addProduct.html">Agregar Producto</a>
+                        
+                      </div>
+                    </div>
+              </div>
+              <!-- Clientes -->
+              <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                  <div class="square-color-item"  > <img src="images/client.png" style="width: 100%;"></div>
+                  <div class="dropdown">
+                      <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Clientes
+                      </a>
+                    
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="client.html">Ver Clientes</a>
+                        <a class="dropdown-item" href="clientsCredit.html">Clientes deudores</a>
+                        <!-- <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a> -->
+                      </div>
+                    </div>
+              </div>
+              <!-- Departamentos -->
+              <div class="item-nav-bar d-flex align-items-center justify-content-start">
+                  <div class="square-color-item" ><img src="images/department.png" style="width: 100%;"></div>
+                  <div class="dropdown">
+                      <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Deptos
+                      </a>
+                    
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="department.html">Ver Departamentos</a>
+                        <!-- <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a> -->
+                      </div>
+                    </div>
+              </div>
+          </div>
+      </div>
+        <div class="item txt-provider">Departamentos</div>
+        <div class="item container-table">
+          <div class="item-table drop-menu-day btn-display"><input type="text" class="btn-select input-search" placeholder="Código del departamento" id="codeDepto"/></div>
+          <div class="item-table"><input class="input-search" type="text" name="Nombre" id="nameDepto" placeholder="Nombre del departmento"></div>
+          <div class="item-table drop-menu-day"></div>
+          <div class="item-table"><button onclick="save()" class="btn-search-provider">Agregar</button></div>
+          <div class="item-table table-bg">
+            <table class="table table-striped">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Nombre </th>
+                  <th scope="col">Acciones</th> 
+                </tr>
+              </thead>
+              <tbody id="body">
+                
+              </tbody>
+            </table>  
+          </div>
+          
+        </div>
+    </div>
+</body>
+</html>
