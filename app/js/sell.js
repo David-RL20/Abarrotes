@@ -4,7 +4,9 @@ const ID_TABLE_BODY = "tableBody";
 const ID_TOTAL_LABEL = "totalCurrently";
 const ID_TOTAL_LABEL_WINDOW = "label-total-window";
 const BTN_FINISH_SALE = 'btn-finish-sale'
-const ID_LABEL_CHANGE_MISSING = 'lab-change-missing'
+const ID_LABEL_CHANGE_MISSING = 'lab-change-missing';
+const ID_TABLEBODY_SEARCH_PRODUCT = 'tb-search-product';
+const ID_IN_CODE_SEARCHPRODUCT = 'in-search-product';
 const PRODUCTS_API = "http://localhost/Abarrotes/api/AllProducts.php"
 const CLIENTS_API = "http://localhost/Abarrotes/api/AllClients.php"
 const URL_SALES_API = 'http://localhost/Abarrotes/api/AllSales.php';
@@ -19,8 +21,8 @@ class Product {
         this.getClients()
         this.addInputListener()
         this.addChargeSellListener()
-        this.resetProduct()
-        this.addShortCutListeners()
+        this.resetProduct() 
+        this.addSearchProductListener()
     }
 
     async getProducts() {
@@ -43,10 +45,10 @@ class Product {
         input.addEventListener("keypress", () => {
             if (event.keyCode == '13') {
                 if (input.value != '') {
-                    let array = this.moreProducts(input.value);
-                    if (typeof array !== 'undefined') {
+                    const moreProducts = this.moreProducts(input.value);
+                    if (typeof moreProducts !== 'undefined') {
                         //get the values of code an quantity if * on input
-                        this.quantity = array[0]
+                        this.quantity = moreProducts[0]
                         this.code = array[1]
                         this.verification();
                     } else {
@@ -479,6 +481,7 @@ class Product {
         let input = document.getElementById('inputAmount');
         let changeLabel = document.getElementById('change-label')
         let label_change_missing = document.getElementById(ID_LABEL_CHANGE_MISSING);
+        let btnFinishSale = document.getElementById(BTN_FINISH_SALE)
         if (event.keyCode == '13') {
             if (input.value >= this.total) {
                 label_change_missing.textContent = "Cambio :"
@@ -489,8 +492,8 @@ class Product {
                 }
 
                 setTimeout(() => {
-                    let btnFinishSale = document.getElementById(BTN_FINISH_SALE)
                     btnFinishSale.addEventListener('click', this.finishedSell.bind(this))
+                    btnFinishSale.focus();
                 }, 10);
 
             } else {
@@ -611,42 +614,7 @@ class Product {
             }
 
         }
-    }
-    addShortCutListeners() {
-        //#region shortcuts array
-        let shortCuts = new Array({
-            id: 'btnFrutas',
-            code: 257554
-        }, {
-            id: 'btnVerduras',
-            code: 257554
-        }, {
-            id: 'btnLacteos',
-            code: 257554
-        }, {
-            id: 'btnSodas',
-            code: 257554
-        }, {
-            id: 'btnPan',
-            code: 257554
-        }, {
-            id: 'btnCarnes',
-            code: 257554
-        }, {
-            id: 'btnSabritas',
-            code: 257554
-        }, {
-            id: 'btnEnlatados',
-            code: 257554
-        })
-        //#endregion
-        shortCuts.forEach(sc => {
-            let button = document.getElementById(sc.id)
-            button.addEventListener('click', () => {
-                this.addProduct(sc.code)
-            })
-        });
-    }
+    } 
     addProduct(code) {
         this.code = code
         this.verification()
@@ -786,6 +754,33 @@ class Product {
             }
         }, 200);
 
+    }
+    addSearchProductListener(){
+        //Variables
+        let in_search = document.querySelector(`#${ID_IN_CODE_SEARCHPRODUCT}`);
+        in_search.addEventListener('keydown',async ()=>{ 
+            if(event.keyCode === 13){
+                this.code = in_search.value
+                let product = await this.existProduct();
+                if(product){
+                    //insert info into mini table
+                    this.addProductToTableSearch(product)
+                    //reset input
+                    in_search.value =``; 
+                    //reset code
+                    this.code = null
+                }
+            }
+        });
+    }
+    addProductToTableSearch(product){
+        //variables
+        let tb_search = document.querySelector(`#${ID_TABLEBODY_SEARCH_PRODUCT}`);
+        tb_search.innerHTML = `<tr> 
+            <th>${product.code}</th>
+            <th>${product.name}</th>
+            <th>${product.price}</th>
+        </tr>`;
     }
 }
 

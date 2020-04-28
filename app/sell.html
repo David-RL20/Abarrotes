@@ -98,57 +98,38 @@
     <!-- Title section -->
     <div class="item">
       <h1>Venta</h1>
-      <p>Productos principales</p>
+      <p>Buscar un producto</p>
     </div>
-    <!-- Principal items (frutas - verduras - lacteos - etc) -->
-    <!-- Frutas -->
-    <div id="btnFrutas" class="item item-container d-flex flex-column">
-      <div class="icon-principal-products"><img src="svg/frutas.svg" alt=""></div>
-      <div class="text-principal-products">Frutas</div>
+    <!-- Buscar un producto por su nombre o codigo -->
+    <div class="col-12 m-3 " style="display: flex;flex-wrap: wrap;">
+      <!-- Ingrese el codigo de barras -->
+      <input class="input-search-text col-6" type="text" name="" list="dataListProducts" id="in-search-product" placeholder="Código de barras o nombre del producto">
+      <!-- Tabla con descripcion del producto -->
+      <div class="table col-6"> 
+        <table>
+          <thead style="background-color: aliceblue; color: #666;">
+            <tr>
+              <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th> 
+            </tr>
+          </thead>
+          <tbody id="tb-search-product"> 
+            
+          </tbody>
+        </table>
+        
+      </div>
+          
     </div>
-    <!-- Verduras -->
-    <div id="btnVerduras" class="item item-container d-flex flex-column">
-      <div class="icon-principal-products"><img src="svg/verduras.svg" alt=""></div>
-      <div class="text-principal-products">Verduras</div>
-    </div>
-    <!-- Lacteos -->
-    <div id="btnLacteos" class="item item-container d-flex flex-column">
-      <div class="icon-principal-products"><img src="svg/lacteos.svg" alt=""></div>
-      <div class="text-principal-products">Lácteos</div>
-    </div>
-    <!-- Sodas -->
-    <div id="btnSodas" class="item item-container d-flex flex-column">
-      <div class="icon-principal-products"><img src="svg/sodas.svg" alt=""></div>
-      <div class="text-principal-products">Sodas</div>
-    </div>
-    <!-- Pan -->
-    <div id="btnPan" class="item item-container d-flex flex-column">
-      <div class="icon-principal-products"><img src="svg/panderia.svg" alt=""></div>
-      <div class="text-principal-products">Pan</div>
-    </div>
-    <!-- Carnes -->
-    <div id="btnCarnes" class="item item-container d-flex flex-column">
-      <div class="icon-principal-products"><img src="svg/carnes.svg" alt=""></div>
-      <div class="text-principal-products">Carnes</div>
-    </div>
-    <!-- Sabritas -->
-    <div id="btnSabritas" class="item item-container d-flex flex-column">
-      <div class="icon-principal-products"><img src="svg/sabritas.svg" alt=""></div>
-      <div class="text-principal-products">Sabritas</div>
-    </div>
-    <!-- Enlatados -->
-    <div id="btnEnlatados" class="item item-container d-flex flex-column">
-      <div class="icon-principal-products"><img src="svg/enlatados.svg" alt=""></div>
-      <div class="text-principal-products">Enlatados</div>
-    </div>
+     
     <!-- Table section -->
     <div class="item item-table">
       <!-- Table background and grid table section -->
       <div class="table-bg">
         <!-- Search product input -->
         <div class="item-bg input-search">
-          <input class="input-search-text" type="text" name="" list="dataListProducts" id="inputCodeProduct"
-            placeholder="Código de barras o nombre del producto">
+          <input class="input-search-text" autocomplete="off"  class="item" id="inputCodeProduct"  placeholder="Código de barras">
         </div>
         <datalist id="dataListProducts">
         </datalist>
@@ -162,7 +143,7 @@
           <table class="table">
             <thead class="">
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">Codigo</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Cantidad</th>
