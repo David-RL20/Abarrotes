@@ -1,3 +1,38 @@
+const CLIENT_API = 'http://localhost/Abarrotes/api/AllClients.php';
+let options = [{
+    value: 50.00,
+    textContent: '$50'
+}, {
+    value: 100.00,
+    textContent: '$100'
+}, {
+    value: 200.00,
+    textContent: '$200'
+}, {
+    value: 300.00,
+    textContent: '$300'
+}, {
+    value: 400.00,
+    textContent: '$400'
+}, {
+    value: 500.00,
+    textContent: '$500'
+}, {
+    value: 600.00,
+    textContent: '$600'
+}, {
+    value: 700.00,
+    textContent: '$700'
+}, {
+    value: 800.00,
+    textContent: '$800'
+}, {
+    value: 900.00,
+    textContent: '$900'
+}, {
+    value: 1000.00,
+    textContent: '$1000'
+}]
 class Client {
     constructor(client) {
         this.id = client.number
@@ -77,52 +112,40 @@ function init() {
     addSearchListener();
 }
 
-function getClients() {
-    x = new XMLHttpRequest();
-    x.open('GET', 'http://localhost/Abarrotes/api/AllClients.php')
-    x.send()
-    x.onreadystatechange = function () {
-        if (x.status == 200 && x.readyState == 4) {
-            let clients = JSON.parse(x.responseText)
-            clients.forEach(client => {
-                if (client.number != 1) {
-                    addClientToTable(client)
-                }
-            });
-            let loader = document.getElementById('loader')
-            loader.classList.remove('loader')
+async function getClients() {
+    const request = await fetch(CLIENT_API);
+    const clients = await request.json();
+    clients.forEach(client => {
+        if (client.number != 1) {
+            addClientToTable(client)
         }
-
-    }
+    });
+    document.querySelector('#loader').classList.remove('loader')
 }
 
 function addClientToTable(_client) {
     let client = new Client(_client)
-    let tableBody = document.getElementById('tableBody')
-    let tr = document.createElement('tr')
-    //td
-    let tdID = document.createElement('td')
-    let tdName = document.createElement('td')
-    let tdLimit = document.createElement('td')
-    let tdLimitUsed = document.createElement('td')
-    let tdLimitFree = document.createElement('td')
-    let tdAction = document.createElement('td')
-    //btns
-    let btnEdit = document.createElement('button')
-    let btnDelete = document.createElement('button')
-    //images
-    let imgEdit = document.createElement('img')
-    let imgDelete = document.createElement('img')
-    //ids
-    tdName.id = 'name' + client.id
-    tdLimit.id = 'limit' + client.id
-    imgDelete.id = 'delete' + client.id
-    imgEdit.id = 'edit' + client.id
+    let tableBody = document.getElementById('tableBody');
+    tableBody.insertAdjacentHTML('afterbegin', `
+        <tr> 
+            <td >${client.id}</td>
+            <td id='name${client.id}' >${client.name}</td>
+            <td id='limit${client.id}'>$ ${ client.limit}</td>
+            <td>$ ${client.moneyUsed}</td>
+            <td>$ ${client.moneyFree}</td>
+            <td> 
+                <button id='btn-delete-${client.id}' class='btn btn-outline-danger'> <img id='delete${client.id}' src='images/delete_red.png'> </image></button >
+                <button id='btn-edit-${client.id}' class='btn btn-outline-primary' > <img id='edit${client.id}' src='images/edit_blue.png'> </image></button >
+            </td>
+        </tr>
+    `);
+    //Get imgs and btns
+    let btnDelete = document.querySelector(`#btn-delete-${client.id}`),
+        btnEdit = document.querySelector(`#btn-edit-${client.id}`),
+        imgDelete = document.querySelector(`#delete${client.id}`),
+        imgEdit = document.querySelector(`#edit${client.id}`)
 
-    //img src
-    imgDelete.src = 'images/delete_red.png'
-    imgEdit.src = 'images/edit_blue.png'
-    //on mouse over
+    // on mouse over
     btnEdit.addEventListener('mouseover', () => {
         imgEdit.src = 'images/edit_white.png'
     })
@@ -137,79 +160,21 @@ function addClientToTable(_client) {
     btnDelete.addEventListener('mouseout', () => {
         imgDelete.src = 'images/delete_red.png'
     })
-    //btn classes
-    btnEdit.classList.add('btn-outline-primary')
-    btnDelete.classList.add('btn-outline-danger')
-    btnEdit.classList.add('btn')
-    btnDelete.classList.add('btn')
+
     let editing = false;
     btnEdit.addEventListener('click', () => {
         if (!editing) {
-            let inputName = document.createElement('input')
-            let selectLimit = document.createElement('select')
-            //ids
-            inputName.id = 'inName' + client.id
-            selectLimit.id = 'select' + client.id
-            //inner data
-            inputName.value = tdName.textContent
-            //#region options for select 
-            let options = new Array({
-                value: 50.00,
-                textContent: '$50'
-            }, {
-                value: 100.00,
-                textContent: '$100'
-            }, {
-                value: 200.00,
-                textContent: '$200'
-            }, {
-                value: 300.00,
-                textContent: '$300'
-            }, {
-                value: 400.00,
-                textContent: '$400'
-            }, {
-                value: 500.00,
-                textContent: '$500'
-            }, {
-                value: 600.00,
-                textContent: '$600'
-            }, {
-                value: 700.00,
-                textContent: '$700'
-            }, {
-                value: 800.00,
-                textContent: '$800'
-            }, {
-                value: 900.00,
-                textContent: '$900'
-            }, {
-                value: 1000.00,
-                textContent: '$1000'
-            })
+            let string_options;
+            let index_selected = 0;
             for (let i = 0; i < options.length; i++) {
-                let op = document.createElement('option')
-                op.value = options[i].value
-                op.innerHTML = options[i].textContent
-                console.log('valor en la opcion' + options[i].value)
-                console.log('limite del cliente' + client.limit)
-                selectLimit.appendChild(op)
+                string_options += `<option value=${options[i].value}> ${options[i].textContent} </option>`;
                 if (client.limit == options[i].value) {
-                    selectLimit.selectedIndex = i;
+                    index_selected = i;
                 }
             }
-
-            //#endregion 
-
-            //put 'em in blank
-
-            tdLimit.innerHTML = ''
-            tdName.innerHTML = ''
-
-            //append
-            tdName.appendChild(inputName)
-            tdLimit.appendChild(selectLimit)
-
+            document.querySelector(`#limit${client.id}`).innerHTML = `<select selected=${index_selected} id='select${client.id}'>${string_options} </select>`
+            document.querySelector(`#name${client.id}`).innerHTML = `<input id = 'inName${client.id}'  value=${client.name}> </input>`
+            debugger
         } else {
             client.update()
         }
@@ -221,29 +186,6 @@ function addClientToTable(_client) {
         client.delete();
         tableBody.removeChild(tr)
     })
-
-    //inner data
-    tdID.innerHTML = client.id
-    tdName.innerHTML = client.name
-    tdLimit.innerHTML = '$ ' + client.limit
-    tdLimitUsed.innerHTML = '$ ' + client.moneyUsed
-    tdLimitFree.innerHTML = '$ ' + client.moneyFree
-
-
-
-    //append 
-    btnEdit.appendChild(imgEdit)
-    btnDelete.appendChild(imgDelete)
-    tdAction.appendChild(btnEdit)
-    tdAction.appendChild(btnDelete)
-    tr.appendChild(tdID)
-    tr.appendChild(tdName)
-    tr.appendChild(tdLimit)
-    tr.appendChild(tdLimitUsed)
-    tr.appendChild(tdLimitFree)
-    tr.appendChild(tdAction)
-    tableBody.appendChild(tr)
-
 
 }
 
