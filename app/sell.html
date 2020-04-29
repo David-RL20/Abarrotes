@@ -103,33 +103,35 @@
     <!-- Buscar un producto por su nombre o codigo -->
     <div class="col-12 m-3 " style="display: flex;flex-wrap: wrap;">
       <!-- Ingrese el codigo de barras -->
-      <input class="input-search-text col-6" type="text" name="" list="dataListProducts" id="in-search-product" placeholder="Código de barras o nombre del producto">
+      <input class="input-search-text col-6" type="text" name="" list="dataListProducts" id="in-search-product"
+        placeholder="Código de barras o nombre del producto">
       <!-- Tabla con descripcion del producto -->
-      <div class="table col-6"> 
+      <div class="table col-6">
         <table>
           <thead style="background-color: aliceblue; color: #666;">
             <tr>
               <th scope="col">Codigo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Precio</th> 
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
             </tr>
           </thead>
-          <tbody id="tb-search-product"> 
-            
+          <tbody id="tb-search-product">
+
           </tbody>
         </table>
-        
+
       </div>
-          
+
     </div>
-     
+
     <!-- Table section -->
     <div class="item item-table">
       <!-- Table background and grid table section -->
       <div class="table-bg">
         <!-- Search product input -->
         <div class="item-bg input-search">
-          <input class="input-search-text" autocomplete="off"  class="item" id="inputCodeProduct"  placeholder="Código de barras">
+          <input class="input-search-text" autocomplete="off" class="item" id="inputCodeProduct"
+            placeholder="Código de barras">
         </div>
         <datalist id="dataListProducts">
         </datalist>
@@ -171,6 +173,12 @@
         <!-- Payment button -->
         <div class="item-bg cobrar-button">
           <button id="abrir-popup" class="cobrar-button cobrar-button-btn">Cobrar</button>
+        </div>
+        <!-- Open new sale button -->
+        <div class="item-bg col-12" style="display: flex;justify-content: center;">
+          <a href="sell.html" target="_blank">
+            <img src="images/add.png" width="50px" style="cursor: pointer;">
+          </a>
         </div>
       </div>
     </div>

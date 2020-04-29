@@ -44,7 +44,7 @@ class Product {
         input.focus();
         input.addEventListener("keydown", () => {
             //Enter 
-            if (event.keyCode == '13') {
+            if (event.keyCode === 13) {
                 //insert product
                 if (input.value != '') {
                     const moreProducts = this.moreProducts(input.value);
@@ -61,12 +61,15 @@ class Product {
                     this.openPopUpSell();
                 }
             }
-            //F2
+            //F2 SEARCH PRODUCT
             if (event.keyCode === 113) {
                 //search
                 console.log('searching...')
                 document.querySelector(`#${ID_IN_CODE_SEARCHPRODUCT}`).focus();
 
+            }
+            if (event.keyCode === 115) {
+                window.open("sell.html", '_blank');
             }
         });
         this.addCancelListener()
