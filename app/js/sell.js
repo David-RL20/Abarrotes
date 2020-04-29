@@ -248,68 +248,37 @@ class Product {
         }
     }
     addToTable() {
-        //creating elements
-        let tr = document.createElement('tr')
-        let tdCode = document.createElement('td')
-        let tdName = document.createElement('td')
-        let tdPrice = document.createElement('td')
-        let tdQuantity = document.createElement('td')
-        let tdSubTotal = document.createElement('td')
-        let tdDelete = document.createElement('td')
-        let image = document.createElement('img')
+        //GET TABLE BODY
+        const TB = document.getElementById(ID_TABLE_BODY);
 
-        //get body
-        let tableBody = document.getElementById(ID_TABLE_BODY);
-
-        //set id's
-        tr.id = this.code
-        tdCode.id = 'code' + this.code
-        tdName.id = 'name' + this.code
-        tdPrice.id = 'price' + this.code
-        tdQuantity.id = 'quantity' + this.code
-        tdSubTotal.id = 'subtotal' + this.code
-
-        // image
-        image.src = "images/delete.png"
-        image.classList.add("image")
-        //append image
-        tdDelete.appendChild(image);
-
-        //On click delete row
-        //argumento this.code se esta sobre escribiendo entonces hay que encontrar una manera 
-        //de que cada uno se pueda eliminar de el carrito 
-        image.addEventListener('click', () => {
-            tableBody.removeChild(tr);
-            let code = tr.id
-            this.removeFromCar(code);
+        TB.insertAdjacentHTML('afterbegin',
+            `<tr id='${this.code}'>
+                <td>${this.code}</td>
+                <td>${this.name}</td>
+                <td id='price${this.code}'> ${this.price} </td>
+                <td id='quantity${this.code}' > ${this.quantity}</td>
+                <td id='subtotal${this.code}' >${this.subtotal}</td>
+                <td><img id='delete${this.code}' class='image' src='images/delete.png'></img></td>
+            </tr>`)
+        //GET ROW AND IMG DELETE
+        const IMG_DEL = document.querySelector(`#delete${this.code}`)
+        const TR = document.querySelector(`#${this.code}`)
+        //ON CLICK DELETE ROW AND REMOVE FROM CAR
+        IMG_DEL.addEventListener('click', () => {
+            TB.removeChild(TR);
+            this.removeFromCar(TR.id);
             this.updateTotal();
         })
-        //on mouse over
-        image.addEventListener("mouseover", () => {
-            image.src = "images/delete_red.png"
+        //CHANGE IMG TO RED 
+        IMG_DEL.addEventListener("mouseover", () => {
+            IMG_DEL.src = "images/delete_red.png"
         })
-        image.addEventListener("mouseout", () => {
-            image.src = "images/delete.png"
+        //CHANGE IMG TO NORMAL
+        IMG_DEL.addEventListener("mouseout", () => {
+            IMG_DEL.src = "images/delete.png"
         })
 
-        //inner data 
-        tdCode.innerHTML = this.code
-        tdName.innerHTML = this.name
-        tdPrice.innerHTML = this.price
-        tdQuantity.innerHTML = this.quantity
-        tdSubTotal.innerHTML = this.subtotal
         this.updateTotal();
-
-        //append tds to tr
-        tr.appendChild(tdCode)
-        tr.appendChild(tdName)
-        tr.appendChild(tdPrice)
-        tr.appendChild(tdQuantity)
-        tr.appendChild(tdSubTotal)
-        tr.appendChild(tdDelete)
-
-        //append tr to body
-        tableBody.appendChild(tr)
 
     }
     updateTable() {
