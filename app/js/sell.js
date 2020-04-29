@@ -42,8 +42,10 @@ class Product {
     addInputListener() {
         let input = document.getElementById(ID_INPUT_CODE);
         input.focus();
-        input.addEventListener("keypress", () => {
+        input.addEventListener("keydown", () => {
+            //Enter 
             if (event.keyCode == '13') {
+                //insert product
                 if (input.value != '') {
                     const moreProducts = this.moreProducts(input.value);
                     if (typeof moreProducts !== 'undefined') {
@@ -58,6 +60,13 @@ class Product {
                 } else {
                     this.openPopUpSell();
                 }
+            }
+            //F2
+            if (event.keyCode === 113) {
+                //search
+                console.log('searching...')
+                document.querySelector(`#${ID_IN_CODE_SEARCHPRODUCT}`).focus();
+
             }
         });
         this.addCancelListener()
@@ -416,7 +425,7 @@ class Product {
                             'Compra Cancelada',
                             'success'
                         )
-                        this.cancelTransaction()
+                        this.resetTransaction()
                         this.resetInput();
                     } else {
                         //no cancelar la transaccion
@@ -426,7 +435,7 @@ class Product {
                 })
         })
     }
-    cancelTransaction() {
+    resetTransaction() {
         if (this.car != '' && typeof this.car !== 'undefined') {
             this.car.forEach(ele => {
                 let tr = document.getElementById(ele.code)
@@ -475,7 +484,14 @@ class Product {
             popup = document.getElementById('popup')
         overlay.classList.remove('active');
         popup.classList.remove('active');
+        this.resetWindowSell();
         this.resetInput();
+    }
+    resetWindowSell() {
+        let input = document.querySelector('#inputAmount');
+        let change_label = document.querySelector('#change-label');
+        input.value = '';
+        change_label.textContent = '';
     }
     checkChange() {
         let input = document.getElementById('inputAmount');
@@ -509,6 +525,11 @@ class Product {
         if (event.keyCode == 67) {
             this.saleToCredit();
         }
+        btnFinishSale.addEventListener('keydown', () => {
+            if (event.keyCode === 27) {
+                this.closePopUpSell();
+            }
+        })
 
 
     }
@@ -545,35 +566,6 @@ class Product {
         return position;
     }
     async finishedSell() {
-        // //send a request to register sale  
-        // let x = new XMLHttpRequest();
-        // x.open('POST', URL_SALES_API, true);
-        // x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        // //if client is different to 1 which is the default 
-        // if (typeof this.client !== 'undefined' && this.client != 1) {
-        //     x.send('total=' + this.total + '&client=' + this.client + '&type=credito');
-        // } else {
-        //     x.send('total=' + this.total);
-        // }
-        // x.onreadystatechange = () => {
-        //     if (x.status == 200 && x.readyState == 4) {
-        //         let sell = JSON.parse(x.responseText)
-        //         this.idSale = sell.idSale
-        //         if (typeof this.car !== 'undefined') {
-        //             this.car.forEach(e => {
-        //                 setTimeout(() => {
-        //                     this.sendAProduct(sell.idSale, e.code, e.quantity, e.subtotal);
-        //                 }, 200);
-
-        //             });
-        //             
-
-        //         } else {
-        //             console.log('Empty car somehow')
-        //             
-        //         }
-        //     }
-        // } 
         try {
             //send all car to be processed in the backend
             const request = await fetch(URL_SALES_API, {
@@ -593,10 +585,10 @@ class Product {
                     showConfirmButton: false,
                     timer: 2000
                 })
-                //reload if successfully sale
-                setTimeout(function () {
-                    window.location.reload(true)
-                }, 2000);
+                this.idSale = response.sale
+                //reset if successfully sale
+                this.resetTransaction();
+                this.closePopUpSell();
             } else {
                 swal({
                     icon: 'error',
@@ -753,6 +745,9 @@ class Product {
                     //reset code
                     this.code = null
                 }
+            }
+            if (event.keyCode === 113) {
+                document.querySelector(`#${ID_INPUT_CODE}`).focus();
             }
         });
     }
