@@ -1,5 +1,5 @@
 const CLIENTS_API = "http://localhost/Abarrotes/api/AllClients.php"
-const URL_SALES_API = 'http://localhost/Abarrotes/api/AllSales.php'
+const URL_SALES_API = 'http://localhost/Abarrotes/api/getLastSales.php'
 
 async function getClients() {
     const request = await fetch(CLIENTS_API)

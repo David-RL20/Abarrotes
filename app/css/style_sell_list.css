@@ -3,17 +3,19 @@ body {
     height: auto;
     background-color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-  }
+}
+
 /* Principal container */
-.container-store{
+.container-store {
     display: grid;
     grid-template-columns: 200px 900px;
     grid-template-rows: 67px 100px 400px;
     grid-gap: 30px;
-    margin-right: 50px; 
+    margin-right: 50px;
 }
+
 /* Nav bar section (Logo - ventas - clientes - proveedores - departamentos) */
-.item:nth-of-type(1){
+.item:nth-of-type(1) {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
@@ -23,8 +25,9 @@ body {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
 /* Nav bar container */
-.nav-bar-container{
+.nav-bar-container {
     display: grid;
     grid-template-columns: 180px;
     grid-template-rows: 80px repeat(4, 40px);
@@ -32,16 +35,19 @@ body {
     margin-top: 40px;
     justify-content: center;
 }
-.logo-nav-bar{
+
+.logo-nav-bar {
     width: 110px;
     height: 80px;
 }
-.square-color-item{
+
+.square-color-item {
     width: 25px;
     height: 25px;
     margin-right: 5px;
 }
-.text-navbar{
+
+.text-navbar {
     font-family: 'Segoe UI';
     font-size: 20px;
     font-weight: 600;
@@ -49,16 +55,17 @@ body {
     text-align: left;
     color: #ffffff;
 }
+
 /* Productos principales title */
-.item:nth-of-type(2){
+.item:nth-of-type(2) {
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 1;
-    grid-row-end: 2;   
+    grid-row-end: 2;
     width: 506px;
     height: 67px;
     font-family: 'Segoe UI';
-    font-size: 20px; 
+    font-size: 20px;
     font-stretch: normal;
     font-style: normal;
     line-height: 50px;
@@ -66,35 +73,40 @@ body {
     text-align: left;
     color: #707070;
 }
+
 /* Principal items (frutas - verduras - lacteos - etc) */
-.item-container{
+.item-container {
     width: 100px;
     height: 100px;
     border-radius: 10px;
     box-shadow: 20px 40px 80px 0 #00000029;
     background-color: #f5f8fb;
 }
-.item-container{
+
+.item-container {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-.icon-principal-products{
+
+.icon-principal-products {
     width: 45px;
     height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.text-principal-products{
+
+.text-principal-products {
     width: auto;
     height: 24px;
     margin-top: 6px;
     color: #707070;
 }
+
 /* Table section (grid) */
-.item:nth-of-type(3){
+.item:nth-of-type(3) {
     grid-column-start: 3;
     grid-column-end: 3;
     grid-row-start: 3;
@@ -103,25 +115,28 @@ body {
     background-color: #d8e1ee40;
     margin-bottom: 40px;
 }
-thead{
+
+thead {
     background-color: #5084fd;
     color: #ffffff;
 }
+
 /* Grid table section */
-.table-bg{
+.table-bg {
     display: grid;
     grid-template-columns: 750px 160px;
-    grid-template-rows: 50px  220px 50px 50px;
+    grid-template-rows: 50px 220px 50px 50px;
     grid-template-areas: "input-search recargas-button"
-                         "table-form   payment"
-                         "table-form   cobrar-button"
-                         "table-form    .";
+        "table-form   payment"
+        "table-form   cobrar-button"
+        "table-form    .";
     grid-gap: 30px;
     margin: 50px 50px 50px 50px;
     width: auto;
 }
+
 /* Search input grid */
-.input-search{
+.input-search {
     grid-area: input-search;
     margin-top: 0px;
     padding-top: 0px;
@@ -129,7 +144,8 @@ thead{
     box-shadow: 0 40px 80px 0 #00000029;
     background-color: #d8e1ee40;
 }
-.input-search-text{
+
+.input-search-text {
     width: 350px;
     height: 50px;
     border-radius: 10px;
@@ -139,7 +155,8 @@ thead{
     border: 0;
     padding-left: 30px;
 }
-.table-form{
+
+.table-form {
     grid-area: table-form;
     border-radius: 10px;
     box-shadow: 0 40px 80px 0 #00000029;
@@ -148,17 +165,18 @@ thead{
 }
 
 /* HACER FIJO EL HEADER DE LA TABLA Y AGREGAR SCROLL */
-table{
+table {
     table-layout: fixed;
     width: auto;
 }
 
-th, td {
+th,
+td {
     width: 100px;
     word-wrap: break-word;
 }
 
-.recargas-button{
+.recargas-button {
     grid-area: recargas-button;
     width: 160px;
     height: 50px;
@@ -174,24 +192,28 @@ th, td {
     text-decoration: none;
     border: none;
 }
-.recargas-button-text{
+
+.recargas-button-text {
     font-family: 'Segoe UI';
     font-size: 20px;
     font-weight: 600;
     line-height: 27px;
     text-align: center;
     text-decoration: none;
-    color: #ffffff;   
+    color: #ffffff;
 }
-.recargas-button:hover{
-    background: rgba(230, 198, 71, .4);  
+
+.recargas-button:hover {
+    background: rgba(230, 198, 71, .4);
     text-decoration: none;
-    color: #ffffff; 
+    color: #ffffff;
 }
-.recargas-button:focus{
+
+.recargas-button:focus {
     outline: none;
 }
-.payment{
+
+.payment {
     grid-area: payment;
     border-radius: 10px;
     box-shadow: 20px 40px 80px 0 #00000029;
@@ -200,7 +222,8 @@ th, td {
     grid-template-columns: auto;
     grid-template-rows: 1fr 1fr 45px;
 }
-.payment-btn-close{
+
+.payment-btn-close {
     width: 55px;
     height: 45px;
     -webkit-backdrop-filter: blur(30px);
@@ -215,16 +238,20 @@ th, td {
     color: f8f8f8;
     transition: ease;
 }
-.btn-close-icon{
+
+.btn-close-icon {
     color: #f8f8f8;
 }
-.payment-btn-close:hover{
+
+.payment-btn-close:hover {
     background: rgba(253, 80, 82, .6);
 }
-.payment-btn-close:focus{
+
+.payment-btn-close:focus {
     outline: none;
 }
-.payment-text-money-total{
+
+.payment-text-money-total {
     width: 130px;
     height: 47px;
     font-family: 'Segoe UI';
@@ -234,7 +261,8 @@ th, td {
     display: flex;
     color: #707070;
 }
-.payment-text-total{
+
+.payment-text-total {
     width: 63px;
     height: 40px;
     font-family: 'Segoe UI';
@@ -243,7 +271,8 @@ th, td {
     text-align: center;
     color: #707070;
 }
-.cobrar-button{
+
+.cobrar-button {
     grid-area: cobrar-button;
     border-radius: 10px;
     -webkit-backdrop-filter: blur(30px);
@@ -252,13 +281,16 @@ th, td {
     background-color: #47E69C;
     border: 0;
 }
-.cobrar-button:focus{
+
+.cobrar-button:focus {
     outline: none;
 }
-.cobrar-button:hover{
+
+.cobrar-button:hover {
     background: rgba(71, 230, 156, .4);
 }
-.cobrar-button-btn{
+
+.cobrar-button-btn {
     width: 160px;
     height: 50px;
     border-radius: 10px;
@@ -271,11 +303,12 @@ th, td {
     text-align: center;
     color: #ffffff;
 }
+
 /* --------------------------- */
 /*   Payment window pop-up     */
 /* --------------------------- */
-.overlay{
-    background: rgb(0,0,0,.3);
+.overlay {
+    background: rgb(0, 0, 0, .3);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -286,9 +319,11 @@ th, td {
     justify-content: center;
     visibility: hidden;
 }
-.overlay.active{
+
+.overlay.active {
     visibility: visible;
 }
+
 .popup {
     width: 392px;
     height: 337px;
@@ -297,10 +332,11 @@ th, td {
     background-color: #F8F8F8;
     text-align: center;
     transition: .3s ease all;
-	transform: scale(0.7);
-	opacity: 0;
-}  
-.btn-cerrar-popup{
+    transform: scale(0.7);
+    opacity: 0;
+}
+
+.btn-cerrar-popup {
     color: #707070;
     margin-top: 25px;
     margin-right: 25px;
@@ -308,21 +344,24 @@ th, td {
     text-align: right;
     transition: .3s ease all;
 }
-.btn-cerrar-popup:hover{
+
+.btn-cerrar-popup:hover {
     color: #FD5052;
 }
-.total-payment-label{
+
+.total-payment-label {
     width: 70px;
     height: 40px;
     font-family: 'Segoe UI';
     font-size: 30px;
     line-height: 40px;
     text-align: center;
-    color: #707070;  
+    color: #707070;
     margin-left: 161px;
     font-weight: 600;
 }
-.total-price-label{
+
+.total-price-label {
     width: 112px;
     height: 40px;
     font-family: 'Segoe UI';
@@ -333,7 +372,8 @@ th, td {
     color: #595f71;
     margin-left: 140px;
 }
-.inputs-window-payment{
+
+.inputs-window-payment {
     width: 191px;
     height: 40px;
     border-radius: 10px;
@@ -348,7 +388,8 @@ th, td {
     font-size: 1.5rem;
     color: #707070;
 }
-.btn-credit{
+
+.btn-credit {
     width: 100px;
     height: 40px;
     border-radius: 10px;
@@ -366,47 +407,52 @@ th, td {
     text-decoration: none;
     border: 0;
 }
-.btn-credit:hover{
+
+.btn-credit:hover {
     background-color: rgba(80, 132, 253, .7);
 }
-.btn-credit:focus{
+
+.btn-credit:focus {
     outline: none;
 }
+
 /* ------------------------------ */
 /*   Payment window animation     */
 /* ------------------------------ */
-.popup.active{
+.popup.active {
     opacity: 1;
     transform: scale(1);
 }
 
-    /* Modificaciones del david */
-.table{
+/* Modificaciones del david */
+.table {
     margin-bottom: 0;
-    
+
 }
-.scroll{
+
+.scroll {
     overflow: scroll;
 }
 
-.tr-products{
+.tr-products {
     border-bottom: 2px solid #d8e1eea2;
     cursor: pointer;
 }
-.image{
+
+.image {
     width: 30px;
     cursor: pointer;
-} 
+}
 
 td select {
     background-color: #ffffff;
     color: #707070;
     border-radius: 5px;
-    height: 35px; 
+    height: 35px;
     width: 70%;
     font-size: 10pt;
- } 
- 
+}
+
 #select-client {
     background-color: #ffffff;
     color: #707070;
@@ -414,14 +460,15 @@ td select {
     height: 35px;
     margin-left: 13px;
     width: 200px;
-  }
+}
 
-  .div-search{
+.div-search {
     display: flex;
     justify-content: start;
     align-items: center;
-  }
-div label{
+}
+
+div label {
     font-size: 22px;
     font-weight: 500;
     color: #707070;
