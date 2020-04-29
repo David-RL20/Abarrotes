@@ -1,5 +1,8 @@
 const CLIENT_API = 'http://localhost/Abarrotes/api/AllClients.php';
 let options = [{
+    value: 0,
+    textContent: '$0'
+}, {
     value: 50.00,
     textContent: '$50'
 }, {
@@ -41,66 +44,37 @@ class Client {
         this.moneyUsed = client.total_used
         this.updateMoneyFree()
     }
-    update() {
-        let inputName = document.getElementById('inName' + this.id)
-        let selectLimit = document.getElementById('select' + this.id)
-        let index = selectLimit.selectedIndex
-        let x = new XMLHttpRequest();
-        x.open('POST', 'http://localhost/Abarrotes/api/AllClients.php')
-        x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        x.send('action=update' + '&number=' + this.id + '&name=' + inputName.value + '&limit=' + selectLimit[index].value)
-        x.onreadystatechange = function () {
-            if (x.status == 200 && x.readyState == 4) {
-                if (x.responseText != '1') {
-                    swal({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: x.responseText,
-                        showConfirmButton: false
-                    })
-                } else {
-                    swal({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Cliente actualizado',
-                        showConfirmButton: false,
-                    })
-                }
-                setTimeout(() => {
-                    window.location.reload()
-                }, 1500);
-            }
+    async update() {
+        let limit = document.getElementById('select' + this.id)[document.getElementById('select' + this.id).selectedIndex].value
+        let name = document.querySelector('#inName' + this.id).value
+        const request = await fetch(CLIENT_API, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `action=update&number=${this.id}&name=${name}&limit=${limit}`
+        });
+        let answer = await request.json();
+        if (answer !== 1) {
+            swal({
+                position: 'top-end',
+                icon: 'error',
+                title: answer,
+                showConfirmButton: false
+            })
+        } else {
+            swal({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Cliente actualizado',
+                showConfirmButton: false,
+            })
+            setTimeout(() => {
+                location.reload();
+            }, 700)
+        }
+    }
 
-        }
-    }
-    delete() {
-        let x = new XMLHttpRequest();
-        x.open('POST', 'http://localhost/Abarrotes/api/AllClients.php')
-        x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        x.send('action=delete' + '&number=' + this.id)
-        x.onreadystatechange = function () {
-            if (x.status == 200 && x.readyState == 4) {
-                if (x.responseText != '1') {
-                    swal({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: x.responseText,
-                        showConfirmButton: false
-                    })
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 1000);
-                } else {
-                    swal({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Cliente eliminado',
-                        showConfirmButton: false,
-                    })
-                }
-            }
-        }
-    }
     updateMoneyFree() {
         this.moneyFree = this.limit - this.moneyUsed
     }
@@ -165,16 +139,17 @@ function addClientToTable(_client) {
     btnEdit.addEventListener('click', () => {
         if (!editing) {
             let string_options;
-            let index_selected = 0;
             for (let i = 0; i < options.length; i++) {
-                string_options += `<option value=${options[i].value}> ${options[i].textContent} </option>`;
-                if (client.limit == options[i].value) {
-                    index_selected = i;
-                }
+                //client limit asigned is iqual to value of option
+                (client.limit == options[i].value) ?
+                //insert option as selected
+                string_options += `<option selected value=${options[i].value}> ${options[i].textContent} </option>`:
+                    string_options += `<option value=${options[i].value}> ${options[i].textContent} </option>`
+
             }
-            document.querySelector(`#limit${client.id}`).innerHTML = `<select selected=${index_selected} id='select${client.id}'>${string_options} </select>`
+            //Inner inputs and selected into td
+            document.querySelector(`#limit${client.id}`).innerHTML = `<select id='select${client.id}'>${string_options} </select>`
             document.querySelector(`#name${client.id}`).innerHTML = `<input id = 'inName${client.id}'  value=${client.name}> </input>`
-            debugger
         } else {
             client.update()
         }
@@ -183,8 +158,13 @@ function addClientToTable(_client) {
     })
 
     btnDelete.addEventListener('click', () => {
-        client.delete();
-        tableBody.removeChild(tr)
+        swal({
+            position: 'top-end',
+            icon: 'error',
+            title: `No se puede eliminar cliente
+            si es necesario baja su credito a $0 pesos`,
+            showConfirmButton: false
+        })
     })
 
 }
@@ -219,39 +199,39 @@ function search() {
     }
 }
 
-function add() {
+async function add() {
     let input = document.getElementById('name')
     let select = document.getElementById('selectLimit')
     if (input.value != '' && select[select.selectedIndex].value != 0) {
-        let x = new XMLHttpRequest();
-        x.open('POST', 'http://localhost/Abarrotes/api/AllClients.php', true)
-        x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        x.send('action=post' + '&name=' + input.value + '&limit=' + select[select.selectedIndex].value)
-        x.onreadystatechange = function () {
-            if (x.status == 200 && x.readyState == 4) {
-                if (x.responseText != '1') {
-                    swal({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: x.responseText,
-                        showConfirmButton: false
-                    })
-                } else {
-                    swal({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Cliente agregado de manera exitosa',
-                        showConfirmButton: false,
-                        timer: 1480
-                    })
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 1500);
-                }
-
-            }
-
+        const request = await fetch(CLIENT_API, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `action=post&name=${input.value}&limit=${select[select.selectedIndex].value}`
+        });
+        const answer = await request.json();
+        debugger
+        if (answer !== 1) {
+            swal({
+                position: 'top-end',
+                icon: 'error',
+                title: answer,
+                showConfirmButton: false
+            })
+        } else {
+            swal({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Cliente agregado de manera exitosa',
+                showConfirmButton: false,
+                timer: 1480
+            })
+            setTimeout(() => {
+                window.location.reload()
+            }, 1500);
         }
+
     } else {
         swal({
             position: 'top-end',
