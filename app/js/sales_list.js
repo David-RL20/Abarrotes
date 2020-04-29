@@ -1,42 +1,25 @@
 const CLIENTS_API = "http://localhost/Abarrotes/api/AllClients.php"
 const URL_SALES_API = 'http://localhost/Abarrotes/api/AllSales.php'
 
-function getClients() {
-    let x = new XMLHttpRequest();
-    x.open('GET', CLIENTS_API)
-    x.send()
-    x.onreadystatechange = function () {
-        let select = document.getElementById('select-client')
-        if (x.status == 200 && x.readyState == 4) {
-            let clients = JSON.parse(x.responseText)
-            clients.forEach(client => {
-                //add to list
-                let option = document.createElement('option')
-                option.innerHTML = client.name
-                option.value = client.number
-                option.dataset.limit = client.limit
-                option.dataset.used = client.total_used
-                select.appendChild(option)
-            });
-        }
-
-    }
+async function getClients() {
+    const request = await fetch(CLIENTS_API)
+    const clients = await request.json();
+    let select = document.getElementById('select-client')
+    clients.forEach(client => {
+        //add to list
+        select.insertAdjacentHTML('afterbegin',
+            `<option value=${client.number} data-limit=${client.limit} data-used=${client.used} >
+                ${client.name}
+            </option>`)
+    });
 }
 
-function getSales() {
-    let x = new XMLHttpRequest();
-    x.open('GET', URL_SALES_API)
-    x.send()
-    x.onreadystatechange = function () {
-        if (x.status == 200 && x.readyState == 4) {
-            if (x.responseText != '' && typeof x.responseText !== 'undefined') {
-                let sales = JSON.parse(x.responseText)
-                sales.forEach(sale => {
-                    addSaleToTable(sale)
-                });
-            }
-        }
-    }
+async function getSales() {
+    let request = await fetch(URL_SALES_API);
+    let sales = await request.json();
+    sales.forEach(sale => {
+        addSaleToTable(sale);
+    });
 }
 
 function init() {
@@ -46,62 +29,30 @@ function init() {
 }
 
 function addSaleToTable(sale) {
-    let tdNumber, tdClient, tdDate, tdTotal, tdAction, tr, selectAction, tableBody, date, month
-
-    tableBody = document.getElementById('table-body')
-    tr = document.createElement('tr')
-    tdNumber = document.createElement('td')
-    tdClient = document.createElement('td')
-    tdDate = document.createElement('td')
-    tdTotal = document.createElement('td')
-    tdAction = document.createElement('td')
-    selectAction = document.createElement('select')
-
+    let tableBody, date, month
+    //GET TABLE BODY
+    tableBody = document.getElementById('table-body');
+    //GET DATE
     date = new Date(sale.date)
     if ((date.getMonth() + 1) < 10) {
         month = 0 + '' + (date.getMonth() + 1)
     } else {
         month = (date.getMonth() + 1)
     }
-    tdNumber.innerHTML = sale.id
-    tdClient.innerHTML = sale.client
-    tdDate.innerHTML = date.getDate() + '-' + month + '-' + date.getFullYear()
-    tdTotal.innerHTML = '$' + sale.total
 
-    //actions 
-    let option_delete = document.createElement('option')
-    let option_see_details = document.createElement('option')
-    let option_default = document.createElement('option')
-
-    option_default.innerHTML = 'Seleccione una opcion'
-    option_see_details.innerHTML = 'Ver detalles'
-    option_delete.innerHTML = 'Eliminar'
-    //values
-    option_default.value = 0
-    option_see_details.value = 1
-    option_delete.value = 2
-
-    selectAction.addEventListener('change', () => {
-        let option = selectAction[selectAction.selectedIndex].value
-        console.log(option)
-        if (option == 1) {
-            window.location = 'products_sale.html?sale=' + sale.id
-        } else if (option == 2) {
-            tableBody.removeChild(tr)
-        }
-    })
-
-
-    selectAction.appendChild(option_default)
-    selectAction.appendChild(option_see_details)
-    selectAction.appendChild(option_delete)
-    tdAction.appendChild(selectAction)
-    tr.appendChild(tdNumber)
-    tr.appendChild(tdClient)
-    tr.appendChild(tdDate)
-    tr.appendChild(tdTotal)
-    tr.appendChild(tdAction)
-    tableBody.appendChild(tr)
+    //INNER HTML
+    tableBody.insertAdjacentHTML('beforebegin',
+        `<tr> 
+            <td>${sale.id}</td>
+            <td>${sale.client}</td>
+            <td>${date.getDate()}-${month}-${date.getFullYear()}</td> 
+            <td>$ ${sale.total}</td> 
+            <td>
+                <button class='btn btn-link' onclick='window.location = "products_sale.html?sale=${sale.id}"'> 
+                    Ver detalles
+                </button> 
+            </td> 
+        </tr>`)
 }
 
 function addListeners() {
