@@ -1,142 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/icon.png">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" >
-    <script src="js/jquerry.min.js"  ></script>
-    <script src="js/popper.min.js" ></script>
-    <script src="js/bootstrap.min.js" ></script>
-    <!-- Font awesome -->
-    <script src="js/fontAwesome.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style-client.css">
-    <!-- js -->
-    <script src="js/client.js"></script>
-    <!-- swal -->
-    <script src="js/sweetAlert.js"></script>
-    <title>Clientes</title>
-</head>
-<body onload="init()">
-    <!-- Principal container -->
-    <div class="container-store">
-        <!-- Navbar section -->
-        <div class="item item-navbar">
-          <!-- Navbar grid container --> 
-          <div class="nav-bar-container">
-              <!-- Logo section -->
-              
-              <div class="item-nav-bar logo-nav-bar"><a href="sell.html"><img src="svg/logo.svg" class="" alt=""></a></div>
-              <!-- Ventas -->
-              <div class="item-nav-bar d-flex align-items-center justify-content-start">
-                  <div class="square-color-item" > <img style="width: 100%;" src="images/sale.png" alt=""></div>
-                  <div class="dropdown">
-                      <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Ventas
-                      </a>
-                    
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="sells_list.html">Ver lista de ventas</a> 
-                      </div>
-                    </div>
-              </div>
-              <!-- Productos -->
-              <div class="item-nav-bar d-flex align-items-center justify-content-start">
-                  <div class="square-color-item" > <img src="images/product.png" style="width: 100%;"></div>
-                  <div class="dropdown">
-                      <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Productos
-                      </a>
-                    
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="product.html">Ver Productos</a>
-                        <a class="dropdown-item" href="addProduct.html">Agregar Producto</a>
-                        
-                      </div>
-                    </div>
-              </div>
-              <!-- Clientes -->
-              <div class="item-nav-bar d-flex align-items-center justify-content-start">
-                  <div class="square-color-item"  > <img src="images/client.png" style="width: 100%;"></div>
-                  <div class="dropdown">
-                      <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Clientes
-                      </a>
-                    
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="client.html">Ver Clientes</a>
-                        <a class="dropdown-item" href="clientsCredit.html">Clientes deudores</a>
-                        <!-- <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a> -->
-                      </div>
-                    </div>
-              </div>
-              <!-- Departamentos -->
-              <div class="item-nav-bar d-flex align-items-center justify-content-start">
-                  <div class="square-color-item" ><img src="images/department.png" style="width: 100%;"></div>
-                  <div class="dropdown">
-                      <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Deptos
-                      </a>
-                    
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="department.html">Ver Departamentos</a>
-                        <!-- <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a> -->
-                      </div>
-                    </div>
-              </div>
-          </div>
-      </div>
-        <div class="item">Clientes</div>
-        <div class="item">
-            <div class="grid-search">
-                <div class="item-search-section inputs-search">
-                    <input type="text"id="name" class="inputs-search label-input" placeholder="Ingrese nuevo cliente">
-                </div>
-                <div class="item-search-section inputs-search btn-display">
-                    <select class="custom-select btn-select" id="selectLimit">
-                        <option selected value="0">Límite</option>
-                        <option value="100">$100</option>
-                        <option value="150">$150</option>
-                        <option value="200">$200</option>
-                        <option value="250">$250</option>
-                        <option value="300">$300</option>
-                        <option value="500">$500</option>
-                        <option value="1000">$1000</option>
-                      </select>
-                </div>
-                <div class="item-search-section btn-search"><button onclick="add()" class="btn-search">Agregar</button></div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="grid-table">
-                <div class="item-search-section inputs-search">
-                <input type="text" id="inputSearch" class="inputs-search label-input-show" placeholder="Buscar cliente">
-                </div>
-                <div class="grid-item-table"><button id="btn-search" class="btn-search">Buscar</button></div>
-                <div class="grid-item-table item-table-list">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <td>id</td>
-                        <td>Nombre</td>
-                        <td>Limite Credito</td>
-                        <td>Adeudo</td>
-                        <td>Credito restante</td>
-                        <td>Acciones</td>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
 
-                    </tbody>
-                  </table>
-                  <div class="loader" id="loader"></div>
-                </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/icon.png">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquerry.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- Font awesome -->
+  <script src="js/fontAwesome.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style-client.css">
+  <!-- js -->
+  <script src="js/client.js"></script>
+  <!-- swal -->
+  <script src="js/sweetAlert.js"></script>
+  <title>Clientes</title>
+</head>
+
+<body onload="init()">
+  <!-- Principal container -->
+  <div class="container-store">
+    <!-- Navbar section -->
+    <div class="item item-navbar">
+      <!-- Navbar grid container -->
+      <div class="nav-bar-container">
+        <!-- Logo section -->
+
+        <div class="item-nav-bar logo-nav-bar"><a href="sell.html"><img src="svg/logo.svg" class="" alt=""></a></div>
+        <!-- Ventas -->
+        <div class="item-nav-bar d-flex align-items-center justify-content-start">
+          <div class="square-color-item"> <img style="width: 100%;" src="images/sale.png" alt=""></div>
+          <div class="dropdown">
+            <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Ventas
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="sells_list.html">Ver lista de ventas</a>
+              <a class="dropdown-item" href="sales_stats.html">Ver grafica de ventas</a>
             </div>
+          </div>
         </div>
+        <!-- Productos -->
+        <div class="item-nav-bar d-flex align-items-center justify-content-start">
+          <div class="square-color-item"> <img src="images/product.png" style="width: 100%;"></div>
+          <div class="dropdown">
+            <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Productos
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="product.html">Ver Productos</a>
+              <a class="dropdown-item" href="addProduct.html">Agregar Producto</a>
+
+            </div>
+          </div>
+        </div>
+        <!-- Clientes -->
+        <div class="item-nav-bar d-flex align-items-center justify-content-start">
+          <div class="square-color-item"> <img src="images/client.png" style="width: 100%;"></div>
+          <div class="dropdown">
+            <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Clientes
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="client.html">Ver Clientes</a>
+              <a class="dropdown-item" href="clientsCredit.html">Clientes deudores</a>
+              <!-- <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+          </div>
+        </div>
+        <!-- Departamentos -->
+        <div class="item-nav-bar d-flex align-items-center justify-content-start">
+          <div class="square-color-item"><img src="images/department.png" style="width: 100%;"></div>
+          <div class="dropdown">
+            <a class="btn btn-clean dropdown-toggle text-navbar" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Deptos
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="department.html">Ver Departamentos</a>
+              <!-- <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="item">Clientes</div>
+    <div class="item">
+      <div class="grid-search">
+        <div class="item-search-section inputs-search">
+          <input type="text" id="name" class="inputs-search label-input" placeholder="Ingrese nuevo cliente">
+        </div>
+        <div class="item-search-section inputs-search btn-display">
+          <select class="custom-select btn-select" id="selectLimit">
+            <option selected value="0">Límite</option>
+            <option value="100">$100</option>
+            <option value="150">$150</option>
+            <option value="200">$200</option>
+            <option value="250">$250</option>
+            <option value="300">$300</option>
+            <option value="500">$500</option>
+            <option value="1000">$1000</option>
+          </select>
+        </div>
+        <div class="item-search-section btn-search"><button onclick="add()" class="btn-search">Agregar</button></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid-table">
+        <div class="item-search-section inputs-search">
+          <input type="text" id="inputSearch" class="inputs-search label-input-show" placeholder="Buscar cliente">
+        </div>
+        <div class="grid-item-table"><button id="btn-search" class="btn-search">Buscar</button></div>
+        <div class="grid-item-table item-table-list">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>id</td>
+                <td>Nombre</td>
+                <td>Limite Credito</td>
+                <td>Adeudo</td>
+                <td>Credito restante</td>
+                <td>Acciones</td>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+          </table>
+          <div class="loader" id="loader"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
