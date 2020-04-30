@@ -14,8 +14,11 @@
   <script src="js/fontAwesome.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="css/style_sale_stats.css">
-  <!-- JS -->
-  <script src="js/sales_stats.js"></script>
+
+  <!-- HIGHTCHARTS -->
+  <script src="plugins/code/highcharts.js"></script>
+  <script src="plugins/code/modules/exporting.js"></script>
+  <script src="plugins/code/modules/export-data.js"></script>
   <title>Venta</title>
 </head>
 
@@ -99,9 +102,24 @@
     <div>
       <h1>Graficos de las ventas</h1>
     </div>
+    <div class="container" style="background:#ccc;">
+      <div>
+        ventas del dia
+      </div>
+
+    </div>
+    <div class="col-12 grid-container">
+      <div class="col-12" style="display: flex; flex-wrap: wrap;">
+        <div class="daily-sales" style="background:#165; width: 48%; margin: 5px;" id="day">Daily</div>
+        <div class="weekly-sales" style="background:#589; width: 48%; margin: 5px;" id="week">Weekly</div>
+      </div>
+      <div class="monthly-sales" style="background:#165;" id="month">Monthly</div>
+      <div class="yearly-sales" style="background:#157;" id="year">Yearly</div>
+    </div>
   </div>
   <!-- JavaScript -->
   <script src="js/sweetAlert.js"></script>
+  <script src="js/sales_stats.js"></script>
 </body>
 
 </html>
