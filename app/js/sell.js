@@ -252,7 +252,7 @@ class Product {
         const TB = document.getElementById(ID_TABLE_BODY);
 
         TB.insertAdjacentHTML('afterbegin',
-            `<tr id='${this.code}'>
+            `<tr id='tr${this.code}'>
                 <td>${this.code}</td>
                 <td>${this.name}</td>
                 <td id='price${this.code}'> ${this.price} </td>
@@ -262,7 +262,7 @@ class Product {
             </tr>`)
         //GET ROW AND IMG DELETE
         const IMG_DEL = document.querySelector(`#delete${this.code}`)
-        const TR = document.querySelector(`#${this.code}`)
+        const TR = document.querySelector(`#tr${this.code}`)
         //ON CLICK DELETE ROW AND REMOVE FROM CAR
         IMG_DEL.addEventListener('click', () => {
             TB.removeChild(TR);
