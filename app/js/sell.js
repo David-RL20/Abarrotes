@@ -51,7 +51,7 @@ class Product {
                     if (typeof moreProducts !== 'undefined') {
                         //get the values of code an quantity if * on input
                         this.quantity = moreProducts[0]
-                        this.code = array[1]
+                        this.code = moreProducts[1]
                         this.verification();
                     } else {
                         this.code = input.value
