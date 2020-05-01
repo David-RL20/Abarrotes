@@ -99,15 +99,26 @@
       </div>
     </div>
     <!-- Title section -->
-    <div>
-      <h1>Graficos de las ventas</h1>
+    <div id="label-title" style="display: flex; justify-content: space-between;">
+      <h1 class="col-6">Graficos de las ventas</h1>
+      <!-- Section of date inserted by js -->
     </div>
-    <div class="container" style="background:#ccc;">
-      <div>
-        ventas del dia
-      </div>
+    <!-- EFECTIVO -->
+    <div class="container" id="cash-sales-container">
+      <h5 class="m-1">Efectivo</h5>
 
     </div>
+    <!-- CREDITO -->
+    <div class="container" id="credit-sales-container">
+      <h5 class="m-1">Credito</h5>
+
+    </div>
+    <!-- GENERAL -->
+    <div class="container" id="all-sales-container">
+      <h5 class="m-1">General</h5>
+
+    </div>
+
     <div class="col-12 grid-container">
       <div class="col-12" style="display: flex; flex-wrap: wrap;">
         <div class="daily-sales" style="background:#165; width: 48%; margin: 5px;" id="day">Daily</div>

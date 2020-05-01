@@ -9,8 +9,8 @@ body {
 .container-store {
     display: grid;
     grid-template-columns: 200px 900px;
-    grid-template-rows: 67px 100px 400px;
-    grid-gap: 30px;
+    grid-template-rows: 67px 100px 100px 100px 400px;
+    grid-gap: 35px;
     margin-right: 50px;
 }
 
@@ -80,4 +80,34 @@ body {
     grid-template-columns: 100%;
     grid-auto-rows: 250px;
     grid-gap: 10px;
+}
+
+.img-left-container {
+    height: 89px;
+    display: flex;
+    width: 86px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.col-3 {
+    display: flex;
+    max-width: 31%;
+    padding-right: 0;
+}
+
+.col-12 {
+    padding-right: 0;
+    padding-left: 5px;
+}
+
+.money-label {
+    font-size: 18pt;
+    font-weight: 380;
+    color: green;
+}
+
+p {
+    font-size: 11pt;
 }
