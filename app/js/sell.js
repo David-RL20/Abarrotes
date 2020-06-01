@@ -410,7 +410,7 @@ class Product {
     resetTransaction() {
         if (this.car != '' && typeof this.car !== 'undefined') {
             this.car.forEach(ele => {
-                let tr = document.getElementById(ele.code)
+                let tr = document.getElementById("tr"+ele.code)
                 let body = document.getElementById(ID_TABLE_BODY)
                 body.removeChild(tr);
             });
